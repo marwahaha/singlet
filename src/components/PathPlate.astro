@@ -16,7 +16,7 @@ const paths=couplingPaths(8,0);
  <div class="sr-only" data-path-live aria-live="polite"></div>
 </div>
 <style>
- .path-art .path-highlight { transition: opacity 650ms ease-in-out; }
+ .path-art .path-highlight { transition: opacity 500ms ease-in-out; }
  .plate-count { font-variant-numeric: tabular-nums; }
  .plate-bottom { flex-wrap: wrap; }
  .plate-controls { display: flex; align-items: center; gap: 16px; margin-left: auto; }
@@ -70,7 +70,7 @@ document.querySelectorAll<HTMLElement>('[data-path-plate]').forEach(plate => {
    remaining -= 1;
    if (remaining === 0) stopAutoplay();
    else schedule();
-  }, 1600);
+  }, 1200);
  }
 
  function onMotionChange() {
