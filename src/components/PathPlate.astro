@@ -1,0 +1,19 @@
+---
+import { couplingPaths, pathCurve } from '../lib/paths.mjs';
+const paths=couplingPaths(8,0);
+---
+<div class="path-plate" data-path-plate>
+ <div class="plate-top"><span class="eyebrow">Figure 1 / Coupling paths</span><span class="plate-symbol">½ ⊗ ½ ⊗ ··· ⊗ ½</span></div>
+ <div class="plate-caption"><h2>Fourteen paths to J = 0</h2><p>Sequential coupling of eight spin-½ systems.</p></div>
+ <svg viewBox="0 0 560 320" role="img" aria-label="The fourteen allowed sequential coupling paths for eight spin-half particles ending at total spin zero. One path is highlighted." class="path-art">
+  <defs><linearGradient id="path-gradient" x1="0" x2="1"><stop stop-color="#e99674"/><stop offset=".5" stop-color="#edf3c4"/><stop offset="1" stop-color="#9bcfc0"/></linearGradient></defs>
+  {[0,1,2,3,4].map(j=><g><line x1="38" x2="522" y1={280-j*60} y2={280-j*60} stroke="#ffffff" stroke-opacity=".08"/><text x="20" y={284-j*60} fill="#a0b6a9" font-size="11">{j/2}</text></g>)}
+  {paths.map((p,i)=><path data-path-index={i} d={pathCurve(p,560,320,40)} fill="none" stroke={i===6?'url(#path-gradient)':'#95b6a4'} stroke-width={i===6?'2.7':'1'} stroke-opacity={i===6?'1':'.22'} />)}
+  {[0,1,2,3,4,5,6,7,8].map(n=><text x={40+n*60} y="306" text-anchor="middle" fill="#a0b6a9" font-size="11">{n}</text>)}
+ </svg>
+ <div class="plate-bottom"><span><span class="plate-count" data-path-count>07</span><span class="plate-count-total"> / 14</span><span class="plate-descriptor">allowed coupling paths</span></span><button class="plate-button" type="button" data-next-path>Another path <span aria-hidden="true">↗</span></button></div>
+ <div class="sr-only" data-path-live aria-live="polite">Path 7 of 14 selected.</div>
+</div>
+<script>
+document.querySelectorAll<HTMLElement>('[data-path-plate]').forEach(plate=>{let selected=6;plate.querySelector('[data-next-path]')?.addEventListener('click',()=>{selected=(selected+1)%14;plate.querySelectorAll<SVGPathElement>('[data-path-index]').forEach((p,i)=>{p.setAttribute('stroke',i===selected?'url(#path-gradient)':'#95b6a4');p.setAttribute('stroke-width',i===selected?'2.7':'1');p.setAttribute('stroke-opacity',i===selected?'1':'.22');});plate.querySelector('[data-path-count]')!.textContent=String(selected+1).padStart(2,'0');plate.querySelector('[data-path-live]')!.textContent=`Path ${selected+1} of 14 selected.`;});});
+</script>

@@ -1,0 +1,10 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SpinLab from '../components/SpinLab.astro';
+import SchurLab from '../components/SchurLab.astro';
+import CoherenceLab from '../components/CoherenceLab.astro';
+import PhaseLab from '../components/PhaseLab.astro';
+import PreparationLab from '../components/PreparationLab.astro';
+import QuestionLink from '../components/QuestionLink.astro';
+---
+<Layout title="Experiments — Singlet" active="experiments"><header class="page-heading"><div class="eyebrow">Interactive calculations</div><h1>Five examples</h1><p>These calculations illustrate pairwise measurement, Schur–Weyl decomposition, coherence at fixed spin, a complexity transition, and state preparation from mixed qubits. The controls vary small systems whose probabilities and dimensions can be computed exactly.</p><nav class="experiment-directory" aria-label="Experiments"><a href="#recoupling"><div class="eyebrow">01 / Measurement</div><h3>Recoupling ↘</h3></a><a href="#schur"><div class="eyebrow">02 / Geometry</div><h3>Schur–Weyl decomposition ↘</h3></a><a href="#coherence"><div class="eyebrow">03 / Resource</div><h3>Coherence ↘</h3></a><a href="#complexity"><div class="eyebrow">04 / Complexity</div><h3>Complexity transition ↘</h3></a><a href="#preparation"><div class="eyebrow">05 / Preparation</div><h3>Combining resources ↘</h3></a></nav></header><noscript><p class="no-script">The interactive controls need JavaScript. All mathematical explanations and research questions remain available below.</p></noscript><div class="wide-section"><section id="recoupling" class="experiment-section"><SpinLab/><QuestionLink id="Q01"/></section><section id="schur" class="experiment-section"><SchurLab/><QuestionLink id="Q09"/></section><section id="coherence" class="experiment-section"><CoherenceLab/><QuestionLink id="Q11"/></section><section id="complexity" class="experiment-section"><PhaseLab/><QuestionLink id="Q13"/></section><section id="preparation" class="experiment-section"><PreparationLab/><QuestionLink id="Q32"/></section></div></Layout>

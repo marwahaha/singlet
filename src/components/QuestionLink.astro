@@ -1,0 +1,7 @@
+---
+import questions from '../data/questions.json';
+import MathText from './MathText.astro';
+import {mathTextToPlainText} from '../lib/math-text.mjs';
+const {id}=Astro.props; const q=questions.find(q=>q.id===id)!;
+---
+<a aria-label={`${q.id}: ${mathTextToPlainText(q.title)}`} class="question-link" href={`${import.meta.env.BASE_URL}questions/${q.id.toLowerCase()}/`}><span class="eyebrow">{q.id} / {q.kind==='conjecture'?'Conjecture':q.kind==='hypothesis'?'Guiding hypothesis':q.kind==='direction'?'Research direction':'Question'}</span><span class="question-link-title"><MathText text={q.title}/><span class="question-link-arrow" aria-hidden="true">↗</span></span><span class="question-link-summary"><MathText text={q.summary}/></span></a>

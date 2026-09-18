@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+<title>Singlet — antisymmetric superposition</title>
+<desc>Open and filled circles form 01 above 10. A minus between the equally weighted rows represents their opposite amplitudes.</desc>
+<g stroke="#20372e" stroke-width="4.5">
+<circle cx="15" cy="15" r="10"/>
+<circle cx="49" cy="49" r="10"/>
+</g>
+<g fill="#20372e">
+<circle cx="49" cy="15" r="11"/>
+<circle cx="15" cy="49" r="11"/>
+</g>
+<path d="M23 32H41" stroke="#ad482d" stroke-width="4.5"/>
+</svg>

@@ -1,0 +1,32 @@
+---
+import Math from './Math.astro';
+---
+<figure class="swap-interactive" data-swap-lab>
+ <div class="swap-inputs"><span>A: <Math tex={String.raw`|0\rangle`}/></span><span>B: <Math tex={String.raw`\cos(\theta/2)|0\rangle+\sin(\theta/2)|1\rangle`}/></span></div>
+ <label class="swap-angle-label" for="swap-angle">Prepare input B <output data-swap-angle>θ = 90°</output></label>
+ <input id="swap-angle" type="range" min="0" max="180" step="1" value="90" aria-label="Input state angle in degrees"/>
+ <div class="swap-range-labels"><span>Identical inputs · 0°</span><span>Orthogonal · 180°</span></div>
+ <svg class="swap-live-circuit" viewBox="0 0 620 260" role="group" aria-label="SWAP-test circuit. Activate the measurement gate to sample the ancilla.">
+  <g class="swap-live-wires"><path d="M 70 65 H 550 M 70 145 H 570 M 70 225 H 570 M 280 65 V 225"/></g>
+  <text x="18" y="74">|0⟩</text><text x="30" y="154">A</text><text x="30" y="234">B</text>
+  <g class="swap-live-gates"><rect x="122" y="42" width="46" height="46"/><rect x="382" y="42" width="46" height="46"/></g>
+  <text x="145" y="73" text-anchor="middle">H</text><text x="405" y="73" text-anchor="middle">H</text>
+  <circle cx="280" cy="65" r="6" fill="currentColor"/>
+  <path class="swap-live-wires" d="M 270 135 L 290 155 M 270 155 L 290 135 M 270 215 L 290 235 M 270 235 L 290 215"/>
+  <g class="swap-measure-gate" role="button" tabindex="0" aria-label="Measure the ancilla" data-swap-gate>
+   <rect x="472" y="33" width="64" height="64" rx="7"/>
+   <path d="M 482 76 A 22 22 0 0 1 526 76 M 504 77 L 523 46"/>
+  </g>
+  <text x="574" y="76" text-anchor="middle" data-swap-bit>?</text>
+  <rect class="swap-retained-box" x="465" y="123" width="130" height="124" rx="5"/>
+  <text x="530" y="177" text-anchor="middle" data-swap-projector>Ψ</text>
+  <text class="swap-small" x="530" y="207" text-anchor="middle">data retained</text>
+ </svg>
+ <div class="swap-branches"><button data-swap-branch="triplet"><span>0 · Symmetric</span><strong data-swap-p0>75%</strong><small>Inspect Pₜ branch</small></button><button data-swap-branch="singlet"><span>1 · Antisymmetric</span><strong data-swap-p1>25%</strong><small>Inspect Pₛ branch</small></button></div>
+ <div class="swap-actions"><button class="solid-button" data-swap-measure>Measure ancilla</button><button class="quiet-button" data-swap-reset>Prepare again</button></div>
+ <p class="swap-state-label" data-swap-label>Input state · squared overlap 0.500</p>
+ <div class="swap-amplitudes" role="img" aria-label="Signed real amplitudes of the two data qubits" data-swap-amplitudes>{['00','01','10','11'].map((ket,i)=><div class="swap-amplitude"><div class="swap-amplitude-track"><i data-swap-bar={i}></i></div><strong data-swap-value={i}>0</strong><span>|{ket}⟩</span></div>)}</div>
+ <p class="swap-result" data-swap-result role="status" aria-live="polite">Measure the ancilla to retain the symmetric or antisymmetric part of the data state.</p>
+ <figcaption>The bars show signed amplitudes. A positive amplitude extends upward; a negative one extends downward. Every test uses a fresh ancilla in |0⟩. Changing θ prepares fresh data.</figcaption>
+</figure>
+<script>import {initSwapLabs} from '../scripts/swap.mjs';initSwapLabs();</script>

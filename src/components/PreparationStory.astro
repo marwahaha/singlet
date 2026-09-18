@@ -1,0 +1,41 @@
+---
+import Math from './Math.astro';
+import QuestionLink from './QuestionLink.astro';
+import PreparationLab from './PreparationLab.astro';
+---
+<section class="essay-section essay-continuation" id="preparing-states"><div class="prose">
+ <h2>What do successive measurements build?</h2>
+ <p>We start with no correlations: each qubit has state <Math tex="I/2"/>. For two qubits, a singlet–triplet measurement has the following branches:</p>
+ <Math display tex={String.raw`\frac{I}{4}\longrightarrow\begin{cases}P_s & \text{with probability }1/4,\\[2pt]P_t/3 & \text{with probability }3/4.\end{cases}`}/>
+ <p>The singlet branch is a pure entangled state. The triplet branch is still mixed: it is uniform on a three-dimensional subspace. A second test of the same pair returns triplet with certainty and leaves that state unchanged. Learning the spin label does not select a pure state within the corresponding space.</p>
+ <p>In fact, this mixed triplet is separable. Choose a pure qubit state uniformly over directions, prepare two copies, then forget the direction. Averaging those product states gives exactly <Math tex="P_t/3"/>. The triplet space contains entangled states, but the particular state prepared from mixed input has no entanglement. If we forget the measurement outcome as well, the two branches average back to <Math tex="I/4"/>.</p>
+ <h3>Symmetric blocks and overlapping measurements</h3>
+ <p>The same construction works for a larger block of <Math tex="k"/> qubits:</p>
+ <Math display tex={String.raw`\frac{P_{\mathrm{sym},k}}{k+1}=\int d\psi\,\bigl(|\psi\rangle\langle\psi|\bigr)^{\otimes k}.`}/>
+ <p>The measure is normalized and uniform over pure qubit states. The integral is supported on the symmetric spin-<Math tex="k/2"/> irrep and is invariant under collective rotations; these facts and trace one determine the normalized projector. It is a mixture of product states, even though being fully symmetric does not by itself imply separability.</p>
+ <p>Every internal pair in this block is triplet. To change it using STP, we need to interact it with something outside the block. Preparing two symmetric blocks independently does not make their union fully symmetric. An overlapping measurement can change their internal correlations and entangle systems across the old block boundaries.</p>
+ <p>Prepare simple blocks independently, then measure a pair that crosses their boundaries. Starting with two singlets, either outcome on a cross-pair gives a useful state: new singlet pairs, or two spin-one pairs entangled into total spin zero. Starting with two mixed triplets can also create entanglement. The output need not remain a collection of the original blocks.</p>
+</div></section>
+<div class="wide-section"><PreparationLab/></div>
+<section class="essay-section essay-continuation"><div class="prose">
+ <h3>Overlapping singlet constraints</h3>
+ <p>Disjoint pairs can each be singlets, but two pairs sharing a qubit cannot both be perfect singlets. For three qubits,</p>
+ <Math display tex={String.raw`P_s^{12}P_s^{23}P_s^{12}=\frac14P_s^{12},\qquad p_s(12)+p_s(23)\le\frac32.`}/>
+ <p>If 1–2 is a singlet, measuring 2–3 gives singlet with probability ¼. Retaining that outcome creates a singlet on 2–3, but 1–2 is no longer certainly singlet. The constraints are incompatible as simultaneous certainties; the sequence of outcomes is possible.</p>
+ <p>Triplet constraints have a common solution: every pair in a fully symmetric state is triplet. On a connected graph, the common triplet subspace is exactly the fully symmetric subspace. Overlapping triplet projectors still do not commute, so a later measurement can disturb an earlier triplet outcome. A promise of lower global spin excludes the fully symmetric solution.</p>
+ <p>Could the cost of redistributing antisymmetric correlations help explain computational hardness? In Quantum Max-Cut, we optimize singlet weight on incompatible overlapping edges. In an STP computation, we can follow the singlet correlation between an untouched reference and an output qubit. I want to understand which properties of the intermediate states control the cost of producing the desired correlations. Frustration alone does not answer that question.</p>
+ <QuestionLink id="Q34"/><QuestionLink id="Q38"/>
+ <h3>The state contains more information than its spin weights</h3>
+ <p>Starting from mixed input, every conditional state produced by STP remains invariant under collective rotations. In Schur coordinates it therefore has the form</p>
+ <Math display tex={String.raw`\rho=\bigoplus_J p_J\,\frac{I_{V_J}}{2J+1}\otimes\sigma_J.`}/>
+ <p>The orientation factor stays maximally mixed. The probabilities <Math tex="p_J"/> describe how much weight is in each global-spin sector, while <Math tex={"\\sigma_J"}/> describes the state in its multiplicity space. A pair measurement acts within these sectors. Conditioning reweights them and changes their multiplicity states; it does not transfer an amplitude from one global <Math tex="J"/> to another. Averaging over all outcomes conserves the sector weights of a closed register.</p>
+ <p>This matters for preparation and compilation. Universality of the STP model does not mean that we can prepare every physical pure state from mixed qubits. The operations also preserve real density matrices in the computational basis. Universal computation is encoded in relational degrees of freedom, with the relevant input and readout conventions. The physical target, the encoding, and the permitted ancillary systems are part of a preparation problem.</p>
+ <QuestionLink id="Q31"/>
+ <p>For a particular recorded history <Math tex="h"/>, let <Math tex="K_h"/> be the ordered product of its pair projectors. From mixed input on <Math tex="n"/> qubits,</p>
+ <Math display tex={String.raw`\rho_h=\frac{K_hK_h^\dagger}{\mathrm{Tr}(K_hK_h^\dagger)},\qquad p(h)=\frac{\mathrm{Tr}(K_hK_h^\dagger)}{2^n}.`}/>
+ <p>Projectors on overlapping pairs need not commute. Their product need not be a projector, so the state can acquire a nonuniform spectrum and correlations that are invisible in the most recently measured spin label. This is one reason I want to follow what we can create over time, rather than describe a computation only by its final answer.</p>
+ <h3>Keeping a resource is different from starting again</h3>
+ <p>A fresh mixed pair yields a singlet once every four attempts on average. We can keep that pair and prepare another independently. Two singlets then cost eight pair measurements on average in this simple procedure, with fresh mixed pairs available for retries. The particular four-qubit history in which both first attempts succeed has probability only <Math tex="1/16"/>. A branch probability alone does not specify the cost of a protocol that can keep, retry, or recycle intermediate states.</p>
+ <p>Could a compiler work with these intermediate resources directly? It might keep track of symmetric blocks, singlets, multiplicity states, and which failed branches are still useful. We would then ask what a proposed conversion accomplishes, with what accuracy, and at what total cost. Entropy, purity, spin weights, and entanglement are useful diagnostics, but the experiment gives no reason to identify any one of them with computational power.</p>
+ <QuestionLink id="Q32"/><QuestionLink id="Q33"/>
+</div></section>

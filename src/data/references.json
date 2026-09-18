@@ -1,0 +1,301 @@
+[
+  {
+    "key": "rudolph-virmani-stp",
+    "title": "The two-qubit singlet/triplet measurement is universal for quantum computing given only maximally-mixed initial states",
+    "authors": "Terry Rudolph; Shashank Soyuz Virmani",
+    "year": 2023,
+    "url": "https://www.nature.com/articles/s41467-023-43481-y",
+    "arxiv": "https://arxiv.org/abs/2107.03239",
+    "relevance": "Established universality of ideal adaptive STP from maximally mixed input."
+  },
+  {
+    "key": "freedman-hastings-shokrian-zini",
+    "title": "Symmetry Protected Quantum Computation",
+    "authors": "Michael H. Freedman; Matthew B. Hastings; Modjtaba Shokrian Zini",
+    "year": 2021,
+    "url": "https://arxiv.org/abs/2105.04649",
+    "relevance": "STP model, protection motivation, and relationships with permutational and postselected computation. Its universality conjecture was subsequently resolved."
+  },
+  {
+    "key": "jordan-permutational",
+    "title": "Permutational Quantum Computing",
+    "authors": "Stephen P. Jordan",
+    "year": 2009,
+    "url": "https://arxiv.org/abs/0906.2508",
+    "relevance": "A computational model built from spin coupling and permutations; historical background rather than an assertion that its original open problems remain open."
+  },
+  {
+    "key": "brahmachari-hulse-pfister-marvian",
+    "title": "Optimal Qubit Purification and Unitary Schur Sampling via Random SWAP Tests",
+    "authors": "Shrigyan Brahmachari; Austin Hulse; Henry D. Pfister; Iman Marvian",
+    "year": 2025,
+    "url": "https://arxiv.org/abs/2508.05046",
+    "relevance": "Random pairwise SWAP-test protocols for specified qubit purification and Schur-sampling tasks. Does not establish an arbitrary coherent Schur transform."
+  },
+  {
+    "key": "marwaha-sud-phase-transition",
+    "title": "A complexity phase transition at the EPR Hamiltonian",
+    "authors": "Kunal Marwaha; James Sud",
+    "year": 2026,
+    "url": "https://arxiv.org/abs/2604.13026",
+    "versionUrl": "https://arxiv.org/html/2604.13026v1",
+    "relevance": "Proved Hamiltonian classification, EPR* tractability question, and named singlet conjecture."
+  },
+  {
+    "key": "cubitt-montanaro-classification",
+    "title": "Complexity classification of local Hamiltonian problems",
+    "authors": "Toby Cubitt; Ashley Montanaro",
+    "year": 2016,
+    "url": "https://arxiv.org/abs/1311.3161",
+    "relevance": "Background classification of two-local Hamiltonians. Match signs, weights, and graph restrictions to the precise result used."
+  },
+  {
+    "key": "harrow-montanaro-product-test",
+    "title": "Testing product states, quantum Merlin-Arthur games and tensor optimisation",
+    "authors": "Aram W. Harrow; Ashley Montanaro",
+    "year": 2013,
+    "url": "https://arxiv.org/abs/1001.0017",
+    "relevance": "Product-state testing and applications to unentangled witnesses."
+  },
+  {
+    "key": "bostanci-et-al-qma2-oracle",
+    "title": "A quantum oracle separation between QMA(2) and QMA",
+    "authors": "John Bostanci; Sabee Grewal; Jonas Haferkamp; Andrew Huang; Yeongwoo Hwang; Anand Natarajan; Chinmay Nirkhe",
+    "year": 2026,
+    "url": "https://arxiv.org/abs/2609.02865",
+    "relevance": "A quantum-oracle separation using symmetric/antisymmetric projectors; also gives disentangler lower bounds. It is not an unrelativized separation."
+  },
+  {
+    "key": "ambainis-magnin-roetteler-roland",
+    "title": "Symmetry-assisted adversaries for quantum state generation",
+    "authors": "Andris Ambainis; Loïck Magnin; Martin Roetteler; Jérémie Roland",
+    "year": 2011,
+    "url": "https://arxiv.org/abs/1012.2112",
+    "relevance": "Representation theory in adversary bounds and quantum state generation."
+  },
+  {
+    "key": "foxman-lombardi-ma-nehoran-wright",
+    "title": "Quantum Lazy Sampling and Path Recording for Any Group",
+    "authors": "Ben Foxman; Alex Lombardi; Fermi Ma; Barak Nehoran; John Wright",
+    "year": 2026,
+    "url": "https://arxiv.org/abs/2606.30281",
+    "relevance": "Purification, representation theory, and recording access to random group elements."
+  },
+  {
+    "key": "jeffery-zur-compressed-adversary",
+    "title": "The Compressed Oracle is a Worthy (Multiplicative) Adversary",
+    "authors": "Stacey Jeffery; Sebastian Zur",
+    "year": 2026,
+    "url": "https://arxiv.org/abs/2509.07876",
+    "publicationUrl": "https://drops.dagstuhl.de/storage/00lipics/lipics-vol374-icalp2026/html/LIPIcs.ICALP.2026.118/LIPIcs.ICALP.2026.118.html",
+    "relevance": "Connects compressed-oracle methods with multiplicative adversaries; useful background for the requested purification/adversary bridge."
+  },
+  {
+    "key": "bostanci-nehoran-zhandry-duality",
+    "title": "A General Quantum Duality for Representations of Groups with Applications to Quantum Money, Lightning, and Fire",
+    "authors": "John Bostanci; Barak Nehoran; Mark Zhandry",
+    "year": 2025,
+    "url": "https://arxiv.org/abs/2411.00529",
+    "relevance": "Computational relationship between implementing representations and Fourier subspace extraction, with applications to quantum cryptography."
+  },
+  {
+    "key": "jeronimo-wu-xu-de-finetti",
+    "title": "Optimal Quantum de Finetti Theorems via Argmax Rounding",
+    "authors": "Fernando Granha Jeronimo; Pei Wu; Haochen Xu",
+    "year": 2026,
+    "url": "https://arxiv.org/abs/2608.02590",
+    "relevance": "Quantum de Finetti and disentangling constructions. Input dimension, number of qubits, and approximation conventions matter when comparing bounds."
+  },
+  {
+    "key": "bacon-chuang-harrow-schur",
+    "title": "Efficient Quantum Circuits for Schur and Clebsch–Gordan Transforms",
+    "authors": "Dave Bacon; Isaac L. Chuang; Aram W. Harrow",
+    "year": 2006,
+    "url": "https://arxiv.org/abs/quant-ph/0407082",
+    "relevance": "Efficient coherent Schur and Clebsch–Gordan transforms; the representation-theoretic coordinate system."
+  },
+  {
+    "key": "rosmanis-permutation",
+    "title": "Tight Bounds for Inverting Permutations via Compressed Oracle Arguments",
+    "authors": "Ansis Rosmanis",
+    "year": 2021,
+    "url": "https://arxiv.org/abs/2103.08975",
+    "relevance": "Purified random-permutation oracles, representation theory, and lower bounds."
+  },
+  {
+    "key": "rayudu-takahashi-lee-yang",
+    "title": "Spectral gap of Lee-Yang Hamiltonians",
+    "authors": "Chaithanya Rayudu; Jun Takahashi",
+    "year": 2026,
+    "url": "https://arxiv.org/abs/2607.10765",
+    "relevance": "A uniform-field spectral-gap theorem yielding BQP ground-energy estimation for Lee–Yang Hamiltonians; applies to EPR*."
+  },
+  {
+    "key": "wong-bravyi-gosset-liu-lee-yang",
+    "title": "Lee-Yang tensors and Hamiltonian complexity",
+    "authors": "Benjamin Wong; Sergey Bravyi; David Gosset; Yinchen Liu",
+    "year": 2026,
+    "url": "https://arxiv.org/abs/2602.03605",
+    "relevance": "The Lee–Yang tensor and Hamiltonian framework, including the EPR adiabatic approach and earlier gap conjectures."
+  },
+  {
+    "key": "weggemans-folkertsma-cade-guidable",
+    "title": "Guidable Local Hamiltonian Problems with Implications to Heuristic Ansätze State Preparation and the Quantum PCP Conjecture",
+    "authors": "Jordi Weggemans; Marten Folkertsma; Chris Cade",
+    "year": 2024,
+    "url": "https://arxiv.org/abs/2302.11578",
+    "relevance": "QCMA formulations in which a suitable guiding state is promised to exist. A direct framework for the classical-starting-data question; it does not establish guides for every stoquastic YES instance."
+  },
+  {
+    "key": "bravyi-guided-stoquastic",
+    "title": "Monte Carlo simulation of stoquastic Hamiltonians",
+    "authors": "Sergey Bravyi",
+    "year": 2015,
+    "url": "https://arxiv.org/abs/1402.2295",
+    "relevance": "Projection Monte Carlo and MA verification with specified classical guiding-state promises. Those promises are additional assumptions, not consequences of stoquasticity alone."
+  },
+  {
+    "key": "buhrman-cleve-watrous-dewolf-fingerprinting",
+    "title": "Quantum fingerprinting",
+    "authors": "Harry Buhrman; Richard Cleve; John Watrous; Ronald de Wolf",
+    "year": 2001,
+    "url": "https://arxiv.org/abs/quant-ph/0102001",
+    "relevance": "Quantum-state comparison with the SWAP test and its application to communication complexity. The overlap formula assumes independent inputs."
+  },
+  {
+    "key": "childs-quantum-algorithms-notes",
+    "title": "Lecture Notes on Quantum Algorithms",
+    "authors": "Andrew M. Childs",
+    "year": 2025,
+    "url": "https://www.cs.umd.edu/~amchilds/qa/qa.pdf",
+    "relevance": "Chapters 11 and 15 develop representation theory, Fourier transforms, and Schur–Weyl duality. Background for the exposition of irreps, multiplicities, and coupling paths."
+  },
+  {
+    "key": "larocca-havlicek-multiplicities",
+    "title": "Quantum Algorithms for Representation-Theoretic Multiplicities",
+    "authors": "Martín Larocca; Vojtěch Havlíček",
+    "year": 2025,
+    "url": "https://arxiv.org/abs/2407.17649",
+    "relevance": "Generalized-phase-estimation algorithms for multiplicities with specified dimension-ratio restrictions. Some proposed superpolynomial speedups were refuted by subsequent classical algorithms; consult Panova alongside this paper."
+  },
+  {
+    "key": "panova-multiplicities",
+    "title": "Polynomial time classical versus quantum algorithms for representation theoretic multiplicities",
+    "authors": "Greta Panova",
+    "year": 2025,
+    "url": "https://arxiv.org/abs/2502.20253",
+    "relevance": "Classical polynomial-time algorithms for many representation-theoretic multiplicity families previously proposed for quantum speedups, refuting some earlier conjectures."
+  },
+  {
+    "key": "mandelbaum-havlicek-ibm",
+    "title": "Discovering a new quantum algorithm",
+    "authors": "Ryan Mandelbaum; Vojtěch Havlíček",
+    "year": 2025,
+    "url": "https://www.ibm.com/quantum/blog/group-theory",
+    "relevance": "Expository account of representation-theoretic multiplicity algorithms and the classical progress they prompted; mathematical claims here are linked to the primary papers."
+  },
+  {
+    "key": "aaronson-ambainis-forrelation",
+    "title": "Forrelation: A Problem That Optimally Separates Quantum from Classical Computing",
+    "authors": "Scott Aaronson; Andris Ambainis",
+    "year": 2018,
+    "url": "https://arxiv.org/abs/1411.5729",
+    "relevance": "A Fourier-correlation problem with a nearly maximal quantum–classical query separation; a benchmark for spin-based oracle questions."
+  },
+  {
+    "key": "bacon-chuang-harrow-qudit-schur",
+    "title": "The quantum Schur and Clebsch–Gordan transforms: I. Efficient qudit circuits",
+    "authors": "Dave Bacon; Isaac L. Chuang; Aram W. Harrow",
+    "year": 2007,
+    "url": "https://arxiv.org/abs/quant-ph/0601001",
+    "relevance": "Efficient Schur transforms for qudits, with explicit dependence on the number of systems, local dimension, and precision."
+  },
+  {
+    "key": "bartlett-rudolph-spekkens-communication",
+    "title": "Classical and quantum communication without a shared reference frame",
+    "authors": "Stephen D. Bartlett; Terry Rudolph; Robert W. Spekkens",
+    "year": 2003,
+    "url": "https://arxiv.org/abs/quant-ph/0302111",
+    "relevance": "Relational encodings permit classical and quantum communication without a shared spatial reference frame."
+  },
+  {
+    "key": "bartlett-rudolph-spekkens-reference-frames",
+    "title": "Reference frames, superselection rules, and quantum information",
+    "authors": "Stephen D. Bartlett; Terry Rudolph; Robert W. Spekkens",
+    "year": 2007,
+    "url": "https://arxiv.org/abs/quant-ph/0610030",
+    "relevance": "Reference-frame restrictions, relational information, and resources associated with symmetry in quantum information."
+  },
+  {
+    "key": "bravyi-divincenzo-oliveira-terhal-stoquastic",
+    "title": "The complexity of stoquastic local Hamiltonian problems",
+    "authors": "Sergey Bravyi; David P. DiVincenzo; Roberto I. Oliveira; Barbara M. Terhal",
+    "year": 2008,
+    "url": "https://arxiv.org/abs/quant-ph/0606140",
+    "relevance": "Complexity bounds for local Hamiltonians with real nonpositive off-diagonal matrix elements in a specified basis."
+  },
+  {
+    "key": "bravyi-terhal-frustration-free",
+    "title": "Complexity of stoquastic frustration-free Hamiltonians",
+    "authors": "Sergey Bravyi; Barbara M. Terhal",
+    "year": 2009,
+    "url": "https://arxiv.org/abs/0806.1746",
+    "relevance": "Classical simulation of specified stoquastic frustration-free adiabatic paths and MA-completeness of stoquastic satisfiability."
+  },
+  {
+    "key": "childs-et-al-welded-trees",
+    "title": "Exponential algorithmic speedup by quantum walk",
+    "authors": "Andrew M. Childs; Richard Cleve; Enrico Deotto; Edward Farhi; Sam Gutmann; Daniel A. Spielman",
+    "year": 2003,
+    "url": "https://arxiv.org/abs/quant-ph/0209131",
+    "relevance": "An exponential oracle separation obtained by coherent graph traversal; a benchmark for walks on coupling and representation graphs."
+  },
+  {
+    "key": "harrow-symmetric-subspace",
+    "title": "The Church of the Symmetric Subspace",
+    "authors": "Aram W. Harrow",
+    "year": 2013,
+    "url": "https://arxiv.org/abs/1308.6595",
+    "relevance": "A survey of symmetric-subspace methods in state estimation, cloning, de Finetti theorems, and concentration bounds."
+  },
+  {
+    "key": "piddock-montanaro-antiferromagnetic",
+    "title": "The complexity of antiferromagnetic interactions and 2D lattices",
+    "authors": "Stephen Piddock; Ashley Montanaro",
+    "year": 2017,
+    "url": "https://arxiv.org/abs/1506.04014",
+    "relevance": "QMA-completeness of antiferromagnetic Heisenberg interactions with positive weights, together with classifications under interaction and graph restrictions."
+  },
+  {
+    "key": "piddock-montanaro-qudit-hamiltonians",
+    "title": "Universal qudit Hamiltonians",
+    "authors": "Stephen Piddock; Ashley Montanaro",
+    "year": 2021,
+    "url": "https://arxiv.org/abs/1802.07130",
+    "relevance": "Universal Hamiltonian families for qudits, including SU(d) and spin-SU(2) Heisenberg interactions."
+  },
+  {
+    "key": "raussendorf-briegel-one-way",
+    "title": "A one-way quantum computer",
+    "authors": "Robert Raussendorf; Hans J. Briegel",
+    "year": 2001,
+    "url": "https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.86.5188",
+    "relevance": "Measurement-based computation on cluster states; background for treating adaptive measurement as the computational operation."
+  },
+  {
+    "key": "rudolph-virmani-relational",
+    "title": "A relational quantum computer using only two-qubit total spin measurement and an initial supply of highly mixed single qubit states",
+    "authors": "Terry Rudolph; Shashank Soyuz Virmani",
+    "year": 2005,
+    "url": "https://arxiv.org/abs/quant-ph/0503151",
+    "relevance": "An earlier universality construction using singlet–triplet measurements and three suitably chosen single-qubit input states; distinct from maximally mixed input alone."
+  },
+  {
+    "key": "shor-factoring-discrete-log",
+    "title": "Polynomial-time algorithms for prime factorization and discrete logarithms on a quantum computer",
+    "authors": "Peter W. Shor",
+    "year": 1997,
+    "url": "https://arxiv.org/abs/quant-ph/9508027",
+    "relevance": "Order finding and Fourier-based quantum algorithms for factoring and discrete logarithms; a target for a direct spin-based formulation."
+  }
+]

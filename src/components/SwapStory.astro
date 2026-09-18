@@ -1,0 +1,19 @@
+---
+import Math from './Math.astro';
+import Cite from './Cite.astro';
+import SwapCircuit from './SwapCircuit.astro';
+---
+<section class="essay-section essay-continuation" id="swap-test"><div class="prose">
+ <h2>The SWAP test</h2>
+ <p>The SWAP test measures the symmetry of two quantum systems under exchange. For independent inputs, its outcome probabilities determine their overlap.</p>
+ <p>Write <Math tex="F"/> for SWAP. Since <Math tex={"F^2=I"}/> and <Math tex={"F=F^\\dagger"}/>, its eigenvalues are ±1. The two projectors are <Math tex={"P_+=(I+F)/2"}/> and <Math tex={"P_-=(I-F)/2"}/>. A symmetric state satisfies <Math tex={"F|\\Psi\\rangle=|\\Psi\\rangle"}/>; an antisymmetric state satisfies <Math tex={"F|\\Psi\\rangle=-|\\Psi\\rangle"}/>. On two qubits, these are exactly the triplet and singlet spaces.</p>
+ <p>For independent inputs <Math tex={"\\rho\\otimes\\sigma"}/>, the swap identity gives</p>
+ <div class="formula-pair"><Math display tex={"\\operatorname{Tr}[F(\\rho\\otimes\\sigma)]=\\operatorname{Tr}(\\rho\\sigma)"}/><Math display tex={"p_- = \\frac{1-\\operatorname{Tr}(\\rho\\sigma)}2."}/></div>
+ <p>For pure inputs, the overlap is <Math tex={"|\\langle\\psi|\\phi\\rangle|^2"}/>. Identical pure states always give the symmetric outcome; orthogonal states give either outcome with probability ½. A symmetric outcome alone does not certify that the states were identical. With two independent copies of a mixed state, the same test estimates its purity. Quantum fingerprinting compares compact quantum encodings of classical strings this way. The example below shows the comparison primitive on two qubits; a full protocol also specifies the encodings and repetitions with fresh inputs. <Cite keys="buhrman-cleve-watrous-dewolf-fingerprinting"/></p>
+ <SwapCircuit/>
+ <p>The circuit prepares an ancilla in <Math tex={"|0\\rangle"}/>, applies a Hadamard, a controlled SWAP, and another Hadamard. For a pure joint data state <Math tex={"|\\Psi\\rangle"}/>, its final state before readout is</p>
+ <Math display tex={"|0\\rangle\\,P_t|\\Psi\\rangle+|1\\rangle\\,P_s|\\Psi\\rangle."}/>
+ <p>Measuring the ancilla and retaining the data realizes the STP instrument. Measuring and discarding the data would not supply a state for the next step. <Cite keys="rudolph-virmani-stp"/></p>
+ <p>This ideal implementation is quantum nondemolition (QND) for the pair’s spin: without intervening dynamics, a repeated measurement returns the same outcome. It also preserves coherence within each sector; repeatability alone would not guarantee that property.</p>
+ <p>Once the data are correlated, the independent-input overlap formula no longer applies. A singlet gives the antisymmetric outcome with certainty. A measurement on an overlapping pair can change the first pair’s subsequent outcome probabilities.</p>
+</div></section>

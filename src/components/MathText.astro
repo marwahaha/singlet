@@ -1,0 +1,6 @@
+---
+import {renderMathText} from '../lib/math-text.mjs';
+interface Props {text:string;}
+const {text}=Astro.props;
+---
+<span class="math-text" set:html={renderMathText(text)}/>

@@ -1,0 +1,46 @@
+---
+import Math from './Math.astro';
+const inputs = [
+ {key:'singlets', label:'Two singlets', tex:String.raw`P_s^{12}\otimes P_s^{34}`},
+ {key:'singletMixed', label:'Singlet + mixed qubit', tex:String.raw`P_s^{12}\otimes I_3/2`},
+ {key:'twoTriplets', label:'Two mixed triplets', tex:String.raw`(P_t^{12}/3)\otimes(P_t^{34}/3)`},
+ {key:'singletTriplet', label:'Singlet + mixed triplet', tex:String.raw`P_s^{12}\otimes(P_t^{34}/3)`},
+ {key:'mixed', label:'Four mixed qubits', tex:String.raw`(I/2)^{\otimes4}`},
+];
+---
+<div class="exhibit preparation-lab" data-preparation-lab>
+ <div class="exhibit-heading"><span class="eyebrow">Experiment 05 / Combining resources</span><span class="exhibit-tag" data-prep-system>Four qubits</span></div>
+ <div class="preparation-intro"><h3>What can a cross-pair measurement prepare?</h3><p>Start with independent pieces. Measure a pair that joins them, and compare the two possible outputs. Click another edge to continue with the resulting state.</p></div>
+ <div class="preparation-workbench">
+  <div class="preparation-network resource-workbench">
+   <div class="workbench-toolbar"><label for="prep-input">Starting resources</label><select id="prep-input" data-prep-input>{inputs.map(input=><option value={input.key}>{input.label}</option>)}</select><button class="quiet-button" data-prep-reset>Start again</button></div>
+   <div class="resource-input-formula">{inputs.map(input=><span data-prep-formula={input.key} hidden={input.key!=='singlets'}><Math tex={input.tex}/></span>)}</div>
+   <div class="prep-canvas-row">
+    <div class="prep-canvas">
+     <svg viewBox="0 0 520 370" role="group" aria-label="Select a pair of qubits to measure"><g data-prep-network/></svg>
+     <p class="prep-line-key"><span></span>Line width: probability that this pair measures singlet</p>
+    </div>
+    <div class="graphic-measurements resource-measurements">
+     <div class="resource-pair-control"><label class="control-label" for="prep-pair">Measure pair</label><select id="prep-pair"><option value="1,2">2–3</option></select></div>
+     <div class="resource-branches">
+      <button data-prep-outcome="singlet"><span class="resource-branch-heading"><span>Singlet</span><strong data-prep-ps>25%</strong></span><span class="resource-branch-description" data-prep-branch="singlet"></span><small>Keep this outcome →</small></button>
+      <button data-prep-outcome="triplet"><span class="resource-branch-heading"><span>Triplet</span><strong data-prep-pt>75%</strong></span><span class="resource-branch-description" data-prep-branch="triplet"></span><small>Keep this outcome →</small></button>
+     </div>
+     <div class="resource-actions"><button class="solid-button" data-prep-sample>Sample a measurement</button><button class="quiet-button" data-prep-undo disabled>Undo</button></div>
+    </div>
+   </div>
+   <div class="resource-current" role="status" aria-live="polite"><p class="resource-current-label" data-prep-status>Available now · two independent singlets</p><p data-prep-interpretation></p></div>
+   <p class="resource-probability-note">Probabilities are conditional on the current state. Choosing a branch retains its state; sampling chooses according to the probabilities shown.</p>
+  </div>
+ </div>
+ <details class="exhibit-details"><summary>The input resources and the measurement</summary><div class="details-body">
+  <p>A mixed qubit has state <Math tex="I/2"/>. A singlet has state <Math tex="P_s"/>, the rank-one projector onto the antisymmetric subspace. A mixed triplet has state <Math tex="P_t/3"/>, uniform on the symmetric subspace. The mixed triplet is separable; an arbitrary pure triplet need not be.</p>
+  <p>The inputs above are supplied independently. They can be prepared from mixed qubits by retaining singlet or triplet outcomes on disjoint pairs. The displayed conversion probabilities start after those resources have been prepared.</p>
+  <Math display tex={String.raw`P_{s,t}^{ab}=\frac{I\mp\mathrm{SWAP}_{ab}}{2},\qquad p_o=\mathrm{Tr}(P_o^{ab}\rho),\qquad \rho_o=\frac{P_o^{ab}\rho P_o^{ab}}{p_o}.`}/>
+  <p>For each prepared input, the first measurement across independent blocks gives singlet with probability ¼ and triplet with probability ¾. Each selected qubit is maximally mixed, so their joint reduced state before this measurement is <Math tex="I/4"/>. Correlations with the other qubits determine the output on the full register.</p>
+  <h4>Two singlets</h4><p>A singlet outcome on 2–3 leaves <Math tex={String.raw`P_s^{23}\otimes P_s^{14}`}/>. A triplet outcome gives a pure state with total spin zero: the spin-one pairs 2–3 and 1–4 are entangled with each other.</p>
+  <h4>Singlet + mixed qubit</h4><p>A singlet outcome on 2–3 leaves <Math tex={String.raw`I_1/2\otimes P_s^{23}`}/>. A triplet outcome instead leaves a total-spin-½ state with singlet probability ¾ on each of 1–2 and 1–3.</p>
+  <h4>Two mixed triplets</h4><p>A singlet outcome on 2–3 leaves <Math tex={String.raw`P_s^{23}\otimes\left(P_s^{14}/3+2P_t^{14}/9\right)`}/>. A triplet outcome creates entanglement across <Math tex={String.raw`2\mid134`}/> even though every reduced two-qubit state is separable. Pair probabilities describe predictions for pair measurements; they do not describe all the correlations in the state.</p>
+ </div></details>
+</div>
+<script>import {initPreparationLabs} from '../scripts/preparation.mjs';initPreparationLabs();</script>

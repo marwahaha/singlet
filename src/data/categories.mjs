@@ -1,0 +1,1 @@
+export const categories={algorithms:'Algorithms & primitives',restrictions:'Restricted models',resources:'Quantum resources',representation:'Representation & duality',verification:'Preparation & verification',complexity:'Computational complexity',generalizations:'Beyond qubits',physical:'Physical realizations'};

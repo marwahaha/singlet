@@ -1,0 +1,1154 @@
+[
+  {
+    "id": "Q01",
+    "title": "Which algorithmic primitives does subsystem spin suggest?",
+    "category": "algorithms",
+    "kind": "direction",
+    "summary": "Can filtering, recoupling, or state comparison give an STP algorithm for a specified task? Identify its interference mechanism and compare its resource cost with a circuit implementation.",
+    "preciseStatement": "Identify an explicit family of computational tasks and an STP protocol whose useful invariant, interference mechanism, or cost advantage has a direct subsystem-spin explanation. Specify the input encoding, access model, success probability, and asymptotic resources; compare against the best relevant gate-model and classical baselines.",
+    "why": "A useful new primitive should generate algorithms and explanations, not only another universal language. Filtering, recoupling, state comparison, and transport of relational information are candidate ingredients.",
+    "firstStep": "Choose one small task—search, a Simon-type promise, or a forrelation-like correlation—and write down what a pairwise projector would have to accomplish.",
+    "tags": [
+      "primitive discovery",
+      "native algorithms",
+      "interference",
+      "Grover",
+      "Simon",
+      "forrelation"
+    ],
+    "references": [
+      "rudolph-virmani-stp",
+      "freedman-hastings-shokrian-zini",
+      "aaronson-ambainis-forrelation"
+    ],
+    "variants": [
+      {
+        "label": "Search and amplitude amplification",
+        "statement": "Fix the usual marked-item oracle and its encoded implementation cost. Construct an STP description of the search rotation or amplitude-amplification step and account separately for oracle queries, projector measurements, and failed branches."
+      },
+      {
+        "label": "Simon’s problem",
+        "statement": "For $f(x)=f(y)$ exactly when $x\\oplus y$ is $0$ or a hidden nonzero string $s$, specify coherent access to $f$ in the encoding. Identify which multiplicity-space operation produces the linear constraints on $s$, and bound queries and measurement cost."
+      },
+      {
+        "label": "Forrelation",
+        "statement": "Fix a stated forrelation promise and the usual phase-oracle access to its Boolean functions. Identify the interference statistic represented by the STP protocol and preserve the promised acceptance gap and oracle-query model."
+      },
+      {
+        "label": "Comparing formulations",
+        "statement": "For each family, compare against a named compilation baseline using the same input and oracle access. Record physical qubits, measurement count, rounds, precision, and success probability. An explanatory simplification and an asymptotic improvement are different outcomes."
+      }
+    ],
+    "scopeNote": "STP measurements have constant-size gate-model realizations. A proposed asymptotic improvement must use a specified baseline or physical cost model; changing the description alone cannot beat an optimal unrestricted gate-model implementation."
+  },
+  {
+    "id": "Q02",
+    "title": "How can order finding be expressed through STP?",
+    "category": "algorithms",
+    "kind": "question",
+    "summary": "Describe the encoding, modular arithmetic, and readout of an STP order-finding protocol. Identify how its multiplicity-space operations represent periodicity and interference.",
+    "preciseStatement": "Give an end-to-end description of order finding using adaptive STP, with explicit encoding of the modular-arithmetic instance, measurement sequence, classical control, and readout. Seek a structural account of periodicity and interference beyond replacing each standard gate with a universal simulation.",
+    "why": "The model can compute the answer in principle. The question is whether its language explains the algorithm and suggests a different implementation.",
+    "firstStep": "Work through order finding for a small cyclic group and track which multiplicity-space quantities represent the periodic structure.",
+    "tags": [
+      "Shor",
+      "order finding",
+      "native algorithms",
+      "Fourier"
+    ],
+    "references": [
+      "rudolph-virmani-stp",
+      "shor-factoring-discrete-log"
+    ],
+    "variants": [
+      {
+        "label": "A fiber-preserving arithmetic measurement",
+        "statement": "For $f(x)=a^x\\bmod N$, seek a native STP implementation on a specified logical encoding of the channel $$\\mathcal{D}_f(\\lvert x\\rangle\\langle y\\rvert)=\\mathbf{1}_{f(x)=f(y)}\\lvert x\\rangle\\langle y\\rvert,$$ preserving coherence within each fiber. Compare its cost with modular-arithmetic circuit compilation. A Fourier-type readout then needs an explicit real encoding or other coherent resource; Clebsch–Gordan coefficients alone do not implement modular arithmetic."
+      }
+    ]
+  },
+  {
+    "id": "Q03",
+    "title": "How efficiently can we compile into STP?",
+    "category": "algorithms",
+    "kind": "question",
+    "summary": "How much of the cost of a universal STP construction is essential?",
+    "preciseStatement": "Fix Clifford+$T$ circuits with computational-basis input and output. Given a circuit $C$ of $G$ gates on $n$ logical qubits and rational $\\varepsilon$, can a uniform classical compiler produce an adaptive STP protocol from maximally mixed physical qubits whose classical output distribution is within $\\varepsilon$ in total variation distance of $C$? Give explicit bounds in $n$, $G$, and $\\log(1/\\varepsilon)$ on physical qubits, expected measurement count, a high-probability runtime bound, disjoint-pair layers, and classical processing. State the interaction graph and count every failed preparation attempt.",
+    "why": "A universality theorem leaves substantial room between a possible computer and an effective architecture.",
+    "firstStep": "Benchmark a small encoded gate library with exact branch probabilities, including failed attempts, recycled states, and precision dependence.",
+    "tags": [
+      "compilation",
+      "overhead",
+      "recycling",
+      "architecture"
+    ],
+    "references": [
+      "rudolph-virmani-stp",
+      "freedman-hastings-shokrian-zini",
+      "rudolph-virmani-relational"
+    ],
+    "scopeNote": "This primary task concerns classical output distributions. Coherent simulation of an encoded channel is a stronger variant: specify the encoding and require diamond-norm error at most $\\varepsilon$, including action on a reference system. A heralded implementation must report failure probability and expected retry cost; conditioning alone is not a compiler."
+  },
+  {
+    "id": "Q04",
+    "title": "Can STP implement quantum walks on representation graphs?",
+    "category": "representation",
+    "kind": "direction",
+    "summary": "Specify a graph of coupling paths or irrep labels and an associated quantum walk. Determine the cost of implementing its transitions or reflections using STP.",
+    "preciseStatement": "Construct and analyze a walk on an explicitly defined graph of coupling paths or representation labels, and determine whether STP realizes a useful transition, reflection, or measurement of that walk efficiently. Distinguish a coherent walk from a classical Markov chain on measured labels.",
+    "why": "The representation graph may expose the structure that an algorithm explores, while also suggesting mixing, hitting-time, or interference arguments.",
+    "firstStep": "For four and six spins, compute recoupling matrices and compare coherent path evolution with the transition probabilities obtained after measurement.",
+    "tags": [
+      "quantum walks",
+      "Markov chains",
+      "Young diagrams",
+      "Clebsch–Gordan"
+    ],
+    "references": [
+      "jordan-permutational",
+      "freedman-hastings-shokrian-zini",
+      "childs-et-al-welded-trees"
+    ],
+    "variants": [
+      {
+        "label": "A named algorithmic test",
+        "statement": "Use the welded-tree traversal problem with its original adjacency-oracle access and input promises. Specify an encoded implementation of each oracle call, then ask whether a walk through coupling or representation data explains the traversal mechanism while preserving the query accounting."
+      },
+      {
+        "label": "Transition kernels induced by measurements",
+        "statement": "Express a sequence of STP instruments in Young-tableau, coupling-tree, or Temperley–Lieb coordinates. Determine when measured labels form a closed classical Markov process and when multiplicity coherence or additional quantum memory is necessary. Characterize the realizable transition rules and identify a task for which coherent processing gives a provable advantage."
+      }
+    ]
+  },
+  {
+    "id": "Q05",
+    "title": "Which Schur sampling and transform tasks can STP implement?",
+    "category": "representation",
+    "kind": "question",
+    "summary": "Determine what representation data random pair measurements reveal, when adaptivity improves estimation, and the cost of retaining coherent Schur information.",
+    "preciseStatement": "Starting from established random-SWAP protocols for qubits, characterize additional representation-theoretic outputs obtainable with polynomially many STP measurements. State whether the required output is a classical irrep label, a retained quantum register, or a coherent basis transformation; account for approximation error.",
+    "why": "Sampling a representation label and implementing the full coherent Schur transform are different tasks. Their gap is an opportunity to identify exactly what an algorithm needs.",
+    "firstStep": "Choose one spectral-estimation or invariant-property-testing task and compare its direct STP cost with a Schur-transform implementation.",
+    "tags": [
+      "Schur sampling",
+      "Schur transform",
+      "purification",
+      "property testing"
+    ],
+    "references": [
+      "brahmachari-hulse-pfister-marvian",
+      "aaronson-ambainis-forrelation",
+      "bacon-chuang-harrow-qudit-schur"
+    ],
+    "variants": [
+      {
+        "label": "Information in a nonadaptive record",
+        "statement": "For an unknown $n$-qubit state, fix a distribution over ordered pair-measurement schedules independent of outcomes. Characterize which functions of its Schur–Weyl blocks can be estimated from the complete schedule and outcome record. Specify whether each trial uses a fresh copy, and bound copy and measurement complexity at additive error $\\varepsilon$."
+      },
+      {
+        "label": "Optimal sampling and invariant estimation",
+        "statement": "For weak Schur sampling, unitary Schur sampling, and a specified invariant observable, determine optimal STP measurement and copy complexity as functions of $n$ and $\\varepsilon$. Define the required classical and retained quantum outputs separately. Compare adaptive protocols with nonadaptive random-SWAP protocols under the same input and error conventions."
+      },
+      {
+        "label": "A full Schur transform",
+        "statement": "Can STP implement an encoded coherent Schur transform, or a specified measurement-based analogue, at lower physical cost than a conventional gate decomposition? Specify how the $J$, magnetic, and multiplicity registers are represented and read out. A coherent version must preserve their correlations with an external reference; compare measurement count, adaptive depth, ancillas, and error at fixed input/output conventions."
+      },
+      {
+        "label": "A Schur–Weyl correlation problem",
+        "statement": "Define two efficiently specified representation-theoretic descriptions and a promise about their correlation, with matched classical and quantum oracle access. Find a polynomial-query STP algorithm and a superpolynomial classical query lower bound. The basis changes, state preparation, and any coherent extraction used by the algorithm count as resources."
+      }
+    ]
+  },
+  {
+    "id": "Q06",
+    "title": "What can constant- and logarithmic-depth STP compute?",
+    "category": "restrictions",
+    "kind": "question",
+    "summary": "For constant or logarithmic STP depth, characterize decision power and classical sampling complexity under stated restrictions on the classical controller.",
+    "preciseStatement": "Fix polynomially many qubits initially in $I/2^N$. A depth-$d$ protocol has $d$ layers of disjoint pairwise STP measurements; the pairs in a layer may depend on the entire preceding outcome record through uniform polynomial-time classical computation. With no postselection, determine the decision power at $d=O(1)$ and $d=O(\\log N)$, using completeness $2/3$ and soundness $1/3$. Separately ask for classical sampling of the full outcome record within inverse-polynomial total variation error.",
+    "why": "The quantum depth, interaction geometry, and amount of classical control are distinct resources. Keeping them separate may reveal useful upper and lower bounds.",
+    "firstStep": "Write exact tensor-network descriptions of the first few depth classes and identify a graph parameter that yields efficient classical simulation.",
+    "tags": [
+      "depth",
+      "simulation",
+      "parallelism",
+      "tensor networks"
+    ],
+    "references": [
+      "freedman-hastings-shokrian-zini",
+      "raussendorf-briegel-one-way"
+    ],
+    "scopeNote": "The main model counts quantum layers and permits polynomial-time classical control. It therefore already contains classical polynomial-time decision procedures. Comparisons with $\\mathsf{AC}^{0}$ and $\\mathsf{NC}^{1}$ require the separate total-depth model below. Geometry, input encoding, copy count, postselection, and output decoding must be fixed.",
+    "variants": [
+      {
+        "label": "Total depth, including classical control",
+        "statement": "Define a uniform polynomial-size hybrid circuit with disjoint-pair STP layers and explicit classical AND/OR/NOT gates. Count the entire dependency depth, including feed-forward and final decoding. Compare bounded-fan-in logarithmic depth with unbounded-fan-in constant-depth classical control; do not grant threshold or parity gates without declaring them. No postselection."
+      },
+      {
+        "label": "A Majority benchmark",
+        "statement": "For odd $n$, receive one copy of $\\rho_x=\\bigotimes_i\\rho_{x_i}$, with unknown $x$, $\\rho_1=P_s$ and $\\rho_0=P_t/3$. Using polynomially many mixed ancillas, decide $\\lvert x\\rvert>n/2$ with error at most $1/3$. Is constant STP depth together with constant TOTAL $\\mathsf{AC}^{0}$ classical-control depth sufficient? One STP layer plus logarithmic-depth bounded-fan-in classical decoding is a baseline."
+      },
+      {
+        "label": "A quantum spin threshold",
+        "statement": "Given one unknown $n$-qubit state supported either on $J\\le J_{\\mathrm{minus}}$ or on $J\\ge J_{\\mathrm{plus}}$, determine STP depth as a function of $n$ and the sector separation. Specify retained output and copy access. A coherent coarse Lüders measurement is stronger than reading the exact $J$ label and forgetting it, which can destroy coherence inside a promised range."
+      },
+      {
+        "label": "Lower bounds native to STP",
+        "statement": "Develop light-cone, representation-theoretic, subsystem-spin martingale, or communication-cut bounds for an explicit STP task. Relate the chosen progress quantity to success probability and bound its change per layer or crossing measurement, allowing the declared classical feed-forward. Distinguish measurement depth from the total depth of the hybrid computation."
+      }
+    ]
+  },
+  {
+    "id": "Q07",
+    "title": "How does the number of adaptive rounds affect STP?",
+    "category": "restrictions",
+    "kind": "question",
+    "summary": "Compare nonadaptive, constant-round, and polynomial-round STP for decision and sampling, keeping the classical controller and error conventions fixed. No postselection is allowed.",
+    "preciseStatement": "Start with polynomially many maximally mixed qubits. In each of $r$ adaptive batches, a uniform polynomial-time classical controller chooses a fixed ordered list of pair measurements using only earlier batches’ outcomes. Measurements inside a batch may overlap but their order and pair choices are fixed. Compare decision power at $r=1$, constant $r$, $r=O(\\log N)$, and polynomial $r$, with $2/3$ versus $1/3$ acceptance and no postselection. For sampling, compare full-record distributions in total variation distance.",
+    "why": "The number of adaptive batches can vary independently of total measurement count. Separations would identify tasks that require feedback between measurements.",
+    "firstStep": "Find a concrete task or state-preparation family with a provable difference between nonadaptive and one- or two-round protocols.",
+    "tags": [
+      "adaptivity",
+      "feed-forward",
+      "postselection",
+      "measurement histories"
+    ],
+    "references": [
+      "rudolph-virmani-stp",
+      "freedman-hastings-shokrian-zini",
+      "raussendorf-briegel-one-way"
+    ],
+    "knownResult": "With unrestricted nonzero-probability postselection and initial singlets, fixed STP sequences already give $\\mathsf{PostSTP}=\\mathsf{PostBQP}$ (Freedman–Hastings–Shokrian Zini, §4).",
+    "variants": [
+      {
+        "label": "Restricted postselection",
+        "statement": "Keep the fixed-sequence model but impose a lower bound on the total selected-history probability, a depth bound, or a connectivity restriction. Quantify the cost of obtaining the selected event; do not restate the unrestricted postselected equality as an open problem."
+      },
+      {
+        "label": "Logarithmic-round universality",
+        "statement": "Do $O(\\log N)$ adaptive batches, each with polynomially many predetermined pair measurements, suffice for every bounded-error quantum computation? Give a uniform simulation with explicit error and size overhead, or prove a lower bound for a specified task. Intermediate round bounds must also be considered; logarithmic and polynomial rounds are not an exhaustive dichotomy."
+      },
+      {
+        "label": "Nonadaptive sampling and intermediate models",
+        "statement": "For a predetermined polynomial-length sequence of pair measurements from mixed input, determine whether the full outcome record is efficiently classically samplable in total variation distance. Alternatively, identify an intermediate quantum sampling model that reduces to it, preserving the preparation, output, and approximation conventions."
+      }
+    ]
+  },
+  {
+    "id": "Q08",
+    "title": "How does interaction geometry constrain STP?",
+    "category": "restrictions",
+    "kind": "question",
+    "summary": "Restrict pair measurements to an interaction graph. Characterize classical simulation, universal computation, and routing overhead on paths, trees, and lattices.",
+    "preciseStatement": "For a fixed family of interaction graphs, allow STP only on graph edges and characterize efficient simulation and universal computation with explicit routing costs. Keep prepared entanglement, fresh qubits, and adaptive control assumptions visible.",
+    "why": "All-to-all access can hide a significant physical and algorithmic resource. Local models may expose an especially clear boundary.",
+    "firstStep": "Compare paths, trees, and a two-dimensional lattice for the same small protocol, then seek a simulation bound parameterized by interaction-history width.",
+    "tags": [
+      "locality",
+      "connectivity",
+      "classical simulation",
+      "routing"
+    ],
+    "references": [
+      "rudolph-virmani-stp"
+    ],
+    "variants": [
+      {
+        "label": "Depth overhead in one and two dimensions",
+        "statement": "For nearest-neighbor STP on a one-dimensional chain and a two-dimensional lattice, give universal constructions or obstructions and bound the depth overhead relative to an explicitly chosen all-to-all protocol. Count routing, fresh resources, and any preprocessing used to prepare long-range correlations."
+      }
+    ]
+  },
+  {
+    "id": "Q09",
+    "title": "What is the simulation cost of STP at fixed total spin?",
+    "category": "resources",
+    "kind": "question",
+    "summary": "With a fixed register in sector $J=N/2-k$, determine how STP computation and classical simulation scale with the spin deficit $k$ and the multiplicity dimension.",
+    "preciseStatement": "Fix $N$, count all qubits in that register, and allow no fresh quantum ancillas. Start in $\\Pi_J/\\operatorname{Tr}\\Pi_J$ with $J=N/2-k$. A uniform classical controller makes polynomially many adaptive pairwise STP measurements and decides from the outcome record with a $2/3$ versus $1/3$ gap. Determine its power and classical simulation cost as $k$ grows. The active multiplicity dimension is $$m(N,J)=\\binom{N}{k}-\\binom{N}{k-1};$$ separate constant $k$, logarithmic $k$, and extensive $k$.",
+    "why": "The fully symmetric sector is inert under pairwise STP, but lower sectors contain multiplicity. A useful resource theory must explain the space between these extremes.",
+    "firstStep": "Derive exact simulation costs from the multiplicities at fixed $k$, then study the first regimes in which that dimension ceases to be polynomial.",
+    "tags": [
+      "total spin",
+      "multiplicity",
+      "resource theory",
+      "simulation"
+    ],
+    "references": [
+      "freedman-hastings-shokrian-zini"
+    ],
+    "scopeNote": "The spin sector is supplied as the initial-state promise; its preparation cost is a different problem. A fixed-spin label does not specify a pure multiplicity state. $J=N/2$ has multiplicity one and is inert under internal STP.",
+    "variants": [
+      {
+        "label": "Computing within a specified multiplicity space",
+        "statement": "For a fixed total-spin sector $V_J\\otimes M_J$, specify how a logical input is encoded in $M_J$ and fix the state of $V_J$. Characterize the decision, sampling, or channel tasks realizable using adaptive STP on the closed register. Compare supplied encoded inputs with the maximally mixed sector input above, and account for any preparation or readout operations unavailable within STP."
+      },
+      {
+        "label": "Simulation and hardness regimes",
+        "statement": "Find structural promises on a family of multiplicity states, measurement geometries, or accessible subsystem-spin correlations that imply efficient classical simulation. Compare them with a family admitting universal STP computation under stated preparation assumptions. Seek a proved boundary in the promised structure; low total spin alone is not the promised computational resource."
+      }
+    ]
+  },
+  {
+    "id": "Q10",
+    "title": "Can antisymmetry become an operational resource?",
+    "category": "resources",
+    "kind": "direction",
+    "summary": "Treat measurements within fixed blocks as free and charge for measurements between blocks. Can an average monotone of singlet correlations or multiplicity information bound state-conversion cost?",
+    "preciseStatement": "As one concrete restricted model, divide labeled qubits into fixed blocks of at most $b$ qubits. Allow adaptive STP inside a block, fresh maximally mixed local ancillas, and local discarding at zero cost; charge one unit for a measurement joining different blocks. Is there a nonnegative state functional $R$, vanishing on the chosen free initial states, that is nonincreasing on average under free instruments and increases by at most a constant per charged measurement? Seek a lower bound on the expected number of cross-block measurements needed for a specified state-conversion task.",
+    "why": "A count of singlet pairs can miss overlapping constraints and delocalized correlations. Declaring all adaptive STP free would also make many intended resources freely generatable.",
+    "firstStep": "Test candidate measures on two singlets, their recoupled branches, and a fully symmetric state; reject candidates that merely reproduce global total spin.",
+    "tags": [
+      "antisymmetry",
+      "singletness",
+      "resource theory",
+      "monotones"
+    ],
+    "references": [
+      "rudolph-virmani-stp",
+      "bartlett-rudolph-spekkens-reference-frames",
+      "harrow-symmetric-subspace"
+    ],
+    "scopeNote": "The block-restricted model is one possible resource-theory convention. State explicitly whether a bound is averaged over outcomes or holds in each heralded branch. A useful measure should depend on more than the globally conserved spin label.",
+    "variants": [
+      {
+        "label": "Alternative restrictions",
+        "statement": "Repeat the question with geometry, bounded adaptive depth, or a restricted preparation library as the charged resource. Each choice defines a different resource theory and must have its own free states and operations."
+      },
+      {
+        "label": "Monotones of the actual STP process",
+        "statement": "On a fixed closed register, characterize functions $M$ satisfying $$\\sum_o p_o M(\\rho_o)\\le M(\\rho)$$ for every allowed pair measurement. Separate conserved sector weights from quantities sensitive to the multiplicity state, and ask whether any such quantity bounds a stated conversion cost. An average monotone need not decrease in each selected branch."
+      },
+      {
+        "label": "Information encoded in antisymmetry",
+        "statement": "At fixed total spin, compare states with the same total singlet weight but different pair probabilities, multiplicity correlations, or coherence. Which distinctions predict advantage for a stated conversion or inference task? Determine which candidate information is operationally accessible under the chosen real invariant instruments."
+      },
+      {
+        "label": "Subsystem-spin martingales and constraints",
+        "statement": "For outcome history $h_t$ on a fixed register, let $p_t(S,j)=\\operatorname{Tr}(\\Pi_{S,j}\\rho_{h_t})$. Which functions of the overlapping distributions $p_t(S,j)$ are conserved, martingales, or supermartingales under every allowed next pair measurement? Include functions of multiplicity data when the marginal distributions are insufficient. A bound on a stopped protocol must state its stopping and integrability assumptions."
+      }
+    ]
+  },
+  {
+    "id": "Q11",
+    "title": "Does multiplicity-space coherence improve STP protocols?",
+    "category": "resources",
+    "kind": "question",
+    "summary": "Within one total-spin sector, compare a state with its dephased version in a fixed coupling basis. Seek a separation in task success probability or measurement cost.",
+    "preciseStatement": "Fix a total-spin sector and a stated nested-subsystem coupling basis. Compare coherent multiplicity states with states dephased in that basis for a defined computational task under STP. Seek an operational separation and determine how it depends on the choice of coupling basis.",
+    "why": "Low total spin is only a label. Coherence among compatible coupling paths can be relevant even when that label never changes; coherence between distinct global-spin sectors is a different issue for invariant operations.",
+    "firstStep": "Use the two-dimensional four-spin singlet multiplicity space to find an overlapping-pair measurement that distinguishes a coherent state from its dephased counterpart.",
+    "tags": [
+      "coherence",
+      "low spin",
+      "multiplicity",
+      "recoupling"
+    ],
+    "references": [
+      "jordan-permutational"
+    ],
+    "variants": [
+      {
+        "label": "A precise first comparison",
+        "statement": "Choose real density matrices $\\rho_N$ in one total-spin sector and a fixed nested coupling basis. Compare $\\rho_N$ with its dephased state $\\Delta(\\rho_N)$ using the same STP decision or discrimination task, ancilla budget, and measurement count. Establish a quantitative success gap or cost separation. This is a within-sector coherence question; it does not assume that STP can prepare every candidate state."
+      },
+      {
+        "label": "Delocalization across incompatible subsystems",
+        "statement": "At a fixed global spin, define a restriction on the distribution of spin information across overlapping subsystems, such as a bounded-size cluster preparation ansatz. Does that restriction imply efficient simulation or prevent a specified STP task? Conversely, identify states and protocols for which correlations across incompatible subsystem decompositions are necessary for an advantage."
+      }
+    ]
+  },
+  {
+    "id": "Q12",
+    "title": "Which subsystem-spin profiles can we reach?",
+    "category": "resources",
+    "kind": "question",
+    "summary": "Which patterns of pair and subsystem spin are compatible, and which can be created efficiently?",
+    "preciseStatement": "Given $N$ labeled qubits, a polynomial-size list $F$ of constant-size subsets, and rational distributions $q_S(j)$, ask whether a density matrix $\\rho$ exists with $$\\max_{S\\in F}\\left\\lVert p_\\rho(J_S)-q_S\\right\\rVert_{\\mathrm{TV}}\\le\\varepsilon.$$ Separately ask for an adaptive STP preparation from $I/2^N$ whose flagged output meets this condition with probability at least $p$ and expected cost at most $T$. Keep $\\varepsilon$, $p$, and $T$ explicit; use promise gaps when asking for computational complexity.",
+    "why": "This separates a possible pattern of correlations from an efficiently reachable one. It also turns the informal idea of moving singletness into a concrete state-space question.",
+    "firstStep": "Solve the compatibility and reachability problems for four qubits and a few overlapping pairs, including mixed target states.",
+    "tags": [
+      "reachability",
+      "quantum marginal problem",
+      "subsystem spin",
+      "preparation"
+    ],
+    "references": [
+      "rudolph-virmani-stp"
+    ],
+    "scopeNote": "These are marginal probability distributions for separate measurement choices, not simultaneously assigned values of noncommuting observables. Compatibility, STP reachability, and efficient preparation are three distinct questions. A profile usually does not identify a full density matrix.",
+    "variants": [
+      {
+        "label": "Rates of creation, transport, and erasure",
+        "statement": "Start from $I/2^N$ and specify a target collection of singlet probabilities or retained singlet pairs. Bound the number and depth of adaptive measurements needed to create that structure, transfer it between designated pairs, or remove it from retained systems. Keep the target trace-distance error, success probability, supplied ancillas, and discarded systems explicit; compare protocols under the same geometry."
+      }
+    ]
+  },
+  {
+    "id": "Q13",
+    "title": "The singlet conjecture",
+    "category": "complexity",
+    "kind": "conjecture",
+    "summary": "For an exchange-symmetric interaction, does subtracting a triplet projector ever increase the complexity of its positive-weight local-Hamiltonian problem?",
+    "preciseStatement": "Marwaha–Sud, Conjecture 3: for an exchange-symmetric two-qubit interaction $K$ and a normalized triplet state $\\lvert\\tau\\rangle$, let $$K^{\\prime}=K-\\lvert\\tau\\rangle\\langle\\tau\\rvert.$$ The positive-weight $\\{K^{\\prime}\\}^{+}$-Hamiltonian promise problem is conjectured to be at most as hard as its $\\{K\\}^{+}$ counterpart.",
+    "why": "This is a proposed ordering of complexity by local symmetry structure, beyond the paper's proved phase classification.",
+    "firstStep": "Study one edge of the paper's 20-arrangement diagram and ask for an explicit polynomial reduction.",
+    "tags": [
+      "singlet conjecture",
+      "phase transition",
+      "Hamiltonian complexity",
+      "antisymmetry"
+    ],
+    "references": [
+      "marwaha-sud-phase-transition",
+      "piddock-montanaro-antiferromagnetic"
+    ],
+    "scopeNote": "'Symmetric' means exchange symmetry, not invariance under all collective $\\mathrm{SU}(2)$ rotations. Treat a specific reduction notion as an additional formalization."
+  },
+  {
+    "id": "Q14",
+    "title": "Is the $\\mathrm{EPR}^{*}$ problem in $\\mathsf{BPP}$?",
+    "category": "complexity",
+    "kind": "conjecture",
+    "summary": "$\\mathrm{EPR}^{*}$ has an efficient quantum algorithm through Lee–Yang theory. Does it also have an efficient classical algorithm?",
+    "preciseStatement": "For fixed $b\\in[-1,1]$, let $$\\begin{aligned}K_b={}&(b+1)\\lvert\\psi^+\\rangle\\langle\\psi^+\\rvert\\\\&+(b-1)\\lvert\\phi^-\\rangle\\langle\\phi^-\\rvert.\\end{aligned}$$ Is deciding the ground-energy promise problem for $H=\\sum_e w_e(K_b)_e$, with positive polynomially bounded weights and inverse-polynomial promise gap, in $\\mathsf{BPP}$? This is the $\\mathrm{EPR}^{*}$ tractability conjecture of Marwaha–Sud.",
+    "why": "The $\\mathsf{BQP}$ upper bound leaves a concrete classical-versus-quantum question on the same side of the complexity transition.",
+    "firstStep": "Study the simplest $\\mathrm{EPR}^{*}$ instances and identify what a proposed classical sampler must control.",
+    "tags": [
+      "EPR*",
+      "phase transition",
+      "classical algorithms",
+      "local spectrum",
+      "BQP",
+      "Lee–Yang"
+    ],
+    "references": [
+      "marwaha-sud-phase-transition",
+      "rayudu-takahashi-lee-yang",
+      "wong-bravyi-gosset-liu-lee-yang",
+      "bravyi-divincenzo-oliveira-terhal-stoquastic",
+      "piddock-montanaro-antiferromagnetic"
+    ],
+    "scopeNote": "$\\mathsf{BQP}$ containment is established via Rayudu–Takahashi’s Lee–Yang theorem, building on Wong–Bravyi–Gosset–Liu. The open conjecture here is $\\mathsf{BPP}$ containment. Use one shared $b$ within an instance. The theorem does not assert a zero-field spectral gap.",
+    "variants": [
+      {
+        "label": "Exchange-symmetric classification",
+        "statement": "For a fixed two-qubit interaction $h$ satisfying $[h,\\operatorname{SWAP}]=0$, classify the promise problem for positive weighted sums of copies of $h$. Allow splitting and mixing within the triplet block, and state whether local fields and geometric restrictions are included. Determine which aspects of singlet/triplet ordering and degeneracy govern $\\mathsf{QMA}$, $\\mathsf{StoqMA}$, $\\mathsf{QCMA}$, or tractable regimes. Local eigenvalue ordering alone is a proposed organizing principle, not a complete classification."
+      }
+    ]
+  },
+  {
+    "id": "Q15",
+    "title": "What is the STP cost of preparing a Quantum Max-Cut witness?",
+    "category": "verification",
+    "kind": "question",
+    "summary": "Compare verification by a weighted random-edge singlet test with STP preparation of a state whose Quantum Max-Cut objective is near optimal.",
+    "preciseStatement": "For nonnegative rational edge weights $w_e$, let $W=\\sum_e w_e>0$ and $$A=\\sum_e w_e P_s^{(e)}.$$ A verifier receives one $N$-qubit witness, draws edge $e$ with probability $w_e/W$, and accepts its singlet outcome; its acceptance is $\\operatorname{Tr}(A\\rho)/W$. With thresholds $a>b$ separated by $1/\\operatorname{poly}(N)$, distinguish $\\max_\\rho\\operatorname{Tr}(A\\rho)/W\\ge a$ from $\\max_\\rho\\operatorname{Tr}(A\\rho)/W\\le b$. Ask for the cost of preparing a near-optimal witness by STP, and compare the spin structure needed for preparation with what this verifier accesses.",
+    "why": "The verifier accesses a weighted singlet expectation through local tests. The preparation problem asks how to achieve a near-optimal expectation across the interaction graph.",
+    "firstStep": "Choose a small frustrated graph and compare an STP preparation protocol with randomized edge verification, including sampling error and back-action.",
+    "tags": [
+      "Quantum Max-Cut",
+      "QMA",
+      "preparation",
+      "verification"
+    ],
+    "references": [
+      "cubitt-montanaro-classification",
+      "piddock-montanaro-antiferromagnetic"
+    ],
+    "scopeNote": "One randomized edge test defines an acceptance probability; estimating that probability empirically needs independent repetitions. A single unknown witness cannot be treated as arbitrarily many independent copies. The $\\mathsf{QMA}$ verification task and a state-generation task have different input/output requirements."
+  },
+  {
+    "id": "Q16",
+    "title": "How are product tests expressed in subsystem spin?",
+    "category": "verification",
+    "kind": "question",
+    "summary": "Express the product test as triplet projections on corresponding pairs from two unentangled registers. Analyze completeness and soundness when it is used in a two-witness verification protocol.",
+    "preciseStatement": "Let Merlin send two unentangled $m$-qubit registers with joint state $\\rho\\otimes\\sigma$; neither register is assumed to be a product over its $m$ qubits. The product-test verifier measures singlet/triplet on every corresponding qubit pair across the registers and accepts if every outcome is triplet. Its accepting projector is $$\\Pi=\\bigotimes_{i=1}^m\\frac{I+\\operatorname{SWAP}_i}{2}.$$ Analyze its completeness and soundness as a subroutine of a stated two-witness verification protocol, retaining the unentanglement promise.",
+    "why": "The unentanglement promise in $\\mathsf{QMA}(2)$ is a real resource assumption. The spin description should clarify that promise rather than suggest a SWAP test can impose it on arbitrary witnesses.",
+    "firstStep": "Work through the Harrow–Montanaro test on two copies of a bipartite pure state and relate its rejection probability to local purities.",
+    "tags": [
+      "QMA(2)",
+      "product test",
+      "SWAP test",
+      "unentangled witnesses"
+    ],
+    "references": [
+      "harrow-montanaro-product-test",
+      "bostanci-et-al-qma2-oracle",
+      "harrow-symmetric-subspace"
+    ],
+    "scopeNote": "For honest identical pure copies, acceptance is $2^{-m}\\sum_{S\\subseteq[m]}\\operatorname{Tr}(\\rho_S^2)$. This identity is not by itself a full $\\mathsf{QMA}(2)$ soundness proof: dishonest registers can be different, though unentangled with each other. Larger logical blocks require block-SWAP instruments rather than separate qubit projections.",
+    "variants": [
+      {
+        "label": "Spin-based verifier classes",
+        "statement": "Give a uniform verifier classical input $x$, one arbitrary polynomial-size quantum witness (or two unentangled witnesses), maximally mixed ancillary qubits, polynomially many adaptive STP measurements, and polynomial-time classical control. Acceptance is a classical bit with a $2/3$ versus $1/3$ gap. Characterize the resulting classes and the cost of simulations of standard $\\mathsf{QMA}$ or $\\mathsf{QMA}(2)$ verifiers. Any logical encoding must retain soundness against physical witnesses outside its intended code space."
+      },
+      {
+        "label": "Low-spin cross-copy conditions",
+        "statement": "Design a specified invariant test on two unentangled registers that uses low-spin outcomes, and prove its exact acceptance formula and a soundness bound for the intended promise problem. The standard product test accepts symmetric outcomes, so a proposed low-spin mechanism needs its own argument."
+      },
+      {
+        "label": "Short unentangled proofs and de Finetti",
+        "statement": "For a chosen $\\mathsf{NP}$ promise problem, can an STP-restricted verifier use $O(\\sqrt{n}\\,\\operatorname{polylog}n)$-qubit unentangled witnesses with an explicit completeness–soundness gap? State the number of witnesses, readout and controller restrictions. Any de Finetti step needs exchangeability across copies; collective $\\mathrm{SU}(2)$ invariance alone is insufficient."
+      },
+      {
+        "label": "Pairwise versus higher-arity witness verification",
+        "statement": "Define the spin-only verifier class with at most $k$-qubit total-spin instruments, two unentangled witnesses, mixed ancillas, and a uniform polynomial-time classical controller. Compare fixed $k=2$, larger fixed $k$, and efficiently described growing arity. Determine under which physical-witness and encoding conventions the class equals $\\mathsf{QMA}(2)$."
+      }
+    ]
+  },
+  {
+    "id": "Q17",
+    "title": "Can purification give a representation-theoretic adversary method?",
+    "category": "complexity",
+    "kind": "direction",
+    "summary": "Purify an oracle ensemble into an inaccessible register, decompose it into representation sectors, and bound the change of a progress observable per query.",
+    "preciseStatement": "Choose a group-symmetric oracle ensemble and a decision or state-generation task. Purify the hidden instance in an inaccessible register, use representation theory to organize that register, and construct a progress observable whose initial value, required successful final value, and maximum change per oracle query yield a lower bound. Can this recover or strengthen a known bound in a form native to subsystem spin?",
+    "why": "Purification, compressed oracles, and symmetry-assisted adversaries provide established starting points. A subsystem-spin interpretation could make their common structure easier to use.",
+    "firstStep": "Choose one small $\\mathrm{SU}(2)$- or permutation-covariant discrimination task; compute the hidden-register sector weights after one and two queries, then compare candidate progress bounds.",
+    "tags": [
+      "adversary method",
+      "purification",
+      "representation theory",
+      "compressed oracles"
+    ],
+    "references": [
+      "ambainis-magnin-roetteler-roland",
+      "foxman-lombardi-ma-nehoran-wright",
+      "jeffery-zur-compressed-adversary"
+    ],
+    "scopeNote": "The method class already exists: symmetry-assisted adversaries and compressed/recording oracles are established. The proposed contribution is a subsystem-spin formulation or new application. Sector weights alone may discard multiplicity and coherence information needed for a sharp bound. Purification is an analysis device, not a register the algorithm gets to manipulate."
+  },
+  {
+    "id": "Q18",
+    "title": "Can spin structure explain disentangler bounds?",
+    "category": "verification",
+    "kind": "direction",
+    "summary": "For approximate disentanglers, relate input dimension to the requirements that outputs be nearly separable and that every separable target be approximately attainable.",
+    "preciseStatement": "Fix a definition of approximate disentangler, its input and output dimensions, and its two approximation requirements. Ask whether a symmetry decomposition of the output or a purified channel yields an alternative proof, a sharpened bound, or a restricted-model separation.",
+    "why": "The symmetric and antisymmetric subspaces appearing in disentangler bounds suggest asking whether subsystem spin gives a more direct account of the obstruction.",
+    "firstStep": "Audit the recent $\\mathsf{QMA}(2)$/$\\mathsf{QMA}$ oracle-separation and disentangler results, then test a symmetric restricted channel family before attempting the general bound.",
+    "tags": [
+      "disentanglers",
+      "separability",
+      "channels",
+      "QMA(2)"
+    ],
+    "references": [
+      "bostanci-et-al-qma2-oracle",
+      "jeronimo-wu-xu-de-finetti"
+    ]
+  },
+  {
+    "id": "Q19",
+    "title": "Could $\\mathsf{StoqMA}$ be contained in $\\mathsf{QCMA}$?",
+    "category": "verification",
+    "kind": "direction",
+    "summary": "For each YES instance, can a classical cut and a polynomial-size interpolation recipe support efficient quantum preparation of a low-energy state? Account for the magnetization sector and spectral gap.",
+    "preciseStatement": "Fix a $\\mathsf{StoqMA}$-complete local-Hamiltonian promise problem with polynomially bounded interactions and inverse-polynomial energy separation. Does every YES instance admit polynomial-length classical data $c$ specifying a starting state and a preparation recipe, from which a uniform polynomial-time quantum verifier can reach the accepting low-energy subspace with inverse-polynomial probability? Require soundness against every proposed $c$ on NO instances. One sufficient route is a guide that can be prepared efficiently and has inverse-polynomial weight in that low-energy subspace, followed by quantum energy measurement. A proof for every YES instance would establish $\\mathsf{StoqMA}\\subseteq\\mathsf{QCMA}$.",
+    "why": "Perhaps choosing a useful starting position is the hard part, while navigating from it is efficient. A best product-state solution or a Max-Cut solution has a short classical description even if finding it is $\\mathsf{NP}$-hard. Merlin could supply that description. The remaining question is whether it actually provides useful quantum access to the low-energy space.",
+    "firstStep": "On the same positive-weight graph $G$, try $$\\begin{aligned}H_G(t)={}&-\\sum w_{ij}\\bigl(P_s^{ij}\\\\&\\quad +(1+t)P_{t_0}^{ij}\\bigr),\\\\&0\\le t\\le1.\\end{aligned}$$ At $t=0$ this is classical Max-Cut; at $t=1$ it is twice $\\operatorname{Toy}(1/2)$, hence $\\mathsf{StoqMA}$-complete. Start from a cut bit string, optionally selected by a small cut-aligned $Z$ field. Resolve the conserved-Hamming-weight obstruction before seeking an inverse-polynomial sector gap. Check whether a sector-optimal cut in a useful sector can be the witness. A Quantum Max-Cut ground state is not an efficiently available starting resource.",
+    "tags": [
+      "StoqMA",
+      "QCMA",
+      "classical witnesses",
+      "product states",
+      "Max-Cut",
+      "Markov chains",
+      "spectral gap",
+      "adiabatic preparation"
+    ],
+    "references": [
+      "marwaha-sud-phase-transition",
+      "cubitt-montanaro-classification",
+      "rayudu-takahashi-lee-yang",
+      "wong-bravyi-gosset-liu-lee-yang",
+      "weggemans-folkertsma-cade-guidable",
+      "bravyi-guided-stoquastic",
+      "bravyi-divincenzo-oliveira-terhal-stoquastic",
+      "bravyi-terhal-frustration-free"
+    ],
+    "scopeNote": "This is a speculative direction, not an established containment. A good variational energy or optimal cut alone does not guarantee useful low-energy overlap. The Lee–Yang theorem supplies a Hamiltonian gap in its stated family; it is not a general Markov-chain mixing theorem. A field must not change the decision problem beyond its allowed energy error. Classical witnesses may be hard to find, but their length and the verifier runtime must remain polynomial.",
+    "variants": [
+      {
+        "label": "Same-graph interpolation and magnetization",
+        "statement": "For every YES instance of $A_G=-\\sum w(P_s+2P_{t_0})$, does there exist a cut $x$, a magnetization sector, and a polynomial-size path description whose quantum evolution reaches energies below $a+(b-a)/3$ with inverse-polynomial probability? Here $[a,b]$ is the target promise gap. The displayed path and cut-aligned $Z$ fields preserve Hamming weight. Prove that the witness selects a sector reaching globally low energy, and bound its minimum relevant gap and field-induced energy error. The verifier does not need to certify cut optimality."
+      },
+      {
+        "label": "Verifier restrictions",
+        "statement": "Can a spin-based verifier faithfully realize the gate, basis, and accepting-measurement restrictions defining $\\mathsf{StoqMA}$? Distinguish a classical $\\mathsf{QCMA}$ witness from encoded quantum data. Nonnegative input states or real STP projectors alone do not identify the resulting verifier class."
+      },
+      {
+        "label": "Direct Quantum Max-Cut interpolation",
+        "statement": "Study $$\\begin{gathered}K_G(u)=-\\sum w(P_s+2uP_{t_0}),\\\\0\\le u\\le1,\\end{gathered}$$ on a fixed graph. Its endpoints are Quantum Max-Cut energy and the $\\mathsf{StoqMA}$-complete target; $u=1/2$ is classical Max-Cut. Compare beginning with a supplied QMC resource state against beginning at the classical point with a cut bit string. Include the preparation cost of any quantum starting state and do not assume an efficiently available QMC ground state."
+      },
+      {
+        "label": "Paths from high symmetry",
+        "statement": "Which spin Hamiltonian families admit an efficiently described path from an efficiently preparable fully symmetric state to a near-ground-state witness, with polynomial duration and controlled final energy error? In triplet-favored families, prove such a preparation guarantee or exhibit an obstruction. Specify the gap or alternative preparation bound and the permitted symmetry-breaking, ancillary, or Hamiltonian operations: internal pairwise STP alone acts trivially on a closed fully symmetric register. Compare these regimes with the relevant Hamiltonian complexity classifications."
+      }
+    ]
+  },
+  {
+    "id": "Q20",
+    "title": "Which computational tasks does Schur–Weyl duality relate?",
+    "category": "representation",
+    "kind": "question",
+    "summary": "Compare permutation-based and STP models with matched input and output conventions, and identify the additional resources needed for efficient reductions.",
+    "preciseStatement": "Specify a permutation-based model and an STP model with the same input/output conventions. Determine which tasks reduce between them efficiently and what extra resource—state preparation, recoupling, adaptivity, or coherent control—is required for the reductions.",
+    "why": "Commuting group actions are a theorem; computational equivalence of restricted models is an additional claim. Which forms of access make the correspondence computationally useful?",
+    "firstStep": "Translate a small permutational-computation amplitude or sampling task into STP and account for every assumption used by the translation.",
+    "tags": [
+      "Schur–Weyl duality",
+      "permutational computation",
+      "duality",
+      "recoupling"
+    ],
+    "references": [
+      "jordan-permutational",
+      "freedman-hastings-shokrian-zini",
+      "bostanci-nehoran-zhandry-duality",
+      "bacon-chuang-harrow-qudit-schur",
+      "bartlett-rudolph-spekkens-communication",
+      "bartlett-rudolph-spekkens-reference-frames"
+    ],
+    "variants": [
+      {
+        "label": "Sampling simulation",
+        "statement": "Compare sampling a final coupling-tree label in the weak permutational model with sampling an STP outcome record. Specify allowed initial labels, a polynomial-time input description, the output map, and total variation error."
+      },
+      {
+        "label": "Amplitude estimation",
+        "statement": "For specified input/output coupling-tree basis states and a given permutation, compare additive-precision transition-amplitude estimation with an STP task. Sampling probabilities alone does not provide phase-sensitive amplitudes."
+      },
+      {
+        "label": "Coherent simulation",
+        "statement": "Require a transformation on encoded superpositions that preserves correlations with an external reference, with a stated diamond-norm error. Identify the extra recoupling or coherent-control operations required."
+      },
+      {
+        "label": "Decision power",
+        "statement": "After fixing each model’s uniformity, preparation, readout, and bounded-error convention, compare the resulting language classes. Equality of commuting algebras does not establish equality of these operational models."
+      },
+      {
+        "label": "Fourier-type extraction and coherent recoupling",
+        "statement": "Specify black-box or circuit access to collective rotations or permutations. Which coherent irrep-extraction tasks follow, at what precision and cost? Separately ask for an STP implementation of a coupling-tree basis change on a multiplicity register, preserving an external reference. Existing weak permutational sampling simulation does not settle this coherent task."
+      },
+      {
+        "label": "What representation data can be measured?",
+        "statement": "Distinguish Young shape, nested tableau labels, characters of specified permutations, and recoupling amplitudes. State the input representation, permitted operations, number of copies, required precision, and tolerated disturbance for each task."
+      },
+      {
+        "label": "Transferring information between the two factors",
+        "statement": "Within $V_J\\otimes M_J$, can a specified encoding transfer a logical state between an $\\mathrm{SU}(2)$ irrep register and an $S_n$ multiplicity register, preserving an external reference? The registers need not have equal dimensions, so fix equal-dimensional code spaces and account for ancillas. On a closed fixed-spin register an STP branch acts as $I_{V_J}\\otimes K$, which obstructs unrestricted transfer from $V_J$ by STP alone. Determine what extra operations or relational encodings permit a useful Fourier-like correspondence."
+      },
+      {
+        "label": "Algorithms in dual representation coordinates",
+        "statement": "Choose a benchmark such as order finding, a quantum walk, or a correlation problem. Give two precise representation-theoretic descriptions and the transformation between them; identify the operations simplified by each description. Evaluate the resulting algorithm or explanation against a specified gate or query baseline, including the cost of moving between descriptions."
+      }
+    ]
+  },
+  {
+    "id": "Q21",
+    "title": "Which representation–extraction tasks can STP implement?",
+    "category": "representation",
+    "kind": "direction",
+    "summary": "Determine which coherent operations in a representation–extraction duality are available from STP, and whether they yield verification or state-generation tasks.",
+    "preciseStatement": "Apply an explicitly stated representation/extraction duality to a subsystem-spin setting and determine which required coherent operations are available from STP. Ask whether the resulting task yields a useful verification or state-generation problem; do not infer cryptographic security from symmetry alone.",
+    "why": "Representation–extraction duality relates coherent operations to verification tasks in quantum cryptography. It gives a concrete setting in which to ask which parts of that correspondence are accessible through STP.",
+    "firstStep": "Work through the smallest nontrivial group example in the representation-duality framework and separate extraction, measurement, cloning, and verification.",
+    "tags": [
+      "quantum money",
+      "Fourier extraction",
+      "duality",
+      "cryptography"
+    ],
+    "references": [
+      "bostanci-nehoran-zhandry-duality"
+    ]
+  },
+  {
+    "id": "Q22",
+    "title": "Which spin problems are $\\mathsf{BQP}$-complete?",
+    "category": "complexity",
+    "kind": "direction",
+    "summary": "Formulate promise problems on spin networks, recoupling structures, or adaptive measurement histories, with explicit reductions and precision requirements.",
+    "preciseStatement": "Define a promise problem on succinctly described spin networks, recoupling structures, or adaptive measurement histories and prove both $\\mathsf{BQP}$ membership and $\\mathsf{BQP}$ hardness under explicit reductions and precision conventions. Seek a natural formulation beyond simply relabeling a circuit. In the knot or tangle direction, seek a natural task beyond restating the standard Jones-polynomial approximation problem.",
+    "why": "A useful complete problem can expose computational structure in another field. Braids, knots, and tangles are leads, not automatic evidence of hardness.",
+    "firstStep": "Specify a small diagrammatic evaluation problem and decide whether it estimates an amplitude, a probability, or an adaptively generated distribution.",
+    "tags": [
+      "BQP completeness",
+      "spin networks",
+      "braids",
+      "knots",
+      "tangles"
+    ],
+    "references": [
+      "jordan-permutational",
+      "freedman-hastings-shokrian-zini",
+      "rudolph-virmani-stp"
+    ],
+    "variants": [
+      {
+        "label": "Sampling formulations",
+        "statement": "Define a family of spin-native output distributions with an explicit classical instance description and approximation metric. Prove efficient quantum sampling and an appropriate sampling-hardness reduction; separately formulate any bounded-error decision problem extracted from those distributions. Specify the sampling complexity class and reduction rather than treating a sampling task as a language in $\\mathsf{BQP}$."
+      }
+    ]
+  },
+  {
+    "id": "Q23",
+    "title": "What is an $\\mathrm{SU}(2)$-symmetric oracle problem?",
+    "category": "complexity",
+    "kind": "question",
+    "summary": "Define invariant unitary or measurement oracles and compare query costs under explicit access conventions.",
+    "preciseStatement": "Define a black-box unitary commuting with collective $\\mathrm{SU}(2)$, or a quantum instrument whose branch Kraus operators lie in that commutant. Specify access to inverses or controlled queries when meaningful, ancillas, and the classical comparison model. Find a natural promise task with different classical, quantum, or witness-assisted query costs.",
+    "why": "Query complexity depends on the permitted coherent access and on what information each oracle response reveals.",
+    "firstStep": "Start with two invariant oracles distinguished by their action on a small multiplicity space and derive the optimal one-query discrimination probability.",
+    "tags": [
+      "oracle separation",
+      "SU(2)",
+      "query complexity",
+      "QMA(2)"
+    ],
+    "references": [
+      "foxman-lombardi-ma-nehoran-wright",
+      "bostanci-et-al-qma2-oracle",
+      "aaronson-ambainis-forrelation",
+      "childs-et-al-welded-trees"
+    ],
+    "scopeNote": "A quantum instrument does not literally commute with a unitary in the operator sense. Mere covariance of a channel is also weaker than requiring invariant Kraus operators and need not imply the same sector conservation.",
+    "variants": [
+      {
+        "label": "Superpolynomial query separation",
+        "statement": "Construct an explicitly defined invariant oracle family and a promise problem solvable with $\\operatorname{poly}(n)$ STP-oracle queries but requiring superpolynomial or exponential classical queries. State how the classical oracle interface exposes the same input instance. Charge for oracle preparation, controlled access, inverses, and reference-frame resources whenever they are required."
+      },
+      {
+        "label": "Symmetric versions of known separations",
+        "statement": "Formulate $\\mathrm{SU}(2)$-symmetric analogues of Simon, forrelation, hidden-subgroup, or welded-tree problems. Preserve an explicit comparison of input size, promise, and classical/quantum access, and identify which operation supplies the separation in the invariant model."
+      },
+      {
+        "label": "Speedups lost under a symmetry restriction",
+        "statement": "For a specified oracle separation, impose an $\\mathrm{SU}(2)$ symmetry restriction on both preparation and access. Determine whether the separation survives with comparable query cost. If it fails, identify the unavailable operation and ask whether a different invariant task or primitive restores an advantage."
+      },
+      {
+        "label": "Equivariant channels and invariant instruments",
+        "statement": "Compare a covariant channel $\\mathcal E$ satisfying $$\\begin{aligned}\\mathcal E\\!\\left(U^{\\otimes n}\\rho(U^\\dagger)^{\\otimes n}\\right)\\\\=U^{\\otimes m}\\mathcal E(\\rho)(U^\\dagger)^{\\otimes m}\\end{aligned}$$ with the stricter oracle whose individual Kraus operators are invariant on a fixed register. For each model, define coherent, inverse, controlled, and classical access where those notions exist. Determine which sector or multiplicity information each query can change or reveal."
+      }
+    ]
+  },
+  {
+    "id": "Q24",
+    "title": "What changes with higher-arity total-spin measurements?",
+    "category": "generalizations",
+    "kind": "question",
+    "summary": "Compare the computational power, depth, and adaptivity of pairwise STP with measurements on larger subsets, including the cost of reproducing their retained-state instruments.",
+    "preciseStatement": "For a fixed $k\\ge 3$, compare pairwise STP with the instrument\n\n$$M_S(\\rho)=\\sum_j \\lvert j\\rangle\\langle j\\rvert\\otimes\\Pi_{S,j}\\rho\\Pi_{S,j}$$\n\non any $k$ selected qubits $S$. Can the complete instrument, including its retained state and correlations with a reference, be approximated within diamond-norm error $\\varepsilon$ by pairwise STP with polynomial resources? State ancillary input and failure probabilities. Treat growing $k$ as a separate regime.",
+    "why": "Larger measurements may reduce overhead or expose a cleaner primitive even when they do not change unrestricted computational power.",
+    "firstStep": "Construct the three- and four-qubit instruments, then determine which can be simulated efficiently by pairwise STP without unintended refinement of their eigenspaces.",
+    "tags": [
+      "higher arity",
+      "total-spin measurement",
+      "QND",
+      "generalization"
+    ],
+    "references": [
+      "rudolph-virmani-stp",
+      "freedman-hastings-shokrian-zini"
+    ],
+    "knownResult": "Random pair tests can estimate total-spin labels, but the known procedure can reveal extra information inside a sector. Preserving the full Lüders instrument is a stronger requirement. For every fixed $k\\ge2$, unrestricted polynomial-time $k$-STP has decision power $\\mathsf{BQP}$: it contains pairwise STP, and its constant-size instruments can be implemented in the circuit model. Depth, adaptivity, and physical overhead remain separate questions.",
+    "scopeNote": "Measuring an entire coupling tree refines the eigenspaces of total spin. It is not automatically the same quantum instrument.",
+    "variants": [
+      {
+        "label": "Power of k-STP",
+        "statement": "Define $k$-STP using total-spin Lüders measurements on subsets of size at most $k$, maximally mixed inputs, and uniform polynomial-time classical control. For fixed $k\\ge2$, the unrestricted bounded-error decision class is already $\\mathsf{BQP}$. Determine what changes in efficient sampling protocols and physical overhead, and under depth, geometry, or adaptivity restrictions. Treat growing $k$ and its implementation cost separately."
+      },
+      {
+        "label": "Depth and adaptivity with three or four qubits",
+        "statement": "Do three- or four-qubit total-spin measurements reduce the measurement depth or adaptive rounds needed for universality or for a specified task? Compare with pairwise STP at the same error and ancillary budget. Count disjoint-subset measurement layers separately from batches whose schedules are fixed in advance."
+      }
+    ]
+  },
+  {
+    "id": "Q25",
+    "title": "Which irrep measurements are useful for qudits?",
+    "category": "generalizations",
+    "kind": "question",
+    "summary": "For larger local dimension, exchange symmetry and physical spin no longer identify every sector in the same way.",
+    "preciseStatement": "Consider first fixed-$d$ $\\mathrm{SU}(d)$ fundamental systems, initially maximally mixed, with projective measurements onto specified irreducible components of two or $k$ tensor factors. State how multiplicities are treated by each Lüders instrument. Determine the bounded-error decision power and preparation cost for fixed $d,k$, then separate growing-$d$ and growing-$k$ regimes. Compare with physical spin-$S$ representations of $\\mathrm{SU}(2)$, which have a different tensor-product decomposition.",
+    "why": "The two-qubit correspondence is unusually economical. Its extensions may reveal which part of the primitive matters.",
+    "firstStep": "Compare two qutrits viewed as $\\mathrm{SU}(3)$ fundamentals with two physical spin-one particles and list exactly which subspaces each proposed instrument resolves.",
+    "tags": [
+      "qudits",
+      "SU(d)",
+      "higher spin",
+      "irrep measurements"
+    ],
+    "references": [
+      "freedman-hastings-shokrian-zini",
+      "brahmachari-hulse-pfister-marvian",
+      "bacon-chuang-harrow-qudit-schur",
+      "piddock-montanaro-qudit-hamiltonians"
+    ],
+    "knownResult": "The higher-spin $\\mathrm{SU}(2)$ model already has a simulation using symmetric blocks of $2S$ qubits. Its overhead and growing-$S$ cost remain meaningful questions; unrestricted extra power is not the starting conjecture.",
+    "scopeNote": "Encoding a spin-$S$ system with $2S$ qubits has cost polynomial in $S$, which may be exponential in $\\log S$. State the size convention before drawing a complexity conclusion."
+  },
+  {
+    "id": "Q26",
+    "title": "Can spin protocols be translated into bosonic or fermionic mode models?",
+    "category": "generalizations",
+    "kind": "direction",
+    "summary": "Construct explicit encodings and compare preparation and measurement costs under specified particle-number and mode constraints.",
+    "preciseStatement": "Give an explicit encoding between a distinguishable-spin model and a bosonic or fermionic mode model, with specified particle number, accessible modes, and operations. Determine which spin-sector statements translate and how preparation and measurement costs change.",
+    "why": "Antisymmetry in the spin state of labeled qubits is not itself fermionic statistics. A faithful dictionary could nevertheless reveal useful algorithms and constraints.",
+    "firstStep": "Translate a four-spin recoupling experiment into one concrete mode encoding and identify any additional occupation or superselection constraints.",
+    "tags": [
+      "bosons",
+      "fermions",
+      "exchange symmetry",
+      "encodings"
+    ],
+    "references": [
+      "jordan-permutational",
+      "bartlett-rudolph-spekkens-communication"
+    ]
+  },
+  {
+    "id": "Q27",
+    "title": "When is a physical SWAP measurement the right instrument?",
+    "category": "physical",
+    "kind": "question",
+    "summary": "Compare the complete physical measurement instrument with ideal singlet/triplet projection, including retained coherence, leakage, loss, and repeatability.",
+    "preciseStatement": "For a proposed physical singlet/triplet readout, characterize the full quantum instrument and its distance from the ideal Lüders projections $\\rho\\mapsto P_s\\rho P_s$ and $\\rho\\mapsto P_t\\rho P_t$. Quantify destructive loss, leakage, unwanted resolution within the triplet sector, and repeatability.",
+    "why": "Matching singlet/triplet outcome probabilities does not guarantee the coherence needed for repeated adaptive computation.",
+    "firstStep": "Use a tomographically complete family of inputs, including triplet superpositions, to reconstruct the retained-state instrument and test its distance from ideal STP alongside outcome fidelity.",
+    "tags": [
+      "QND",
+      "instruments",
+      "physical implementation",
+      "coherence"
+    ],
+    "references": [
+      "freedman-hastings-shokrian-zini",
+      "rudolph-virmani-stp",
+      "rudolph-virmani-relational"
+    ],
+    "scopeNote": "Testing two independent coherences is an illustrative diagnostic; it does not certify a general channel on the three-dimensional triplet space.",
+    "variants": [
+      {
+        "label": "Direct readout versus gate-mediated implementation",
+        "statement": "For a named platform, compare a direct retained-state singlet/triplet instrument with an ancilla-controlled-SWAP construction at the same instrument error. Include loss, latency, connectivity, repeated-measurement cost, and the overhead of a complete encoded task. Favorable outcome fidelity alone is insufficient."
+      }
+    ]
+  },
+  {
+    "id": "Q28",
+    "title": "Which errors does an STP encoding protect against?",
+    "category": "physical",
+    "kind": "question",
+    "summary": "Analyze protection and fault-tolerance overhead under specified collective noise, noncollective noise, measurement errors, and leakage.",
+    "preciseStatement": "For an encoded STP architecture, specify collective and noncollective noise, measurement errors, and leakage. Determine which logical degrees of freedom are protected by symmetry and whether an error-correcting or fault-tolerant construction has a favorable overhead.",
+    "why": "The protected multiplicity degrees of freedom give a concrete physical motivation, but a full robustness claim must account for symmetry-breaking errors and imperfect control.",
+    "firstStep": "Model a small encoded register under collective rotations and a single local perturbation; compare logical disturbance and the detectability of leakage through permitted measurements.",
+    "tags": [
+      "noise",
+      "symmetry protection",
+      "fault tolerance",
+      "reference frames"
+    ],
+    "references": [
+      "freedman-hastings-shokrian-zini",
+      "rudolph-virmani-stp",
+      "bartlett-rudolph-spekkens-reference-frames"
+    ],
+    "variants": [
+      {
+        "label": "Fusion-compatible codes",
+        "statement": "Find bounded-size multiplicity encodings for which physically available destructive singlet/triplet refinements preserve logical information or act only on a gauge subsystem. Specify the Kraus maps for every useful outcome, resource-factory cost, and a loss/noise model; compare against a named fusion-computing architecture. A two-outcome projector and a destructive refinement are different instruments."
+      }
+    ]
+  },
+  {
+    "id": "Q29",
+    "title": "Can subsystem spin give a common description of quantum computation?",
+    "category": "algorithms",
+    "kind": "hypothesis",
+    "summary": "The guiding hypothesis concerns a shared explanation of interference, entanglement, walks, transforms, and measurement-based computation.",
+    "preciseStatement": "Guiding hypothesis: a substantial fraction of the phenomena described using interference, entanglement, quantum walks, Fourier transforms, measurement-based computation, and quantum verification may admit a simpler common description through the creation, transport, measurement, and delocalization of subsystem symmetry, with spin as the simplest nontrivial case. The phrases “substantial fraction” and “simpler” are deliberately qualitative. An operational version must name a benchmark family, a shared construction or invariant, a comparison baseline, and a measure of explanatory or computational improvement.",
+    "why": "This is the organizing hypothesis of this work. Its value depends on producing specific algorithms, reductions, preparation bounds, or explanations across more than one example.",
+    "firstStep": "Compare order finding, a quantum walk, and an amplitude-amplification task. State one common spin-based mechanism and derive a quantitative prediction for each case; record where the proposed explanation fails.",
+    "tags": [
+      "meta-conjecture",
+      "primitive discovery",
+      "common description",
+      "native algorithms"
+    ],
+    "references": [
+      "rudolph-virmani-stp",
+      "jordan-permutational"
+    ],
+    "scopeNote": "The qualitative hypothesis is preserved separately from its proposed formal tests. The website does not attribute a particular overhead bound or universality separation to this sentence."
+  },
+  {
+    "id": "Q30",
+    "title": "What limits STP preparation of accepted quantum witnesses?",
+    "category": "verification",
+    "kind": "question",
+    "summary": "Bound the STP cost of preparing a state close to an accepted witness, with explicit trace-distance error and heralded success probability.",
+    "preciseStatement": "Fix a uniform family of STP verifiers $V_x$, a witness encoding, a polynomial register bound, and a completeness/soundness gap. For YES instances let $A_x$ be the set of states accepted above the completeness threshold. What is the minimum expected STP preparation cost, from mixed inputs with declared ancillas, of producing a flagged state within trace distance $\\varepsilon$ of some member of $A_x$ with success probability at least $p$? Can subsystem-spin or multiplicity structure bound this cost while keeping verification polynomial?",
+    "why": "The distinction is between states useful for $\\mathsf{BQP}$ computation and $\\mathsf{QMA}$ witnesses. Testing local spin structure need not give a method to prepare an accepted global state.",
+    "firstStep": "Begin with the randomized-edge verifier in Q15. Separate preparation of any accepted witness from preparation of one prescribed ground state, then ask which spin data gives a lower bound or a constructive preparation procedure.",
+    "tags": [
+      "BQP",
+      "QMA",
+      "witnesses",
+      "preparation complexity",
+      "subsystem spin"
+    ],
+    "references": [
+      "cubitt-montanaro-classification",
+      "rudolph-virmani-stp"
+    ],
+    "scopeNote": "An unrelativized lower bound separating efficient preparation from all quantum algorithms can depend on unresolved complexity assumptions. State such assumptions, or prove a restricted-model or oracle result. Easy preparation of singlets or coupling-tree states does not establish efficient preparation of arbitrary witnesses."
+  },
+  {
+    "id": "Q31",
+    "title": "How can a symmetric block acquire lower subsystem spin?",
+    "category": "resources",
+    "kind": "question",
+    "summary": "Internal STP leaves a fully symmetric register unchanged. Which added systems and interactions let a preparation process leave that limit?",
+    "preciseStatement": "Start a $k$-qubit block in $P_{\\mathrm{sym},k}/(k+1)$. Supply $m$ fresh maximally mixed qubits or specified independently prepared invariant blocks, and allow adaptive STP on a stated interaction graph. For a designated retained subsystem $S$, bound the measurements, supplied qubits, discarded qubits, and success probability needed to obtain\n\n$$\\Pr(J_S\\le j^*)\\ge 1-\\varepsilon.$$\n\nCompare these achievable tradeoffs as a function of $k,m,j^*,\\varepsilon$.",
+    "why": "This preserves the proposed picture of a process starting from symmetry while identifying the operations that can actually change it. Relative structure between independently prepared blocks can become useful even when each block is internally symmetric.",
+    "firstStep": "Study $\\frac{P_{\\mathrm{sym},3}}4\\otimes\\frac I2$ and measure across the block boundary. Compare its branches with the four-qubit mixed-input experiment; distinguish changing subsystem spin from changing the total spin of a closed register.",
+    "tags": [
+      "symmetric blocks",
+      "state growth",
+      "ancillas",
+      "Markov chains",
+      "low spin"
+    ],
+    "references": [
+      "freedman-hastings-shokrian-zini",
+      "rudolph-virmani-stp",
+      "harrow-symmetric-subspace"
+    ],
+    "scopeNote": "With $m=0$ and only internal STP, the state is unchanged and no lower-spin outcome occurs. A Markov description of selected spin labels needs a justified closure property; the omitted multiplicity state can retain memory. Discarding alone from a fully symmetric register also leaves a fully symmetric retained subsystem."
+  },
+  {
+    "id": "Q32",
+    "title": "Can intermediate state resources guide an STP compiler?",
+    "category": "algorithms",
+    "kind": "direction",
+    "summary": "Schedule a finite library of heralded STP conversions, retaining useful failure branches, and bound the resulting compilation cost.",
+    "preciseStatement": "Fix a finite library of invariant encoded resource states and heralded STP conversion protocols, each with branch maps, trace-distance error, storage requirements, and probabilities. Given a target classical-output circuit and accuracy $\\varepsilon$, construct a uniform adaptive scheduler that prepares and consumes these resources while retaining useful failure branches. Bound the total expected and high-probability costs, including fresh mixed qubits, measurements, feed-forward, and retries, and compare with a specified gate-by-gate STP compiler.",
+    "why": "The mixed-state experiment shows that entropy, entanglement, symmetry, and branch probability evolve differently. A compiler needs the operational usefulness of the intermediate state and the cost of recovering from each outcome.",
+    "firstStep": "Build a small conversion library for singlets, symmetric blocks, and encoded multiplicity states. Check its branches exactly, then compare independent preparation with recycling on a repeated primitive. Use known coupling-tree preparation procedures as a baseline.",
+    "tags": [
+      "compilation",
+      "state preparation",
+      "resource states",
+      "recycling",
+      "measurement histories"
+    ],
+    "references": [
+      "freedman-hastings-shokrian-zini",
+      "rudolph-virmani-stp"
+    ],
+    "scopeNote": "The chosen library and cost model are part of the proposal. Arbitrary physical target states are unavailable from mixed input under bare invariant real STP; logical targets must specify their encoding.",
+    "knownResult": "Polynomial-expected-time preparation of root-spin-zero labeled coupling-tree states is already available. Arbitrary coherent superpositions of those states are a separate preparation task.",
+    "variants": [
+      {
+        "label": "An interaction calculus for prepared pieces",
+        "statement": "Tabulate singlet–singlet, singlet–triplet, triplet–triplet, and singlet–mixed-qubit conversions, including both conditional states and probabilities. Extend to symmetric blocks or labeled coupling trees. Young diagrams and spin labels must be accompanied by multiplicity correlations: joining blocks is not a classical operation on labels alone."
+      }
+    ]
+  },
+  {
+    "id": "Q33",
+    "title": "How many swap tests does a state require?",
+    "category": "resources",
+    "kind": "question",
+    "summary": "Define swap-test count with a specified target, error, success probability, and supply of mixed qubits.",
+    "preciseStatement": "Given an $n$-qubit target family $\\rho_n$ compatible with the permitted invariant real preparation model, define the minimum number $C(\\rho_n;\\varepsilon,p,N)$ of pair STP tests required from $N$ mixed qubits to herald an output within trace distance $\\varepsilon$ with probability at least $p$. Specify fixed versus record-dependent output registers and traced ancillas. Compare nonadaptive schedules, adaptive pair choice, and bounded-feedback protocols; count retries and fresh resources.",
+    "why": "Preparation complexity asks how much measurement creates a particular state, rather than how hard it is to decide a language. The distinction between retaining successful pieces and restarting entire histories is essential.",
+    "firstStep": "Find a natural invariant encoded family with a provable adaptive/nonadaptive separation. First test labeled coupling-tree states and repeated preparation of small resources.",
+    "tags": [
+      "swap-test count",
+      "state preparation",
+      "adaptivity",
+      "lower bounds"
+    ],
+    "references": [
+      "freedman-hastings-shokrian-zini",
+      "rudolph-virmani-stp"
+    ]
+  },
+  {
+    "id": "Q34",
+    "title": "How hard is predicting singlet transmission under STP?",
+    "category": "complexity",
+    "kind": "question",
+    "summary": "Use a final singlet correlation with an untouched reference as the output of a computation.",
+    "preciseStatement": "An instance specifies a polynomial-size uniform adaptive STP controller with a polynomial stopping-time cutoff, an initial matching of singlets, an untouched reference qubit $R$, and an output qubit $B$. Decide whether the final unconditional probability $\\operatorname{Tr}(P_s^{RB}\\rho_{\\mathrm{out}})$ is at least $2/3$ or at most $1/3$. Averaging is over all measurement histories; no exponentially unlikely postselection is allowed. Establish reductions and study restricted schedules, locality, and transmission cost.",
+    "why": "The final singlet probability gives an observable output criterion for an adaptive STP protocol, including all measurement histories. Following how the reference correlation moves may help relate computational cost to intermediate multiplicity states; transporting a single singlet along a simple route need not be hard.",
+    "firstStep": "Prove membership by gate-model simulation, then give a complete reduction from a bounded-error computation using singlet recoupling and a bounded recovery procedure. Track the acceptance gap and every unsuccessful branch.",
+    "tags": [
+      "singlet transmission",
+      "BQP",
+      "reference systems",
+      "transport"
+    ],
+    "references": [
+      "freedman-hastings-shokrian-zini",
+      "rudolph-virmani-stp"
+    ],
+    "variants": [
+      {
+        "label": "Cost of transporting a singlet correlation",
+        "statement": "Fix an interaction graph, an initial supply of singlets and maximally mixed qubits, an untouched reference $R$ initially paired with an input qubit, and an output qubit $B$. For a history $h$, let $c(h)$ count all pair measurements, or only measurements crossing a specified spatial cut. For a target fidelity $F>1/2$, define the minimum expected cost over adaptive protocols satisfying $\\operatorname{Tr}(P_s^{RB}\\rho_{\\mathrm{out}})\\ge F$, where the output averages over all histories. Require termination and state whether fresh ancillas, discarding, and record-dependent output registers are permitted. Bound this cost using geometry and the multiplicity-space correlations created during the protocol. This is an optimization problem; distinguish it from predicting the output of a supplied controller. For fixed-total-spin comparisons, use closed registers and compatible initial and target states."
+      }
+    ]
+  },
+  {
+    "id": "Q35",
+    "title": "Quantum spin-SAT: which subsystem spins can be forbidden?",
+    "category": "verification",
+    "kind": "question",
+    "summary": "Each constraint forbids a specified total spin on a specified subsystem. Can one quantum state satisfy all the constraints?",
+    "preciseStatement": "Fix a constant locality $k$ and permitted subset-spin projectors $\\Pi_{S,j}$, $\\lvert S\\rvert\\le k$. A forbidden-spin constraint requires\n\n$$\\Pi_{S,j}\\lvert\\psi\\rangle=0.$$\n\nClassify local Hamiltonians with force terms $I-\\Pi_{S,j}$, forbid terms $\\Pi_{S,j}$, or forbidden joint patterns formed from commuting projectors on nested or disjoint subsets, with the UNION of subsets in each clause also of size at most $k$. State the allowed interaction graph and weights. Separate exact zero-energy versus inverse-polynomial frustration promises from general energy thresholds, and arbitrary quantum witnesses from product or multiple-unentangled witnesses.",
+    "why": "Subsystem-spin constraints offer a natural quantum constraint-satisfaction language. Crossing subsets introduce noncommuting conditions; labels on a single laminar coupling tree behave differently.",
+    "firstStep": "Classify small fixed constraint sets on three and four qubits. Compare laminar instances with crossing subsets and test proposed gadgets in both YES and NO cases.",
+    "tags": [
+      "Spin-SAT",
+      "fusion constraints",
+      "quantum satisfiability",
+      "QMA",
+      "QCMA"
+    ],
+    "references": [
+      "freedman-hastings-shokrian-zini",
+      "rudolph-virmani-stp",
+      "bravyi-terhal-frustration-free",
+      "piddock-montanaro-antiferromagnetic"
+    ],
+    "scopeNote": "A forbid-only family that never excludes a subsystem’s maximal spin is satisfied by the fully polarized product state. A nontrivial hardness claim must specify a constraint language that avoids such automatic solutions.",
+    "variants": [
+      {
+        "label": "Promises on total spin and Young shape",
+        "statement": "For a specified family of spin constraints, ask for $\\mathsf{QMA}$ membership and hardness of satisfiability or approximate satisfiability. Repeat with the witness restricted to a declared total-spin sector, equivalently a two-row Young shape for qubits, or with a promise that a satisfying witness exists in that sector. Specify how the verifier enforces the restriction and retain an inverse-polynomial promise gap."
+      }
+    ]
+  },
+  {
+    "id": "Q36",
+    "title": "Can local spin tests perform a spectral measurement?",
+    "category": "algorithms",
+    "kind": "question",
+    "summary": "Can pairwise STP approximate a spectral threshold measurement for an exchange Hamiltonian? Bound the error and resource cost, and ask separately for a protocol that retains the filtered state.",
+    "preciseStatement": "For a physically specified exchange Hamiltonian $H=\\sum_e a_eP_s^e$ with polynomial input description and $\\lVert H\\rVert\\le 1$, let $0\\le f\\le 1$ approximate a threshold with spectral margin $\\Delta$. Construct an STP acceptance effect $E$ with\n\n$$\\lVert E-f(H)\\rVert\\le\\varepsilon,$$\n\nor prove an obstruction in the stated model. Bound qubits, tests, rounds, and success probability in $n,1/\\Delta,1/\\varepsilon$. Separately request a retained-state instrument approximating the desired spectral filter, preserving correlations with a reference.",
+    "why": "A sequence of STP measurements defines an acceptance effect. Comparing that effect with a function of the Hamiltonian tests whether the protocol performs spectral filtering.",
+    "firstStep": "Compute the effect of alternating two overlapping projectors exactly, then compare it with filters of their sum. A local-term average estimates mean energy; it is not a measurement of the Hamiltonian’s spectrum.",
+    "tags": [
+      "spectral filtering",
+      "phase estimation",
+      "alternating projections",
+      "native algorithms"
+    ],
+    "references": [
+      "freedman-hastings-shokrian-zini",
+      "rudolph-virmani-stp"
+    ]
+  },
+  {
+    "id": "Q37",
+    "title": "What changes with exponentially many measurements?",
+    "category": "restrictions",
+    "kind": "question",
+    "summary": "Classify exponentially long STP protocols with polynomial quantum workspace and explicit classical controller-space bounds.",
+    "preciseStatement": "Allow polynomially many active qubits and at most $2^{\\operatorname{poly}(n)}$ STP measurements generated by a succinct uniform controller. Specify controller space, workspace resets, fresh mixed-qubit supply, numerical precision, and bounded-error output. Compare logspace or finite-control variants with a polynomial-space controller, and give simulation upper bounds and complete problems for the resulting models.",
+    "why": "An exponential list of operations is not a polynomial-size input. A succinct schedule and explicit classical memory bound are needed before long-depth STP has a meaningful complexity classification.",
+    "firstStep": "Begin with a repeated fixed local schedule plus finite control, then add outcome-dependent branching. Identify whether memory in the state gives an advantage over the same classical controller.",
+    "tags": [
+      "exponential depth",
+      "space complexity",
+      "uniformity",
+      "classical control"
+    ],
+    "references": [
+      "freedman-hastings-shokrian-zini",
+      "rudolph-virmani-stp"
+    ]
+  },
+  {
+    "id": "Q38",
+    "title": "What is the Quantum Max-Cut optimum at fixed total spin?",
+    "category": "complexity",
+    "kind": "question",
+    "summary": "Bound the fixed-spin optimum and the energy lost by restricting states to specified cluster or dimer ansätze.",
+    "preciseStatement": "For a positive-weight graph $G$, let $H_G=\\sum_e w_eP_s^e$ and\n\n$$\\operatorname{QMC}_j(G)=\\lambda_{\\max}\\!\\left(H_G\\big|_{J=j}\\right).$$\n\nObtain graph-sensitive upper and lower bounds, especially for sparse graphs. Compare with an explicitly specified localized ansatz, such as products of bounded-size singlet clusters or mixtures of dimer coverings, and bound the energy lost by that restriction. Normalize weights and state the additive or multiplicative approximation target.",
+    "why": "Total singlet weight is fixed at a given spin, but a graph weights its locations differently. Delocalization may improve the objective without changing the total amount of antisymmetry.",
+    "firstStep": "Solve small graphs sector by sector and compare localized preparations with unrestricted multiplicity states. For fixed spin deficit $r=n/2-j$, the multiplicity dimension is polynomial in $n$; use this tractable regime as a baseline.",
+    "tags": [
+      "Quantum Max-Cut",
+      "spin sectors",
+      "delocalization",
+      "sparse graphs"
+    ],
+    "references": [
+      "cubitt-montanaro-classification",
+      "marwaha-sud-phase-transition",
+      "piddock-montanaro-antiferromagnetic"
+    ],
+    "variants": [
+      {
+        "label": "Incompatible singlet constraints",
+        "statement": "Overlapping pairs cannot both be perfect singlets. On three qubits, $p_s(12)+p_s(23)\\le3/2$, whereas disjoint singlets can be prepared independently. For $H_G=\\sum_e w_eP_s^e$, prove graph-dependent bounds on the energy lost by localized singlet ansätze, and identify families where correlations between their blocks are necessary for a chosen approximation ratio. Distinguish frustration from computational hardness by comparing efficiently solvable families with hard families. Which property of the graph and its accessible multiplicity states controls approximation or preparation cost beyond the mere presence of overlapping edges?"
+      }
+    ]
+  },
+  {
+    "id": "Q39",
+    "title": "Which compact-group irrep measurements support universal computation?",
+    "category": "generalizations",
+    "kind": "question",
+    "summary": "Replace qubits and $\\mathrm{SU}(2)$ by a fixed representation of a compact group. Classify the computation generated by measuring irreducible labels on small subsets.",
+    "preciseStatement": "Fix a compact group $G$, a finite-dimensional unitary representation $V$, and a constant arity $k$. On $N$ systems initially in the maximally mixed state on $V^{\\otimes N}$, permit adaptive Lüders measurements of the isotypic components of $V^{\\otimes r}$ on selected subsets, $r\\le k$, with uniform polynomial-time classical control. Preserve coherence within each reported component, including multiplicity. Require an effective description of the representation: each permitted constant-arity instrument must admit a uniform circuit approximation of cost $\\operatorname{poly}(\\log(1/\\varepsilon))$ at error $\\varepsilon$, or its implementation is a separately declared oracle resource. Which triples $(G,V,k)$ give universal bounded-error quantum computation under an explicit encoding, which admit efficient classical simulation, and which yield intermediate models? Count all input preparation, readout, ancillary systems, and approximation costs.",
+    "why": "This asks whether small-subsystem irrep measurement defines a general computational primitive. Qudits in the fundamental representation and physical higher spins are particular cases of this broader question.",
+    "firstStep": "Work out the two- and three-system decompositions for a chosen representation, determine the algebra generated by its isotypic projectors, and compare the reachable instruments with an encoded universal gate set.",
+    "tags": [
+      "compact groups",
+      "irrep measurement",
+      "universality",
+      "representation theory"
+    ],
+    "references": [
+      "rudolph-virmani-stp",
+      "freedman-hastings-shokrian-zini",
+      "bacon-chuang-harrow-qudit-schur",
+      "bartlett-rudolph-spekkens-reference-frames",
+      "piddock-montanaro-qudit-hamiltonians"
+    ],
+    "scopeNote": "The group and representation are fixed model data here. A growing representation or a black-box group requires separate input and precision conventions. Projecting onto an isotypic component differs from resolving individual multiplicity copies."
+  },
+  {
+    "id": "Q40",
+    "title": "Which spin-constraint problems are naturally $\\mathsf{QCMA}$-complete?",
+    "category": "verification",
+    "kind": "question",
+    "summary": "Can a classical sequence of pairings, recouplings, or an adiabatic path certify a spin-constraint problem? Identify natural complete problems with explicit verification and promise gaps.",
+    "preciseStatement": "Define a promise problem on a polynomial-size description of bounded-locality subsystem-spin constraints and thresholds $a<b$ with $b-a\\ge1/\\operatorname{poly}(n)$. A classical witness describes a polynomial-length sequence of pairings or recouplings, or an efficiently implementable Hamiltonian path, from specified preparable input states. Give a uniform polynomial-time quantum verifier that accepts some such guide on every YES instance and rejects every guide on every NO instance. Seek natural problem families that are $\\mathsf{QCMA}$-complete under polynomial-time reductions. State exactly what the guide certifies—low energy, a constraint-satisfaction probability, or a state-generation task—and account for preparation and verification error.",
+    "why": "A natural $\\mathsf{QCMA}$-complete spin problem would identify a verification boundary without requiring the stronger containment $\\mathsf{StoqMA}\\subseteq\\mathsf{QCMA}$.",
+    "firstStep": "Fix one guide language and one spin-constraint family. Prove membership by accounting for all verification resources, then ask whether the constraints can express a known classical-witness verification task with a preserved promise gap.",
+    "tags": [
+      "QCMA",
+      "classical witnesses",
+      "spin constraints",
+      "adiabatic paths"
+    ],
+    "references": [
+      "weggemans-folkertsma-cade-guidable",
+      "bravyi-guided-stoquastic",
+      "bravyi-divincenzo-oliveira-terhal-stoquastic",
+      "bravyi-terhal-frustration-free"
+    ],
+    "scopeNote": "Efficiently describing a path is not a proof that it prepares a useful state. Completeness needs a runtime and success bound; soundness applies to every proposed classical guide. The Q19 containment route remains a separate, stronger question."
+  }
+]

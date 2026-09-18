@@ -1,0 +1,6 @@
+---
+import katex from 'katex';
+const {tex,display=false}=Astro.props;
+const html=katex.renderToString(tex,{displayMode:display,throwOnError:true,output:'htmlAndMathml'});
+---
+<span class:list={{'math-block':display}} set:html={html}/>

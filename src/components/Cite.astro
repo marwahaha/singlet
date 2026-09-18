@@ -1,0 +1,6 @@
+---
+import refs from '../data/references.json';
+const {keys}=Astro.props;
+const selected=(Array.isArray(keys)?keys:[keys]).map(key=>({ref:refs.find(r=>r.key===key),index:refs.findIndex(r=>r.key===key)+1}));
+---
+<span class="citations">{selected.map(({ref,index})=>ref&&<a href={`${import.meta.env.BASE_URL}references/#${ref.key}`} title={`${ref.authors}. ${ref.title}`} aria-label={`Reference ${index}: ${ref.title}`}>[{index}]</a>)}</span>

@@ -1,0 +1,17 @@
+cff-version: 1.2.0
+message: "Please cite this research website using the metadata below. A DOI has not yet been assigned."
+type: software
+title: "Singlet: Subsystem spin as a primitive for quantum computation"
+authors:
+  - family-names: Marwaha
+    given-names: Kunal
+    email: marwahaha@berkeley.edu
+url: "https://marwahaha.github.io/singlet/"
+repository-code: "https://github.com/marwahaha/singlet"
+abstract: "An interactive research perspective, primer, and collection of open questions about subsystem spin, singlet–triplet measurements, and quantum computation. Includes exact small-system experiments and an annotated bibliography."
+keywords:
+  - quantum computing
+  - subsystem spin
+  - singlet-triplet measurements
+  - Schur-Weyl duality
+  - quantum complexity

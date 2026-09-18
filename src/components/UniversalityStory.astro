@@ -1,0 +1,33 @@
+---
+import Math from './Math.astro';
+import Cite from './Cite.astro';
+import QuestionLink from './QuestionLink.astro';
+---
+<section class="essay-section" id="singlet-triplet">
+ <aside class="section-aside chapter-heading"><strong class="chapter-number">Section 02</strong></aside>
+ <div class="prose">
+  <h2>Singlet–triplet computation</h2>
+  <p>Let us start with two spin-½ systems (or qubits). The total-spin-zero space is the one-dimensional <em>antisymmetric subspace</em>, spanned by the singlet</p>
+  <Math display tex={String.raw`|s\rangle=\frac{|01\rangle-|10\rangle}{\sqrt2}.`}/>
+  <p>Exchanging the qubits multiplies this vector by −1. The total-spin-one space is the three-dimensional <em>symmetric subspace</em>, or triplet space, spanned by <Math tex={String.raw`|00\rangle`}/>, <Math tex={String.raw`(|01\rangle+|10\rangle)/\sqrt2`}/>, and <Math tex={String.raw`|11\rangle`}/>. Every vector in that space is unchanged by exchange.</p>
+  <p>A singlet–triplet measurement on pair <Math tex="a,b"/> has projectors</p>
+  <Math display tex={String.raw`P_s^{ab}=\frac{I-\mathrm{SWAP}_{ab}}2,\qquad P_t^{ab}=\frac{I+\mathrm{SWAP}_{ab}}2.`}/>
+  <p>For an outcome <Math tex={String.raw`o\in\{s,t\}`}/>, the probability and retained state are</p>
+  <Math display tex={String.raw`p_o=\mathrm{Tr}(P_o^{ab}\rho),\qquad \rho\longmapsto\frac{P_o^{ab}\rho P_o^{ab}}{p_o}.`}/>
+  <p>This is the Lüders instrument: it preserves coherence within the measured subspace. Resolving individual triplet components would be a different operation.</p>
+ </div>
+</section>
+<section class="interlude universality-statement" id="universality" aria-labelledby="universality-title">
+ <div><h2 id="universality-title">Universality</h2><div class="universality-equation"><Math display tex={String.raw`\mathsf{STP}=\mathsf{BQP}`}/></div></div>
+ <div>
+  <p>Start with <Math tex={String.raw`\rho_0=I/2^N`}/>. A polynomial-time classical controller chooses pairs adaptively, records their singlet or triplet outcomes, and retains the projected systems. These are singlet–triplet projection (STP) protocols. With polynomially many qubits and measurements and bounded error, they have exactly the computational power of the quantum circuit model.</p>
+  <p>Rudolph and Virmani proved this equality, resolving the conjecture of Freedman, Hastings, and Shokrian Zini. No pure input states or unitary gates are required. <Cite keys={['rudolph-virmani-stp','freedman-hastings-shokrian-zini']}/></p>
+ </div>
+</section>
+<section class="essay-section essay-continuation" id="native-algorithms"><div class="prose">
+ <h2>Algorithms and compilation</h2>
+ <p>I want to understand what Shor’s algorithm is doing in terms of subsystem spin, and to find algorithms built directly from spin measurements. Could quantum walks be formulated on spin-coupling trees? Could small-subsystem projectors implement a useful operation with fewer resources than its usual circuit decomposition?</p>
+ <p>Universality gives a polynomial simulation; its overhead still matters. For a circuit with <Math tex="G"/> gates and error tolerance <Math tex={String.raw`\varepsilon`}/>, how many qubits, pair measurements, and adaptive rounds does an STP implementation require? For a direct algorithm, specify the input, output, success probability, and classical processing as well. Preparation and retries belong in the cost.</p>
+ <div class="two-questions"><QuestionLink id="Q01"/><QuestionLink id="Q03"/></div>
+ <p class="algorithm-question-links">Specific targets: <a href={import.meta.env.BASE_URL+'questions/q02/'}>order finding</a> and <a href={import.meta.env.BASE_URL+'questions/q36/'}>spectral filtering</a>.</p>
+</div></section>
