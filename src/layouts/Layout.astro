@@ -8,6 +8,7 @@ import '@fontsource/ibm-plex-mono/400.css';
 import 'katex/dist/katex.min.css';
 import '../styles/global.css';
 import '../styles/essay.css';
+import { lastUpdated, lastUpdatedLabel } from '../data/site.mjs';
 interface Props {title?:string;description?:string;active?:string;}
 const {title='Singlet — Subsystem spin as a primitive for quantum computation',description='A perspective and research agenda by Kunal Marwaha. Explore subsystem spin, singlet–triplet measurements, and new ways of thinking about quantum computation.',active='essay'}=Astro.props;
 const base=import.meta.env.BASE_URL;
@@ -19,5 +20,5 @@ const base=import.meta.env.BASE_URL;
  <a class="skip-link" href="#main">Skip to content</a>
  <header class="site-header"><a href={base} class="wordmark" aria-label="Singlet home"><img class="singlet-mark" src={base+'singlet-mark.svg'} width="48" height="48" alt=""/><span class="wordmark-name">Singlet</span><span class="wordmark-note">Quantum computation</span></a><nav aria-label="Main navigation"><a class:list={{active:active==='essay'}} href={base}>Essay</a><a class:list={{active:active==='experiments'}} href={`${base}experiments/`}>Experiments</a><a class:list={{active:active==='questions'}} href={`${base}questions/`}>Questions</a><a class:list={{active:active==='references'}} href={`${base}references/`}>References</a></nav></header>
  <main id="main"><slot/></main>
- <footer class="site-footer"><a class="footer-title" href={base} aria-label="Singlet home"><span class="footer-brand"><img src={base+'singlet-mark.svg'} width="64" height="64" alt=""/>Singlet</span><span>Subsystem spin as a primitive<br/>for quantum computation.</span></a><div><p>A perspective and research agenda<br/>Kunal Marwaha · 2026</p><a href={`${base}references/#acknowledgments`}>About this work ↗</a></div><div><a href={`${base}questions/`}>Research questions ↗</a><a href={`${base}references/`}>Sources & acknowledgments ↗</a><span class="footer-small">Research perspective · September 2026</span></div></footer>
+ <footer class="site-footer"><a class="footer-title" href={base} aria-label="Singlet home"><span class="footer-brand"><img src={base+'singlet-mark.svg'} width="64" height="64" alt=""/>Singlet</span><span>Subsystem spin as a primitive<br/>for quantum computation.</span></a><div><p>A perspective and research agenda<br/>Kunal Marwaha · 2026</p><a href={`${base}references/#acknowledgments`}>About this work ↗</a></div><div><a href={`${base}questions/`}>Research questions ↗</a><a href={`${base}references/`}>Sources & acknowledgments ↗</a><span class="footer-small">Last updated <time datetime={lastUpdated}>{lastUpdatedLabel}</time></span></div></footer>
 </body></html>

@@ -31,6 +31,7 @@ button, input, select, .site-header, .text-link, .site-footer, .chapter-strip,
 .hero-intro { font: 21px/1.6 var(--serif); max-width: 530px; }
 .hero-meta { font-size: 14px; margin-top: 25px; gap: 12px; }
 .hero-meta span+span { padding-left: 12px; }
+.last-updated { margin-top: 10px; font: 14px/1.6 var(--sans); color: var(--muted); }
 .text-link { font-size: 16px; gap: 18px; }
 .hero .text-link { margin-top: 15px; }
 .path-plate { padding: 26px; }
@@ -49,6 +50,8 @@ button, input, select, .site-header, .text-link, .site-footer, .chapter-strip,
 .opening h2, .prose h2 { margin-bottom: 26px; }
 .opening p, .prose p { font-size: 21px; line-height: 1.75; }
 .opening p { max-width: none; }
+.editorial-note { margin: 28px 0; padding: 5px 0 5px 22px; border-left: 2px solid var(--accent); }
+.opening .editorial-note p { margin: 0; font-size: 19px; line-height: 1.65; }
 .prose h3 { font-size: 27px; line-height: 1.35; font-weight: 400; }
 .interlude { gap: 65px; }
 .interlude h2 { max-width: 450px; }
@@ -135,6 +138,7 @@ button, input, select, .site-header, .text-link, .site-footer, .chapter-strip,
 .closing { text-align: left; max-width: 1120px; padding: 55px 30px 80px 285px; }
 .closing h2 { margin: 22px 0 28px; }
 .closing p { font: 21px/1.75 var(--serif); max-width: none; }
+.closing p+p { margin-top: 24px; }
 .page-heading { padding-block: 65px 45px; }
 .page-heading>p { font: 22px/1.65 var(--serif); max-width: 740px; }
 .page-heading .fine-print { font-family: var(--sans); }
