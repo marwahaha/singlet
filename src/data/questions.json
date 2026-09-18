@@ -19,7 +19,9 @@
     "references": [
       "rudolph-virmani-stp",
       "freedman-hastings-shokrian-zini",
-      "aaronson-ambainis-forrelation"
+      "aaronson-ambainis-forrelation",
+      "grover-search",
+      "brassard-hoyer-mosca-tapp-amplification"
     ],
     "variants": [
       {
@@ -39,7 +41,12 @@
         "statement": "For each family, compare against a named compilation baseline using the same input and oracle access. Record physical qubits, measurement count, rounds, precision, and success probability. An explanatory simplification and an asymptotic improvement are different outcomes."
       }
     ],
-    "scopeNote": "STP measurements have constant-size gate-model realizations. A proposed asymptotic improvement must use a specified baseline or physical cost model; changing the description alone cannot beat an optimal unrestricted gate-model implementation."
+    "scopeNote": "STP measurements have constant-size gate-model realizations. A proposed asymptotic improvement must use a specified baseline or physical cost model; changing the description alone cannot beat an optimal unrestricted gate-model implementation.",
+    "relatedQuestions": [
+      "Q41",
+      "Q02",
+      "Q03"
+    ]
   },
   {
     "id": "Q02",
@@ -157,6 +164,11 @@
         "label": "A Schur–Weyl correlation problem",
         "statement": "Define two efficiently specified representation-theoretic descriptions and a promise about their correlation, with matched classical and quantum oracle access. Find a polynomial-query STP algorithm and a superpolynomial classical query lower bound. The basis changes, state preparation, and any coherent extraction used by the algorithm count as resources."
       }
+    ],
+    "relatedQuestions": [
+      "Q41",
+      "Q20",
+      "Q21"
     ]
   },
   {
@@ -733,6 +745,11 @@
         "label": "Equivariant channels and invariant instruments",
         "statement": "Compare a covariant channel $\\mathcal E$ satisfying $$\\begin{aligned}\\mathcal E\\!\\left(U^{\\otimes n}\\rho(U^\\dagger)^{\\otimes n}\\right)\\\\=U^{\\otimes m}\\mathcal E(\\rho)(U^\\dagger)^{\\otimes m}\\end{aligned}$$ with the stricter oracle whose individual Kraus operators are invariant on a fixed register. For each model, define coherent, inverse, controlled, and classical access where those notions exist. Determine which sector or multiplicity information each query can change or reveal."
       }
+    ],
+    "relatedQuestions": [
+      "Q41",
+      "Q17",
+      "Q22"
     ]
   },
   {
@@ -1150,5 +1167,64 @@
       "bravyi-terhal-frustration-free"
     ],
     "scopeNote": "Efficiently describing a path is not a proof that it prepares a useful state. Completeness needs a runtime and success bound; soundness applies to every proposed classical guide. The Q19 containment route remains a separate, stronger question."
+  },
+  {
+    "id": "Q41",
+    "title": "What is an $\\mathrm{SU}(2)$ analogue of Grover search?",
+    "category": "algorithms",
+    "kind": "question",
+    "summary": "What should “unstructured search” mean when the available operations are subsystem-spin measurements? Is there a direct quadratic speedup over classical search, and what coherent or adaptive structure produces it?",
+    "preciseStatement": "Fix a total-spin sector $\\mathcal H_J=V_J\\otimes M_J$ and a known, explicitly indexed orthonormal coupling-path basis $\\{|x\\rangle:x\\in[N]\\}$ of $M_J$, with $N=\\dim M_J$. A Boolean function $f:[N]\\to\\{0,1\\}$ has exactly one marked label. Classical queries return $f(x)$. Quantum queries evaluate the same function coherently on the multiplicity label and an encoded logical answer bit, permitting the invariant phase oracle $$O_f=I_{V_J}\\otimes\\sum_{x=1}^{N}(-1)^{f(x)}|x\\rangle\\langle x|.$$ Find the marked label with probability at least $2/3$. Give a direct STP implementation with $O(\\sqrt N)$ oracle queries, and bound the additional cost of preparation from mixed qubits, pair measurements, adaptive rounds, approximation, and readout.",
+    "scopeNote": "This benchmark augments STP with a specified black-box oracle; its implementation is not supplied by symmetry. The basis and all non-oracle resources must be independent of the hidden marked label. Count preparation retries and all ancillary qubits. Report oracle-query cost separately from physical implementation cost; if the oracle itself is compiled into measurements, charge that cost as well. Classical controller time is charged over the entire protocol, including all search steps.",
+    "why": "Grover search is a basic test of whether subsystem spin makes an algorithm easier to understand. I want to see what carries the marked information, what is amplified, and why the process outperforms classical search. “Unstructured” needs an operational definition here; it cannot just mean that we choose measurements randomly.",
+    "knownResult": "With coherent access to the phase oracle, the usual construction already fits inside a multiplicity space. Set $$\\begin{aligned}|u\\rangle&=\\frac1{\\sqrt N}\\sum_{x=1}^{N}|x\\rangle,\\\\\\rho_u&=\\frac{I_{V_J}}{2J+1}\\otimes|u\\rangle\\langle u|.\\end{aligned}$$ Use $$D=I_{V_J}\\otimes\\bigl(2|u\\rangle\\langle u|-I_{M_J}\\bigr).$$ Both $D$ and $O_f$ commute with collective rotations; extend them by the identity outside the chosen sector. Starting from $\\rho_u$, Grover iteration $DO_f$ gives the standard $O(\\sqrt N)$ query bound, compared with $\\Theta(N)$ randomized classical membership queries. The quantum bound is optimal for unrestricted black-box search. The STP question is how to realize the preparation and reflections, at what cost, or how to obtain the same gain through another measurement protocol.",
+    "variants": [
+      {
+        "label": "What is unstructured?",
+        "statement": "Keep the coupling-path basis fixed and allow every marked label, with no promise relating it to the path geometry, a subsystem spin, or an interaction graph. The classical comparator can compute on these labels and query $f(x)$, but receives no additional information about $f$. Which alternative notions of a marked spin configuration or invariant subspace define a natural search problem? State the oracle and required output anew when there is no classical candidate label."
+      },
+      {
+        "label": "Preparation and amplification from mixed qubits",
+        "statement": "Can STP prepare $\\rho_u$ to trace-distance error $\\varepsilon$ and implement $D$ to diamond-norm error $\\varepsilon$, with overhead polynomial in $n$ and $\\log(1/\\varepsilon)$? Taking $\\varepsilon=O(N^{-1/2})$ per iteration controls accumulated error over $O(\\sqrt N)$ iterations; since $N\\le 2^n$, logarithmic precision overhead is polynomial in $n$. Can the complete search use $O(\\sqrt N\\,\\mathrm{poly}(n))$ physical operations, excluding separately charged oracle implementation costs? Include unsuccessful preparation branches. A state maximally mixed on the entire sector is unchanged by every unitary within that sector; useful multiplicity-space coherence must be prepared."
+      },
+      {
+        "label": "Products of reflections",
+        "statement": "For a pair, the coherent reflection is $$I-2P_s^{ab}=\\mathrm{SWAP}_{ab}.$$ Products of these bare reflections are qubit permutations. They do not automatically supply the reflection about $|u\\rangle$. Which larger-subsystem projectors, encoded operations, or measurement protocols realize the needed pair of reflections? A projective measurement $\\{P_s,P_t\\}$ and the unitary $I-2P_s$ are distinct operations; preserve the relative phases needed for the Grover rotation and account for measurement outcomes and any feedforward."
+      },
+      {
+        "label": "Random swap tests or coordinated schedules",
+        "statement": "Under the same oracle access and initial-resource conventions, compare uniformly sampled pair measurements, a prescribed sequence of pairs, and schedules that depend on earlier outcomes. Specify where oracle calls occur and what parts of the measurement record are retained. Determine their bounded-error query and measurement costs. Can a random-SWAP protocol amplify the marked component, or does a quadratic advantage require a more coordinated evolution?"
+      },
+      {
+        "label": "What can Schur sampling contribute?",
+        "statement": "Weak Schur sampling returns $J$, which is constant in this benchmark and cannot identify a marked multiplicity label. The standard unitary-Schur output retains the $\\mathrm{SU}(2)$ irrep factor rather than the coherent multiplicity information used above. Can Schur sampling nevertheless help with preparation, or can a fuller random-SWAP record provide useful search information? Distinguish the declared sampling output, the full measurement transcript, and any quantum state kept for later oracle calls."
+      },
+      {
+        "label": "Searching for an invariant subspace",
+        "statement": "For a specified invariant projector $\\Pi$, a known preparation, and initial acceptance probability $a=\\mathrm{Tr}(\\Pi\\rho_0)$, formulate a task of preparing an accepted state or finding a classical witness. Independent preparation and testing costs $O(1/a)$ trials. Under what access to coherent preparation, its inverse, or reflections can STP achieve an $O(1/\\sqrt a)$ dependence? This is an amplification benchmark; a quantum-versus-classical speedup additionally needs a matched classical oracle and task definition."
+      }
+    ],
+    "firstStep": "Use six qubits in total spin zero, where $\\dim M_0=5$. Fix the five coupling paths and mark one. Write the uniform multiplicity state, the two reflections, and the changing success probability explicitly. Then replace each assumed operation by an STP protocol, or identify the missing resource. Compare with random pair measurements using the same oracle and initial preparation.",
+    "tags": [
+      "Grover search",
+      "unstructured search",
+      "amplitude amplification",
+      "SU(2)",
+      "multiplicity",
+      "random SWAP tests",
+      "reflections"
+    ],
+    "references": [
+      "grover-search",
+      "brassard-hoyer-mosca-tapp-amplification",
+      "bennett-bernstein-brassard-vazirani",
+      "rudolph-virmani-stp",
+      "brahmachari-hulse-pfister-marvian"
+    ],
+    "relatedQuestions": [
+      "Q01",
+      "Q05",
+      "Q23"
+    ]
   }
 ]

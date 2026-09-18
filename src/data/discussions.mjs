@@ -48,6 +48,7 @@ export const questionDiscussions = {
   Q38: 39,
   Q39: 40,
   Q40: 41,
+  Q41: 42,
 };
 export const discussionUrl = number => `https://github.com/${discussionRepository}/discussions/${number}`;
 export const proposeQuestionUrl = `https://github.com/${discussionRepository}/discussions/new?category=ideas`;

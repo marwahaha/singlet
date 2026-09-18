@@ -4,7 +4,7 @@ An interactive perspective and research agenda on **subsystem spin as a primitiv
 
 [Read the website](https://marwahaha.github.io/singlet/).
 
-The essay develops singlet–triplet computation, STP universality, Schur–Weyl duality, state resources, verification, and lower bounds. Five interactive experiments accompany 40 research questions and an annotated bibliography.
+The essay develops singlet–triplet computation, STP universality, Schur–Weyl duality, state resources, verification, and lower bounds. Five interactive experiments accompany 41 research questions and an annotated bibliography.
 
 ## Develop
 

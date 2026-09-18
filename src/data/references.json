@@ -297,5 +297,29 @@
     "year": 1997,
     "url": "https://arxiv.org/abs/quant-ph/9508027",
     "relevance": "Order finding and Fourier-based quantum algorithms for factoring and discrete logarithms; a target for a direct spin-based formulation."
+  },
+  {
+    "key": "grover-search",
+    "title": "A fast quantum mechanical algorithm for database search",
+    "authors": "Lov K. Grover",
+    "year": 1996,
+    "url": "https://arxiv.org/abs/quant-ph/9605043",
+    "relevance": "Quadratic quantum-query speedup for unstructured search. The benchmark for a direct subsystem-spin search protocol."
+  },
+  {
+    "key": "brassard-hoyer-mosca-tapp-amplification",
+    "title": "Quantum Amplitude Amplification and Estimation",
+    "authors": "Gilles Brassard; Peter Høyer; Michele Mosca; Alain Tapp",
+    "year": 2002,
+    "url": "https://arxiv.org/abs/quant-ph/0005055",
+    "relevance": "Generalizes Grover search using coherent preparation, its inverse, and reflections. Clarifies which operations a subsystem-spin implementation must realize."
+  },
+  {
+    "key": "bennett-bernstein-brassard-vazirani",
+    "title": "Strengths and Weaknesses of Quantum Computing",
+    "authors": "Charles H. Bennett; Ethan Bernstein; Gilles Brassard; Umesh Vazirani",
+    "year": 1997,
+    "url": "https://arxiv.org/abs/quant-ph/9701001",
+    "relevance": "Black-box lower bounds, including the square-root barrier for quantum search. Supports the query benchmark without asserting a lower bound for every differently defined spin-search task."
   }
 ]
