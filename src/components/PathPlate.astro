@@ -8,12 +8,97 @@ const paths=couplingPaths(8,0);
  <svg viewBox="0 0 560 320" role="img" aria-label="The fourteen allowed sequential coupling paths for eight spin-half particles ending at total spin zero. One path is highlighted." class="path-art">
   <defs><linearGradient id="path-gradient" x1="0" x2="1"><stop stop-color="#e99674"/><stop offset=".5" stop-color="#edf3c4"/><stop offset="1" stop-color="#9bcfc0"/></linearGradient></defs>
   {[0,1,2,3,4].map(j=><g><line x1="38" x2="522" y1={280-j*60} y2={280-j*60} stroke="#ffffff" stroke-opacity=".08"/><text x="20" y={284-j*60} fill="#a0b6a9" font-size="11">{j/2}</text></g>)}
-  {paths.map((p,i)=><path data-path-index={i} d={pathCurve(p,560,320,40)} fill="none" stroke={i===6?'url(#path-gradient)':'#95b6a4'} stroke-width={i===6?'2.7':'1'} stroke-opacity={i===6?'1':'.22'} />)}
+  {paths.map(p=><path d={pathCurve(p,560,320,40)} fill="none" stroke="#95b6a4" stroke-width="1" stroke-opacity=".22" />)}
+  {paths.map((p,i)=><path class="path-highlight" data-path-index={i} d={pathCurve(p,560,320,40)} fill="none" stroke="url(#path-gradient)" stroke-width="2.7" opacity={i===6?'1':'0'} />)}
   {[0,1,2,3,4,5,6,7,8].map(n=><text x={40+n*60} y="306" text-anchor="middle" fill="#a0b6a9" font-size="11">{n}</text>)}
  </svg>
- <div class="plate-bottom"><span><span class="plate-count" data-path-count>07</span><span class="plate-count-total"> / 14</span><span class="plate-descriptor">allowed coupling paths</span></span><button class="plate-button" type="button" data-next-path>Another path <span aria-hidden="true">↗</span></button></div>
- <div class="sr-only" data-path-live aria-live="polite">Path 7 of 14 selected.</div>
+ <div class="plate-bottom"><span><span class="plate-count" data-path-count>07</span><span class="plate-count-total"> / 14</span><span class="plate-descriptor">allowed coupling paths</span></span><div class="plate-controls"><span class="plate-playback"><button class="plate-button plate-pause" type="button" data-pause-path aria-label="Pause path animation" hidden>Pause</button></span><button class="plate-button" type="button" data-next-path>Another path <span aria-hidden="true">↗</span></button></div></div>
+ <div class="sr-only" data-path-live aria-live="polite"></div>
 </div>
+<style>
+ .path-art .path-highlight { transition: opacity 650ms ease-in-out; }
+ .plate-count { font-variant-numeric: tabular-nums; }
+ .plate-bottom { flex-wrap: wrap; }
+ .plate-controls { display: flex; align-items: center; gap: 16px; margin-left: auto; }
+ .plate-playback { min-width: 3.75em; }
+ .plate-pause { color: #b1c4b4; font-size: 14px; padding-inline: 0; }
+ @media (prefers-reduced-motion: reduce) { .path-art .path-highlight { transition: none; } }
+</style>
 <script>
-document.querySelectorAll<HTMLElement>('[data-path-plate]').forEach(plate=>{let selected=6;plate.querySelector('[data-next-path]')?.addEventListener('click',()=>{selected=(selected+1)%14;plate.querySelectorAll<SVGPathElement>('[data-path-index]').forEach((p,i)=>{p.setAttribute('stroke',i===selected?'url(#path-gradient)':'#95b6a4');p.setAttribute('stroke-width',i===selected?'2.7':'1');p.setAttribute('stroke-opacity',i===selected?'1':'.22');});plate.querySelector('[data-path-count]')!.textContent=String(selected+1).padStart(2,'0');plate.querySelector('[data-path-live]')!.textContent=`Path ${selected+1} of 14 selected.`;});});
+document.querySelectorAll<HTMLElement>('[data-path-plate]').forEach(plate => {
+ const paths = [...plate.querySelectorAll<SVGPathElement>('[data-path-index]')];
+ const count = plate.querySelector<HTMLElement>('[data-path-count]')!;
+ const live = plate.querySelector<HTMLElement>('[data-path-live]')!;
+ const next = plate.querySelector<HTMLButtonElement>('[data-next-path]')!;
+ const pause = plate.querySelector<HTMLButtonElement>('[data-pause-path]')!;
+ const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+ let selected = Number(count.textContent) - 1;
+ let remaining = paths.length;
+ let paused = false;
+ let inView = false;
+ let stopped = reducedMotion.matches;
+ let timer: number | undefined;
+
+ function clearTimer() {
+  window.clearTimeout(timer);
+  timer = undefined;
+ }
+
+ function advance(announce = false) {
+  selected = (selected + 1) % paths.length;
+  paths.forEach((path, index) => path.setAttribute('opacity', index === selected ? '1' : '0'));
+  count.textContent = String(selected + 1).padStart(2, '0');
+  if (announce) live.textContent = `Path ${selected + 1} of ${paths.length} selected.`;
+ }
+
+ function stopAutoplay() {
+  stopped = true;
+  clearTimer();
+  observer.disconnect();
+  document.removeEventListener('visibilitychange', schedule);
+  reducedMotion.removeEventListener('change', onMotionChange);
+  // Keep keyboard focus usable if the temporary control disappears.
+  if (document.activeElement === pause) next.focus({ preventScroll: true });
+  pause.hidden = true;
+ }
+
+ function schedule() {
+  clearTimer();
+  if (stopped || paused || !inView || document.hidden || reducedMotion.matches) return;
+  timer = window.setTimeout(() => {
+   advance();
+   remaining -= 1;
+   if (remaining === 0) stopAutoplay();
+   else schedule();
+  }, 1600);
+ }
+
+ function onMotionChange() {
+  if (reducedMotion.matches) stopAutoplay();
+ }
+
+ const observer = new IntersectionObserver(entries => {
+  inView = entries.some(entry => entry.isIntersecting && entry.intersectionRatio >= 0.2);
+  schedule();
+ }, { threshold: 0.2 });
+
+ next.addEventListener('click', () => {
+  stopAutoplay();
+  advance(true);
+ });
+ pause.addEventListener('click', () => {
+  paused = !paused;
+  pause.textContent = paused ? 'Resume' : 'Pause';
+  pause.setAttribute('aria-label', paused ? 'Resume path animation' : 'Pause path animation');
+  schedule();
+ });
+
+ if (!stopped) {
+  pause.hidden = false;
+  observer.observe(plate);
+  document.addEventListener('visibilitychange', schedule);
+  reducedMotion.addEventListener('change', onMotionChange);
+  window.addEventListener('pagehide', stopAutoplay, { once: true });
+ }
+});
 </script>
