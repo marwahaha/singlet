@@ -53,6 +53,10 @@ The experiments use small systems with analytic checkpoints. Conditional inspect
 
 ## Contribute
 
+[Propose a research question](https://github.com/marwahaha/singlet/discussions/new?category=ideas) using the short form in GitHub Discussions. Tentative formulations are welcome; a GitHub account is sufficient, and no code changes are needed. Proposals are discussed before being added to the curated collection.
+
+There are also conversations for [the perspective](https://github.com/marwahaha/singlet/discussions/2) and [the singlet conjecture](https://github.com/marwahaha/singlet/discussions/1). Use [Issues](https://github.com/marwahaha/singlet/issues) for specific corrections or website problems.
+
 Keep question IDs stable. Research questions, hypotheses, conjectures, and established results should be distinguished explicitly. Include model assumptions, error and resource conventions, and relevant primary references.
 
 Question text supports `$...$` for inline LaTeX and `$$...$$` for displayed equations. Escape backslashes in JSON (`\\`). The build rejects malformed notation. Permanent question pages and the `/questions.json` export derive from the same catalog; the bibliography and `/references.bib` export derive from the same reference data.
@@ -69,6 +73,8 @@ BASE_PATH=/singlet/ python3 scripts/check-links.py
 ```
 
 For a root or custom-domain deployment, set `BASE_PATH=/` and `SITE_URL` to that origin. Navigation, scripts, styles, and downloads respect the base path.
+
+The discussion pilot uses giscus with permanent discussion-number mappings in `src/data/discussions.mjs`. Both hosts share the same conversations. The giscus GitHub App must remain installed for this repository; direct discussion links work independently. The comment theme and fonts are served from GitHub Pages. `giscus.json` limits embedding to the two production origins, and `.github/DISCUSSION_TEMPLATE/ideas.yml` defines the research-question form.
 
 ## Citation
 

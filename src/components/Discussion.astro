@@ -1,0 +1,41 @@
+---
+import {
+  discussionRepository, discussionRepositoryId, discussionCategory,
+  discussionCategoryId, embeddedCommentsEnabled, discussionUrl,
+  discussionThemeUrl, proposeQuestionUrl,
+} from '../data/discussions.mjs';
+interface Props { number: number; title: string; invitation: string; }
+const { number, title, invitation } = Astro.props;
+---
+<section class="discussion-section" id="discussion" aria-labelledby="discussion-title">
+  <h2 id="discussion-title">{title}</h2>
+  <p class="discussion-invitation">{invitation}</p>
+  <div class="discussion-links">
+    <a href={discussionUrl(number)}>{embeddedCommentsEnabled ? 'Continue on GitHub' : 'Join the discussion on GitHub'} <span aria-hidden="true">↗</span></a>
+    <a href={proposeQuestionUrl}>Propose a research question <span aria-hidden="true">↗</span></a>
+  </div>
+  <p class="discussion-note">Reading is public. Posting requires a GitHub account. You can also <a href="mailto:marwahaha@berkeley.edu?subject=Singlet%20research%20perspective">write to Kunal</a>.</p>
+  {embeddedCommentsEnabled && <>
+    <div class="giscus" id="discussion-comments"></div>
+    <script
+      is:inline
+      src="https://giscus.app/client.js"
+      data-repo={discussionRepository}
+      data-repo-id={discussionRepositoryId}
+      data-category={discussionCategory}
+      data-category-id={discussionCategoryId}
+      data-mapping="number"
+      data-term={String(number)}
+      data-strict="1"
+      data-reactions-enabled="0"
+      data-emit-metadata="0"
+      data-input-position="top"
+      data-theme={discussionThemeUrl}
+      data-lang="en"
+      data-loading="lazy"
+      crossorigin="anonymous"
+      async
+    ></script>
+    <noscript><p class="discussion-note">Use the GitHub link above to read or join this conversation.</p></noscript>
+  </>}
+</section>

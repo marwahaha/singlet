@@ -1,4 +1,18 @@
 /* A mathematical essay: text faces for reading, a separate face for controls. */
+.discussion-section { border-top: 1px solid var(--line); padding-top: 34px; margin-top: 52px; scroll-margin-top: 28px; }
+.prose .discussion-section h2 { margin-bottom: 20px; font-size: 32px; }
+.prose .discussion-invitation { font-size: 21px; line-height: 1.65; }
+.discussion-links { display: flex; flex-wrap: wrap; gap: 12px 28px; margin-block: 22px 14px; font: 17px/1.5 var(--sans); }
+.discussion-links a, .question-contribution a { text-decoration-thickness: 1px; text-underline-offset: 5px; }
+.prose .discussion-note { font: 15px/1.6 var(--sans); color: var(--muted); margin-block: 0 26px; }
+.giscus { min-height: 160px; }
+.essay-discussion { margin-top: 0; }
+.essay-discussion .discussion-section { margin-top: 0; }
+.question-invitation { border-left: 2px solid var(--accent); padding-left: 22px; margin-top: 30px; max-width: 740px; }
+.question-invitation p { font: 16px/1.6 var(--sans); color: var(--muted); margin-top: 10px; }
+.catalog-contribution { border-top: 1px solid var(--line); padding-block: 26px; }
+.prose .question-contribution { font: 16px/1.6 var(--sans); padding-top: 28px; margin-top: 36px; border-top: 1px solid var(--line); }
+@media print { .giscus, .discussion-note { display: none; } }
 :root {
   --paper: #faf8f2;
   --paper-deep: #f0eee5;
