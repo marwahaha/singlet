@@ -87,7 +87,7 @@
       "freedman-hastings-shokrian-zini",
       "rudolph-virmani-relational"
     ],
-    "scopeNote": "This primary task concerns classical output distributions. Coherent simulation of an encoded channel is a stronger variant: specify the encoding and require diamond-norm error at most $\\varepsilon$, including action on a reference system. A heralded implementation must report failure probability and expected retry cost; conditioning alone is not a compiler."
+    "scopeNote": "This primary task concerns classical output distributions. Coherent simulation of an encoded channel is a stronger variant: specify the encoding and require diamond-norm error at most $\\varepsilon$, including action on a reference system."
   },
   {
     "id": "Q04",
@@ -309,7 +309,7 @@
       "bartlett-rudolph-spekkens-reference-frames",
       "harrow-symmetric-subspace"
     ],
-    "scopeNote": "The block-restricted model is one possible resource-theory convention. State explicitly whether a bound is averaged over outcomes or holds in each heralded branch. A useful measure should depend on more than the globally conserved spin label.",
+    "scopeNote": "The block-restricted model is one possible resource-theory convention. State explicitly whether a bound is averaged over measurement outcomes or required for every outcome. A useful measure should depend on more than the globally conserved spin label.",
     "variants": [
       {
         "label": "Alternative restrictions",
@@ -364,7 +364,7 @@
     "category": "resources",
     "kind": "question",
     "summary": "Which patterns of pair and subsystem spin are compatible, and which can be created efficiently?",
-    "preciseStatement": "Given $N$ labeled qubits, a polynomial-size list $F$ of constant-size subsets, and rational distributions $q_S(j)$, ask whether a density matrix $\\rho$ exists with $$\\max_{S\\in F}\\left\\lVert p_\\rho(J_S)-q_S\\right\\rVert_{\\mathrm{TV}}\\le\\varepsilon.$$ Separately ask for an adaptive STP preparation from $I/2^N$ whose flagged output meets this condition with probability at least $p$ and expected cost at most $T$. Keep $\\varepsilon$, $p$, and $T$ explicit; use promise gaps when asking for computational complexity.",
+    "preciseStatement": "Given $N$ labeled qubits, a polynomial-size list $F$ of constant-size subsets, and rational distributions $q_S(j)$, ask whether a density matrix $\\rho$ exists with $$\\max_{S\\in F}\\left\\lVert p_\\rho(J_S)-q_S\\right\\rVert_{\\mathrm{TV}}\\le\\varepsilon.$$ Separately ask for an adaptive STP preparation from $I/2^N$ whose output meets this condition after a specified set of measurement outcomes, with total probability at least $p$ and expected cost at most $T$. Keep $\\varepsilon$, $p$, and $T$ explicit; use promise gaps when asking for computational complexity.",
     "why": "This separates a possible pattern of correlations from an efficiently reachable one. It also turns the informal idea of moving singletness into a concrete state-space question.",
     "firstStep": "Solve the compatibility and reachability problems for four qubits and a few overlapping pairs, including mixed target states.",
     "tags": [
@@ -892,8 +892,8 @@
     "title": "What limits STP preparation of accepted quantum witnesses?",
     "category": "verification",
     "kind": "question",
-    "summary": "Bound the STP cost of preparing a state close to an accepted witness, with explicit trace-distance error and heralded success probability.",
-    "preciseStatement": "Fix a uniform family of STP verifiers $V_x$, a witness encoding, a polynomial register bound, and a completeness/soundness gap. For YES instances let $A_x$ be the set of states accepted above the completeness threshold. What is the minimum expected STP preparation cost, from mixed inputs with declared ancillas, of producing a flagged state within trace distance $\\varepsilon$ of some member of $A_x$ with success probability at least $p$? Can subsystem-spin or multiplicity structure bound this cost while keeping verification polynomial?",
+    "summary": "Bound the STP cost of preparing a state close to an accepted witness, with explicit trace-distance error and success probability.",
+    "preciseStatement": "Fix a uniform family of STP verifiers $V_x$, a witness encoding, a polynomial register bound, and a completeness/soundness gap. For YES instances let $A_x$ be the set of states accepted above the completeness threshold. What is the minimum expected STP preparation cost, from mixed inputs with declared ancillas, of preparing a state within trace distance $\\varepsilon$ of some member of $A_x$, conditioned on a specified set of measurement outcomes with total probability at least $p$? Can subsystem-spin or multiplicity structure bound this cost while keeping verification polynomial?",
     "why": "The distinction is between states useful for $\\mathsf{BQP}$ computation and $\\mathsf{QMA}$ witnesses. Testing local spin structure need not give a method to prepare an accepted global state.",
     "firstStep": "Begin with the randomized-edge verifier in Q15. Separate preparation of any accepted witness from preparation of one prescribed ground state, then ask which spin data gives a lower bound or a constructive preparation procedure.",
     "tags": [
@@ -937,8 +937,8 @@
     "title": "Can intermediate state resources guide an STP compiler?",
     "category": "algorithms",
     "kind": "direction",
-    "summary": "Schedule a finite library of heralded STP conversions, retaining useful failure branches, and bound the resulting compilation cost.",
-    "preciseStatement": "Fix a finite library of invariant encoded resource states and heralded STP conversion protocols, each with branch maps, trace-distance error, storage requirements, and probabilities. Given a target classical-output circuit and accuracy $\\varepsilon$, construct a uniform adaptive scheduler that prepares and consumes these resources while retaining useful failure branches. Bound the total expected and high-probability costs, including fresh mixed qubits, measurements, feed-forward, and retries, and compare with a specified gate-by-gate STP compiler.",
+    "summary": "Schedule a finite library of STP state conversions, reuse states from unsuccessful attempts, and bound the resulting compilation cost.",
+    "preciseStatement": "Fix a finite library of invariant encoded resource states and STP conversion protocols, each with specified measurement outcomes, conditional state changes, trace-distance error, storage requirements, and probabilities. Given a target classical-output circuit and accuracy $\\varepsilon$, construct a uniform adaptive scheduler that prepares and consumes these resources while retaining useful failure branches. Bound the total expected and high-probability costs, including fresh mixed qubits, measurements, feed-forward, and retries, and compare with a specified gate-by-gate STP compiler.",
     "why": "The mixed-state experiment shows that entropy, entanglement, symmetry, and branch probability evolve differently. A compiler needs the operational usefulness of the intermediate state and the cost of recovering from each outcome.",
     "firstStep": "Build a small conversion library for singlets, symmetric blocks, and encoded multiplicity states. Check its branches exactly, then compare independent preparation with recycling on a repeated primitive. Use known coupling-tree preparation procedures as a baseline.",
     "tags": [
@@ -967,7 +967,7 @@
     "category": "resources",
     "kind": "question",
     "summary": "Define swap-test count with a specified target, error, success probability, and supply of mixed qubits.",
-    "preciseStatement": "Given an $n$-qubit target family $\\rho_n$ compatible with the permitted invariant real preparation model, define the minimum number $C(\\rho_n;\\varepsilon,p,N)$ of pair STP tests required from $N$ mixed qubits to herald an output within trace distance $\\varepsilon$ with probability at least $p$. Specify fixed versus record-dependent output registers and traced ancillas. Compare nonadaptive schedules, adaptive pair choice, and bounded-feedback protocols; count retries and fresh resources.",
+    "preciseStatement": "Given an $n$-qubit target family $\\rho_n$ compatible with the permitted invariant real preparation model, define the minimum number $C(\\rho_n;\\varepsilon,p,N)$ of pair STP tests required from $N$ mixed qubits to prepare an output within trace distance $\\varepsilon$ of $\\rho_n$, conditioned on a specified set of measurement outcomes with total probability at least $p$. Specify fixed versus record-dependent output registers and traced ancillas. Compare nonadaptive schedules, adaptive pair choice, and bounded-feedback protocols; count retries and fresh resources.",
     "why": "Preparation complexity asks how much measurement creates a particular state, rather than how hard it is to decide a language. The distinction between retaining successful pieces and restarting entire histories is essential.",
     "firstStep": "Find a natural invariant encoded family with a provable adaptive/nonadaptive separation. First test labeled coupling-tree states and repeated preparation of small resources.",
     "tags": [
