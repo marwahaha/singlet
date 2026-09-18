@@ -2,7 +2,7 @@
 
 The website is a living document. A DOI should identify a preserved release of the essay, question catalog, references, and interactive source. `CITATION.cff` supplies author and title metadata; it intentionally contains no invented DOI or release date.
 
-The current source can run on GitHub Pages without a server. `.github/workflows/pages.yml` builds the static site, including the correct repository base path. The Sites address can remain available independently.
+The current source can run on GitHub Pages without a server. `.github/workflows/pages.yml` builds the static site, including the correct repository base path.
 
 ## Archive with Zenodo
 

@@ -3,7 +3,7 @@ from pathlib import Path
 from html.parser import HTMLParser
 from urllib.parse import urlsplit, unquote
 import os
-root=Path('dist'); base=os.getenv('BASE_PATH','/').rstrip('/')
+root=Path('dist'); base=os.getenv('BASE_PATH','/singlet/').rstrip('/')
 class Page(HTMLParser):
  def __init__(self,text):
   super().__init__(); self.links=[]; self.ids=set(); self.feed(text)

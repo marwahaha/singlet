@@ -5,7 +5,7 @@ export const discussionCategoryId = 'DIC_kwDOUffchc4DF2N9';
 
 export const embeddedCommentsEnabled = true;
 
-// Discussion numbers remain stable across both hosts and page-title changes.
+// Discussion numbers remain stable when page titles change.
 export const perspectiveDiscussion = 2;
 export const questionDiscussions = {
   Q01: 3,

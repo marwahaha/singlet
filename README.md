@@ -65,7 +65,7 @@ Question text supports `$...$` for inline LaTeX and `$$...$$` for displayed equa
 
 The website is hosted at [marwahaha.github.io/singlet](https://marwahaha.github.io/singlet/). The included GitHub Pages workflow runs tests, builds the site, checks generated links, and deploys on pushes to `main`. It can also be run manually. In repository **Settings → Pages**, the build source is **GitHub Actions**.
 
-For a manual project-path build:
+The default site and base path target GitHub Pages. For an explicit project-path build:
 
 ```sh
 SITE_URL=https://marwahaha.github.io BASE_PATH=/singlet/ npm run build
@@ -74,7 +74,7 @@ BASE_PATH=/singlet/ python3 scripts/check-links.py
 
 For a root or custom-domain deployment, set `BASE_PATH=/` and `SITE_URL` to that origin. Navigation, scripts, styles, and downloads respect the base path.
 
-The discussions use giscus with permanent discussion-number mappings in `src/data/discussions.mjs`. Both hosts share the same conversations. When adding a question to the catalog, create its GitHub discussion and add the question ID and permanent discussion number to that mapping. Keep existing mappings unchanged when editing question titles. The giscus GitHub App must remain installed for this repository; direct discussion links work independently. The comment theme and fonts are served from GitHub Pages. `giscus.json` limits embedding to the two production origins, and `.github/DISCUSSION_TEMPLATE/ideas.yml` defines the research-question form.
+The discussions use giscus with permanent discussion-number mappings in `src/data/discussions.mjs`. When adding a question to the catalog, create its GitHub discussion and add the question ID and permanent discussion number to that mapping. Keep existing mappings unchanged when editing question titles. The giscus GitHub App must remain installed for this repository; direct discussion links work independently. The comment theme and fonts are served from GitHub Pages. `giscus.json` limits embedding to the GitHub Pages origin, and `.github/DISCUSSION_TEMPLATE/ideas.yml` defines the research-question form.
 
 ## Citation
 
