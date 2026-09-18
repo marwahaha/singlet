@@ -4,12 +4,12 @@ import {
   discussionCategoryId, embeddedCommentsEnabled, discussionUrl,
   discussionThemeUrl, proposeQuestionUrl,
 } from '../data/discussions.mjs';
-interface Props { number: number; title: string; invitation: string; }
+interface Props { number: number; title: string; invitation?: string; }
 const { number, title, invitation } = Astro.props;
 ---
 <section class="discussion-section" id="discussion" aria-labelledby="discussion-title">
   <h2 id="discussion-title">{title}</h2>
-  <p class="discussion-invitation">{invitation}</p>
+  {invitation && <p class="discussion-invitation">{invitation}</p>}
   <div class="discussion-links">
     <a href={discussionUrl(number)}>{embeddedCommentsEnabled ? 'Continue on GitHub' : 'Join the discussion on GitHub'} <span aria-hidden="true">↗</span></a>
     <a href={proposeQuestionUrl}>Propose a research question <span aria-hidden="true">↗</span></a>
