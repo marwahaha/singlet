@@ -1,7 +1,30 @@
-// Three or four labeled qubits, with real density matrices and ideal Lüders instruments.
+// Up to five labeled qubits, with real density matrices and ideal Lüders instruments.
 // Real arithmetic is sufficient: the mixed input and every STP projector are real.
 export function allPairs(n){return Array.from({length:n},(_,a)=>Array.from({length:n-a-1},(_,k)=>[a,a+k+1])).flat();}
-export function mixedInput(n=4){if(n!==3&&n!==4)throw new RangeError('Expected three or four qubits');const d=2**n;return Array.from({length:d},(_,i)=>Array.from({length:d},(_,j)=>i===j?1/d:0));}
+export function mixedInput(n=4){if(!Number.isInteger(n)||n<1||n>5)throw new RangeError('Expected one to five qubits');const d=2**n;return Array.from({length:d},(_,i)=>Array.from({length:d},(_,j)=>i===j?1/d:0));}
+// A normalized sum of Dicke-state projectors: each Hamming-weight sector
+// contributes one symmetric vector, with equal weight 1/(n+1).
+export function symmetricInput(n){
+ if(!Number.isInteger(n)||n<1||n>5)throw new RangeError('Expected one to five qubits');
+ const d=2**n,weights=Array.from({length:d},(_,i)=>i.toString(2).replaceAll('0','').length);
+ const counts=Array(n+1).fill(0);for(const w of weights)counts[w]++;
+ return weights.map(w=>weights.map(v=>w===v?1/((n+1)*counts[w]):0));
+}
+export function tensorProduct(a,b){
+ return a.flatMap(row=>b.map(other=>row.flatMap(x=>other.map(y=>x*y))));
+}
+export function resourceInput(blocks){
+ if(!blocks.length)throw new RangeError('At least one resource block is required');
+ const states=blocks.map(block=>{
+  if(block==='mixed')return mixedInput(1);
+  if(block==='singlet')return pairInstrument(mixedInput(2),0,1).rho;
+  if(block==='triplet')return symmetricInput(2);
+  if(block==='symmetricTriple')return symmetricInput(3);
+  throw new RangeError(`Unknown resource block: ${block}`);
+ });
+ if(states.reduce((n,state)=>n+Math.log2(state.length),0)>5)throw new RangeError('At most five qubits are supported');
+ return states.reduce(tensorProduct);
+}
 const zeros=d=>Array.from({length:d},()=>Array(d).fill(0));
 export function swapIndex(i,a,b,n=4){const x=n-1-a,y=n-1-b;return ((i>>x)&1)===((i>>y)&1)?i:i^(1<<x)^(1<<y);}
 export function pairInstrument(rho,a,b,outcome='singlet'){
@@ -33,7 +56,7 @@ export function negativity(rho,subsystem=[1]){return symmetricEigenvalues(partia
 function multiply(a,b){return a.map(row=>b[0].map((_,j)=>row.reduce((s,x,k)=>s+x*b[k][j],0)));}
 // J² = sum SWAP_ij + n(4-n)I/4; spectral projectors are low-degree polynomials.
 const spinProjectors=new Map();
-export function spinLabels(n){return n===3?[.5,1.5]:[0,1,2];}
+export function spinLabels(n){return Array.from({length:Math.floor(n/2)+1},(_,i)=>n%2/2+i);}
 function projectorsFor(n){
  if(spinProjectors.has(n))return spinProjectors.get(n);
  const d=2**n,jSquared=zeros(d);

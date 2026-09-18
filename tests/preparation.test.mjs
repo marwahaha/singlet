@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {mixedInput,pairInstrument,stateSummary,symmetricEigenvalues,negativity,tripletSweep} from '../src/lib/preparation.mjs';
+import {mixedInput,pairInstrument,stateSummary,symmetricEigenvalues,negativity,tripletSweep,symmetricInput,resourceInput,spinLabels,allPairs} from '../src/lib/preparation.mjs';
 const close=(a,b)=>assert.ok(Math.abs(a-b)<1e-10,`${a} ≠ ${b}`);
 const vectorClose=(a,b)=>a.forEach((x,i)=>close(x,b[i]));
 test('mixed pair outcomes have the right rank, spectrum, spin weights, and entanglement',()=>{
@@ -56,4 +56,57 @@ test('singlet-triplet and triplet-triplet resources have distinct cross-measurem
  let tt=pairInstrument(pairInstrument(mixedInput(),0,1,'triplet').rho,2,3,'triplet').rho;
  vectorClose(stateSummary(tt).weights,[1/9,1/3,5/9]);close(stateSummary(tt).purity,1/9);close(negativity(tt,[1]),0);
  const branch=pairInstrument(tt,1,2);close(branch.probability,.25);close(stateSummary(branch.rho).purity,7/27);vectorClose(stateSummary(branch.rho).weights,[1/3,2/3,0]);close(pairInstrument(branch.rho,0,3).probability,1/3);
+});
+
+
+test('the symmetric triple is a normalized rank-four state with triplet internal pairs',()=>{
+ const rho=symmetricInput(3),summary=stateSummary(rho);
+ vectorClose(symmetricEigenvalues(rho),[0,0,0,0,1/4,1/4,1/4,1/4]);
+ vectorClose(summary.weights,[0,1]);close(summary.purity,1/4);close(summary.entropy,2);
+ for(const pair of allPairs(3)){
+  const branch=pairInstrument(rho,...pair,'triplet');close(branch.probability,1);
+  for(let i=0;i<8;i++)vectorClose(branch.rho[i],rho[i]);
+ }
+ close(negativity(rho,[0]),0);
+});
+
+test('three- to five-qubit resource combinations match angular-momentum branch weights',()=>{
+ const cases=[
+  {blocks:['triplet','mixed'],pair:[1,2],weights:[1/3,2/3],purity:1/6,s:[1,0],sp:1/2,t:[1/9,8/9],tp:11/54},
+  {blocks:['symmetricTriple','mixed'],pair:[2,3],weights:[0,3/8,5/8],purity:1/8,s:[0,1,0],sp:1/3,t:[0,1/6,5/6],tp:4/27},
+  {blocks:['symmetricTriple','singlet'],pair:[2,3],weights:[0,1,0],purity:1/4,s:[0,1,0],sp:1/4,t:[0,1,0],tp:1/4},
+  {blocks:['symmetricTriple','triplet'],pair:[2,3],weights:[1/6,1/3,1/2],purity:1/12,s:[4/9,5/9,0],sp:19/108,t:[2/27,7/27,2/3],tp:91/972},
+ ];
+ vectorClose(spinLabels(5),[1/2,3/2,5/2]);
+ for(const c of cases){
+  const rho=resourceInput(c.blocks),initial=stateSummary(rho),s=pairInstrument(rho,...c.pair),t=pairInstrument(rho,...c.pair,'triplet');
+  assert.equal(initial.weights.length,c.weights.length);
+  vectorClose(initial.weights,c.weights);close(initial.purity,c.purity);
+  close(s.probability,1/4);close(t.probability,3/4);
+  const ss=stateSummary(s.rho),ts=stateSummary(t.rho);
+  vectorClose(ss.weights,c.s);vectorClose(ts.weights,c.t);close(ss.purity,c.sp);close(ts.purity,c.tp);
+  vectorClose(ss.weights.map((w,i)=>w/4+3*ts.weights[i]/4),c.weights);
+  for(const branch of [s,t]){
+   close(branch.rho.reduce((sum,row,i)=>sum+row[i],0),1);
+   assert.ok(symmetricEigenvalues(branch.rho)[0]>-1e-10);
+  }
+ }
+});
+
+test('a cross-pair singlet transfers the symmetric triple to the remaining qubits',()=>{
+ const start=resourceInput(['symmetricTriple','singlet']);
+ const branch=pairInstrument(start,2,3);
+ close(pairInstrument(branch.rho,2,3).probability,1);
+ for(const pair of [[0,1],[0,4],[1,4]])close(pairInstrument(branch.rho,...pair).probability,0);
+ const triplet=pairInstrument(start,2,3,'triplet');
+ close(pairInstrument(triplet.rho,2,4).probability,3/4);
+ close(pairInstrument(triplet.rho,3,4).probability,3/4);
+ close(pairInstrument(triplet.rho,0,1).probability,0);
+ // A later overlapping measurement must still produce normalized physical branches.
+ for(const outcome of ['singlet','triplet']){
+  const next=pairInstrument(triplet.rho,0,4,outcome);
+  close(next.rho.reduce((sum,row,i)=>sum+row[i],0),1);
+  vectorClose(stateSummary(next.rho).weights,[0,1,0]);
+  assert.ok(symmetricEigenvalues(next.rho)[0]>-1e-10);
+ }
 });

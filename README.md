@@ -47,7 +47,7 @@ The output is a static `dist/` directory. No server, database, API key, analytic
 2. **Schur–Weyl decomposition:** count spin and multiplicity coordinates for two to eight qubits.
 3. **Coherence at fixed spin:** vary the relative phase of two total-spin-zero states and inspect their pair probabilities.
 4. **Complexity transition:** vary a local singlet energy level, with cited complexity classifications for the corresponding many-body problem.
-5. **Combining resources:** compose mixed qubits, singlets, and mixed triplets; inspect or sample cross-pair measurement outcomes and continue from the retained state.
+5. **Combining resources:** combine mixed qubits, singlets, mixed triplets, and fully symmetric triples in three- to five-qubit registers; inspect or sample cross-pair measurement outcomes and continue from the retained state.
 
 The experiments use small systems with analytic checkpoints. Conditional inspection and Born-rule sampling are separate operations. The phase diagram distinguishes computed local energies from cited many-body complexity theorems.
 
