@@ -1,6 +1,6 @@
 # Singlet
 
-An interactive perspective and research agenda on **subsystem spin as a primitive for quantum computation**, by Kunal Marwaha.
+An interactive perspective and research agenda on **subsystem spin as a primitive for quantum computation**, curated by Kunal Marwaha and James Sud.
 
 [Read the website](https://marwahaha.github.io/singlet/).
 

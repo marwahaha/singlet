@@ -1,2 +1,2 @@
 import questions from '../data/questions.json';
-export const GET=()=>new Response(JSON.stringify({title:'Singlet research agenda',author:'Kunal Marwaha',version:'2026-09-17',status:'Working formulations; not a complete novelty audit',mathFormat:'LaTeX: $...$ inline, $$...$$ display',questions},null,2),{headers:{'Content-Type':'application/json; charset=utf-8'}});
+export const GET=()=>new Response(JSON.stringify({title:'Singlet research agenda',author:'Kunal Marwaha and James Sud',authors:['Kunal Marwaha','James Sud'],version:'2026-09-17',status:'Working formulations; not a complete novelty audit',mathFormat:'LaTeX: $...$ inline, $$...$$ display',questions},null,2),{headers:{'Content-Type':'application/json; charset=utf-8'}});
