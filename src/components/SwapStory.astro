@@ -13,7 +13,7 @@ import SwapCircuit from './SwapCircuit.astro';
  <SwapCircuit/>
  <p>The circuit prepares an ancilla in <Math tex={"|0\\rangle"}/>, applies a Hadamard, a controlled SWAP, and another Hadamard. For a pure joint data state <Math tex={"|\\Psi\\rangle"}/>, its final state before readout is</p>
  <Math display tex={"|0\\rangle\\,P_t|\\Psi\\rangle+|1\\rangle\\,P_s|\\Psi\\rangle."}/>
- <p>Measuring the ancilla and retaining the data realizes the STP instrument. Measuring and discarding the data would not supply a state for the next step. <Cite keys="rudolph-virmani-stp"/></p>
+ <p>Measuring the ancilla projects the two data qubits onto the singlet or triplet space. Keep those qubits and they can participate in the next measurement: this is singlet–triplet projection (STP). <Cite keys="rudolph-virmani-stp"/></p>
  <p>This ideal implementation is quantum nondemolition (QND) for the pair’s spin: without intervening dynamics, a repeated measurement returns the same outcome. It also preserves coherence within each sector; repeatability alone would not guarantee that property.</p>
  <p>Once the data are correlated, the independent-input overlap formula no longer applies. A singlet gives the antisymmetric outcome with certainty. A measurement on an overlapping pair can change the first pair’s subsequent outcome probabilities.</p>
 </div></section>

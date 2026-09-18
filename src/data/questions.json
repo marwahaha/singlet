@@ -190,7 +190,7 @@
       },
       {
         "label": "A quantum spin threshold",
-        "statement": "Given one unknown $n$-qubit state supported either on $J\\le J_{\\mathrm{minus}}$ or on $J\\ge J_{\\mathrm{plus}}$, determine STP depth as a function of $n$ and the sector separation. Specify retained output and copy access. A coherent coarse Lüders measurement is stronger than reading the exact $J$ label and forgetting it, which can destroy coherence inside a promised range."
+        "statement": "Given one unknown $n$-qubit state supported either on $J\\le J_{\\mathrm{minus}}$ or on $J\\ge J_{\\mathrm{plus}}$, determine STP depth as a function of $n$ and the sector separation. Specify retained output and copy access. A projective measurement that distinguishes only the two promised ranges must preserve coherence within each range. Reading the exact $J$ label and forgetting it can destroy that coherence."
       },
       {
         "label": "Lower bounds native to STP",
@@ -740,7 +740,7 @@
     "title": "What changes with higher-arity total-spin measurements?",
     "category": "generalizations",
     "kind": "question",
-    "summary": "Compare the computational power, depth, and adaptivity of pairwise STP with measurements on larger subsets, including the cost of reproducing their retained-state instruments.",
+    "summary": "Compare the computational power, depth, and adaptivity of pairwise STP with measurements on larger subsets, including the cost of reproducing both their outcomes and the states they leave afterward.",
     "preciseStatement": "For a fixed $k\\ge 3$, compare pairwise STP with the instrument\n\n$$M_S(\\rho)=\\sum_j \\lvert j\\rangle\\langle j\\rvert\\otimes\\Pi_{S,j}\\rho\\Pi_{S,j}$$\n\non any $k$ selected qubits $S$. Can the complete instrument, including its retained state and correlations with a reference, be approximated within diamond-norm error $\\varepsilon$ by pairwise STP with polynomial resources? State ancillary input and failure probabilities. Treat growing $k$ as a separate regime.",
     "why": "Larger measurements may reduce overhead or expose a cleaner primitive even when they do not change unrestricted computational power.",
     "firstStep": "Construct the three- and four-qubit instruments, then determine which can be simulated efficiently by pairwise STP without unintended refinement of their eigenspaces.",
@@ -754,12 +754,12 @@
       "rudolph-virmani-stp",
       "freedman-hastings-shokrian-zini"
     ],
-    "knownResult": "Random pair tests can estimate total-spin labels, but the known procedure can reveal extra information inside a sector. Preserving the full Lüders instrument is a stronger requirement. For every fixed $k\\ge2$, unrestricted polynomial-time $k$-STP has decision power $\\mathsf{BQP}$: it contains pairwise STP, and its constant-size instruments can be implemented in the circuit model. Depth, adaptivity, and physical overhead remain separate questions.",
+    "knownResult": "Random pair tests can estimate total-spin labels, but the known procedure can reveal extra information inside a sector. An ideal total-spin projection must also preserve coherence within each sector. For every fixed $k\\ge2$, unrestricted polynomial-time $k$-STP has decision power $\\mathsf{BQP}$: it contains pairwise STP, and its constant-size instruments can be implemented in the circuit model. Depth, adaptivity, and physical overhead remain separate questions.",
     "scopeNote": "Measuring an entire coupling tree refines the eigenspaces of total spin. It is not automatically the same quantum instrument.",
     "variants": [
       {
         "label": "Power of k-STP",
-        "statement": "Define $k$-STP using total-spin Lüders measurements on subsets of size at most $k$, maximally mixed inputs, and uniform polynomial-time classical control. For fixed $k\\ge2$, the unrestricted bounded-error decision class is already $\\mathsf{BQP}$. Determine what changes in efficient sampling protocols and physical overhead, and under depth, geometry, or adaptivity restrictions. Treat growing $k$ and its implementation cost separately."
+        "statement": "Define $k$-STP using maximally mixed inputs, uniform polynomial-time classical control, and projective total-spin measurements on subsets of size at most $k$. Each measurement preserves coherence within the reported total-spin sector. For fixed $k\\ge2$, the unrestricted bounded-error decision class is already $\\mathsf{BQP}$. Determine what changes in efficient sampling protocols and physical overhead, and under depth, geometry, or adaptivity restrictions. Treat growing $k$ and its implementation cost separately."
       },
       {
         "label": "Depth and adaptivity with three or four qubits",
@@ -773,7 +773,7 @@
     "category": "generalizations",
     "kind": "question",
     "summary": "For larger local dimension, exchange symmetry and physical spin no longer identify every sector in the same way.",
-    "preciseStatement": "Consider first fixed-$d$ $\\mathrm{SU}(d)$ fundamental systems, initially maximally mixed, with projective measurements onto specified irreducible components of two or $k$ tensor factors. State how multiplicities are treated by each Lüders instrument. Determine the bounded-error decision power and preparation cost for fixed $d,k$, then separate growing-$d$ and growing-$k$ regimes. Compare with physical spin-$S$ representations of $\\mathrm{SU}(2)$, which have a different tensor-product decomposition.",
+    "preciseStatement": "Consider first fixed-$d$ $\\mathrm{SU}(d)$ fundamental systems, initially maximally mixed, with projective measurements onto specified irreducible components of two or $k$ tensor factors. Specify the measured subspaces and whether individual multiplicity copies are resolved; preserve coherence within each reported subspace. Determine the bounded-error decision power and preparation cost for fixed $d,k$, then separate growing-$d$ and growing-$k$ regimes. Compare with physical spin-$S$ representations of $\\mathrm{SU}(2)$, which have a different tensor-product decomposition.",
     "why": "The two-qubit correspondence is unusually economical. Its extensions may reveal which part of the primitive matters.",
     "firstStep": "Compare two qutrits viewed as $\\mathrm{SU}(3)$ fundamentals with two physical spin-one particles and list exactly which subspaces each proposed instrument resolves.",
     "tags": [
@@ -813,13 +813,13 @@
   },
   {
     "id": "Q27",
-    "title": "When is a physical SWAP measurement the right instrument?",
+    "title": "How accurately can physical devices implement singlet–triplet projection?",
     "category": "physical",
     "kind": "question",
-    "summary": "Compare the complete physical measurement instrument with ideal singlet/triplet projection, including retained coherence, leakage, loss, and repeatability.",
-    "preciseStatement": "For a proposed physical singlet/triplet readout, characterize the full quantum instrument and its distance from the ideal Lüders projections $\\rho\\mapsto P_s\\rho P_s$ and $\\rho\\mapsto P_t\\rho P_t$. Quantify destructive loss, leakage, unwanted resolution within the triplet sector, and repeatability.",
+    "summary": "Compare physical singlet/triplet measurements with the ideal projection, including coherence within each sector, leakage, loss, and repeatability.",
+    "preciseStatement": "For a proposed physical singlet/triplet readout, characterize the full quantum instrument and its distance from the ideal singlet/triplet projections $\\rho\\mapsto P_s\\rho P_s$ and $\\rho\\mapsto P_t\\rho P_t$. Quantify destructive loss, leakage, unwanted resolution within the triplet sector, and repeatability.",
     "why": "Matching singlet/triplet outcome probabilities does not guarantee the coherence needed for repeated adaptive computation.",
-    "firstStep": "Use a tomographically complete family of inputs, including triplet superpositions, to reconstruct the retained-state instrument and test its distance from ideal STP alongside outcome fidelity.",
+    "firstStep": "Use a tomographically complete family of inputs, including triplet superpositions, to reconstruct the outcome probabilities and conditional state changes. Compare the full measurement with ideal STP, alongside its outcome fidelity.",
     "tags": [
       "QND",
       "instruments",
@@ -835,7 +835,7 @@
     "variants": [
       {
         "label": "Direct readout versus gate-mediated implementation",
-        "statement": "For a named platform, compare a direct retained-state singlet/triplet instrument with an ancilla-controlled-SWAP construction at the same instrument error. Include loss, latency, connectivity, repeated-measurement cost, and the overhead of a complete encoded task. Favorable outcome fidelity alone is insufficient."
+        "statement": "For a named platform, compare a direct singlet/triplet measurement that keeps the measured qubits with an ancilla-controlled-SWAP construction at the same instrument error. Include loss, latency, connectivity, repeated-measurement cost, and the overhead of a complete encoded task. Favorable outcome fidelity alone is insufficient."
       }
     ]
   },
@@ -1043,7 +1043,7 @@
     "category": "algorithms",
     "kind": "question",
     "summary": "Can pairwise STP approximate a spectral threshold measurement for an exchange Hamiltonian? Bound the error and resource cost, and ask separately for a protocol that retains the filtered state.",
-    "preciseStatement": "For a physically specified exchange Hamiltonian $H=\\sum_e a_eP_s^e$ with polynomial input description and $\\lVert H\\rVert\\le 1$, let $0\\le f\\le 1$ approximate a threshold with spectral margin $\\Delta$. Construct an STP acceptance effect $E$ with\n\n$$\\lVert E-f(H)\\rVert\\le\\varepsilon,$$\n\nor prove an obstruction in the stated model. Bound qubits, tests, rounds, and success probability in $n,1/\\Delta,1/\\varepsilon$. Separately request a retained-state instrument approximating the desired spectral filter, preserving correlations with a reference.",
+    "preciseStatement": "For a physically specified exchange Hamiltonian $H=\\sum_e a_eP_s^e$ with polynomial input description and $\\lVert H\\rVert\\le 1$, let $0\\le f\\le 1$ approximate a threshold with spectral margin $\\Delta$. Construct an STP acceptance effect $E$ with\n\n$$\\lVert E-f(H)\\rVert\\le\\varepsilon,$$\n\nor prove an obstruction in the stated model. Bound qubits, tests, rounds, and success probability in $n,1/\\Delta,1/\\varepsilon$. Separately approximate the full spectral-filtering measurement, including the output state and its correlations with a reference.",
     "why": "A sequence of STP measurements defines an acceptance effect. Comparing that effect with a function of the Hamiltonian tests whether the protocol performs spectral filtering.",
     "firstStep": "Compute the effect of alternating two overlapping projectors exactly, then compare it with filters of their sum. A local-term average estimates mean energy; it is not a measurement of the Hamiltonian’s spectrum.",
     "tags": [
@@ -1110,7 +1110,7 @@
     "category": "generalizations",
     "kind": "question",
     "summary": "Replace qubits and $\\mathrm{SU}(2)$ by a fixed representation of a compact group. Classify the computation generated by measuring irreducible labels on small subsets.",
-    "preciseStatement": "Fix a compact group $G$, a finite-dimensional unitary representation $V$, and a constant arity $k$. On $N$ systems initially in the maximally mixed state on $V^{\\otimes N}$, permit adaptive Lüders measurements of the isotypic components of $V^{\\otimes r}$ on selected subsets, $r\\le k$, with uniform polynomial-time classical control. Preserve coherence within each reported component, including multiplicity. Require an effective description of the representation: each permitted constant-arity instrument must admit a uniform circuit approximation of cost $\\operatorname{poly}(\\log(1/\\varepsilon))$ at error $\\varepsilon$, or its implementation is a separately declared oracle resource. Which triples $(G,V,k)$ give universal bounded-error quantum computation under an explicit encoding, which admit efficient classical simulation, and which yield intermediate models? Count all input preparation, readout, ancillary systems, and approximation costs.",
+    "preciseStatement": "Fix a compact group $G$, a finite-dimensional unitary representation $V$, and a constant arity $k$. On $N$ systems initially in the maximally mixed state on $V^{\\otimes N}$, permit adaptive projective measurements onto the isotypic components of $V^{\\otimes r}$ on selected subsets, $r\\le k$, with uniform polynomial-time classical control. Preserve coherence within each reported component, including multiplicity. Require an effective description of the representation: each permitted constant-arity instrument must admit a uniform circuit approximation of cost $\\operatorname{poly}(\\log(1/\\varepsilon))$ at error $\\varepsilon$, or its implementation is a separately declared oracle resource. Which triples $(G,V,k)$ give universal bounded-error quantum computation under an explicit encoding, which admit efficient classical simulation, and which yield intermediate models? Count all input preparation, readout, ancillary systems, and approximation costs.",
     "why": "This asks whether small-subsystem irrep measurement defines a general computational primitive. Qudits in the fundamental representation and physical higher spins are particular cases of this broader question.",
     "firstStep": "Work out the two- and three-system decompositions for a chosen representation, determine the algebra generated by its isotypic projectors, and compare the reachable instruments with an encoded universal gate set.",
     "tags": [

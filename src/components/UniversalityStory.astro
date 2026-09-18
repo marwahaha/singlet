@@ -12,9 +12,9 @@ import QuestionLink from './QuestionLink.astro';
   <p>Exchanging the qubits multiplies this vector by −1. The total-spin-one space is the three-dimensional <em>symmetric subspace</em>, or triplet space, spanned by <Math tex={String.raw`|00\rangle`}/>, <Math tex={String.raw`(|01\rangle+|10\rangle)/\sqrt2`}/>, and <Math tex={String.raw`|11\rangle`}/>. Every vector in that space is unchanged by exchange.</p>
   <p>A singlet–triplet measurement on pair <Math tex="a,b"/> has projectors</p>
   <Math display tex={String.raw`P_s^{ab}=\frac{I-\mathrm{SWAP}_{ab}}2,\qquad P_t^{ab}=\frac{I+\mathrm{SWAP}_{ab}}2.`}/>
-  <p>For an outcome <Math tex={String.raw`o\in\{s,t\}`}/>, the probability and retained state are</p>
+  <p>For an outcome <Math tex={String.raw`o\in\{s,t\}`}/>, the probability and state after measurement are</p>
   <Math display tex={String.raw`p_o=\mathrm{Tr}(P_o^{ab}\rho),\qquad \rho\longmapsto\frac{P_o^{ab}\rho P_o^{ab}}{p_o}.`}/>
-  <p>This is the Lüders instrument: it preserves coherence within the measured subspace. Resolving individual triplet components would be a different operation.</p>
+  <p>This is singlet–triplet projection (STP). The qubits remain available for later measurements, and superpositions within the triplet space are preserved. The usual ancilla-based SWAP test implements this projection, as described below.</p>
  </div>
 </section>
 <section class="interlude universality-statement" id="universality" aria-labelledby="universality-title">
