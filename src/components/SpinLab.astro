@@ -6,7 +6,7 @@ const points=[[115,85],[385,85],[115,330],[385,330]];
 const edgeCenters=[[250,85],[115,207],[210,249],[290,249],[385,207],[250,330]];
 ---
 <div class="exhibit spin-lab" data-spin-lab>
- <div class="exhibit-heading"><span class="eyebrow">Experiment 01 / Conditional recoupling</span><span class="exhibit-tag">Exact · Four qubits</span></div>
+ <div class="exhibit-heading"><span class="eyebrow">Figure 01 / Conditional recoupling</span><span class="exhibit-tag">Exact · Four qubits</span></div>
 
  <div class="lab-grid">
   <div class="spin-stage">
@@ -56,7 +56,7 @@ const edgeCenters=[[250,85],[115,207],[210,249],[290,249],[385,207],[250,330]];
  <details class="exhibit-details"><summary>Read the mathematics & all six probabilities</summary><div class="details-body"><p>The ideal instrument applies <Math tex={String.raw`P_s=(I-\mathrm{SWAP})/2`}/> or <Math tex={String.raw`P_t=(I+\mathrm{SWAP})/2`}/> and normalizes. Inspecting a branch conditions on that outcome; sampling draws an outcome according to the Born rule.</p><p>For <Math tex={String.raw`A=|s_{12}\rangle|s_{34}\rangle`}/> and <Math tex={String.raw`B=|s_{13}\rangle|s_{24}\rangle`}/>, measuring 1–3 gives <Math tex={String.raw`B`}/> with probability ¼, or <Math tex={String.raw`(2A-B)/\sqrt{3}`}/> with probability ¾. The pairings have overlap ½; they are not an orthogonal basis.</p><h4>Singlet probabilities for the current state</h4><div class="probability-table" data-probability-table>{initialProbabilities.map((p,i)=><div><span>Pair {pairs[i].map(x=>x+1).join('–')}</span><strong>{globalThis.Math.round(p*1000)/10}%</strong></div>)}</div><h4>What does “all triplet” mean?</h4>
  <p>The second input is <Math tex={"|t_0\\rangle_{12}|t_0\\rangle_{34}"}/>, where <Math tex={"|t_0\\rangle=(|01\\rangle+|10\\rangle)/\\sqrt2"}/>. Pairs 1–2 and 3–4 are certainly triplet, but each cross-pair has singlet probability ¼. Two triplet pairs are not a fully symmetric four-qubit state.</p>
  <p>The fully symmetric input is the entangled Dicke state <Math tex={"|D_4^{(2)}\\rangle"}/>: the equal superposition of all six bit strings containing two ones. Every SWAP leaves it unchanged, so every pair gives triplet with certainty. Every STP sequence on these four qubits leaves the state unchanged. This holds for any state supported in the fully symmetric subspace.</p>
- <p>For the two-triplet input, only J = 0 and J = 2 have support. The displayed percentages refer to the current conditional state. These prepared pure examples differ from the mixed triplet outcomes in <a href={import.meta.env.BASE_URL+'experiments/#preparation'}>Experiment 5</a>.</p>
+ <p>For the two-triplet input, only J = 0 and J = 2 have support. The displayed percentages refer to the current conditional state. These prepared pure examples differ from the mixed triplet outcomes in <a href={import.meta.env.BASE_URL+'experiments/#preparation'}>Figure 5</a>.</p>
  <p class="fine-print">Lines visualize six possible tests of the current state. They are not simultaneous definite spin labels or literal bonds. Selecting an edge changes the next pair, not the quantum state. These prepared inputs illustrate recoupling and symmetry, not the full universality construction from mixed input.</p><p><a href={import.meta.env.BASE_URL+'#swap-test'}>Why the SWAP test measures singlet or triplet</a></p></div></details>
 </div>
 <script>import {initSpinLabs} from '../scripts/exhibits.mjs';initSpinLabs();</script>

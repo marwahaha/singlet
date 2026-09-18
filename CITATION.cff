@@ -10,7 +10,7 @@ authors:
     given-names: James
 url: "https://marwahaha.github.io/singlet/"
 repository-code: "https://github.com/marwahaha/singlet"
-abstract: "An interactive research perspective, primer, and collection of open questions about subsystem spin, singlet–triplet measurements, and quantum computation. Includes exact small-system experiments and an annotated bibliography."
+abstract: "An interactive research perspective, primer, and collection of open questions about subsystem spin, singlet–triplet measurements, and quantum computation. Includes interactive figures with exact small-system calculations and an annotated bibliography."
 keywords:
   - quantum computing
   - subsystem spin

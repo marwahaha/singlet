@@ -934,7 +934,7 @@
     "summary": "Internal STP leaves a fully symmetric register unchanged. Which added systems and interactions let a preparation process leave that limit?",
     "preciseStatement": "Start a $k$-qubit block in $P_{\\mathrm{sym},k}/(k+1)$. Supply $m$ fresh maximally mixed qubits or specified independently prepared invariant blocks, and allow adaptive STP on a stated interaction graph. For a designated retained subsystem $S$, bound the measurements, supplied qubits, discarded qubits, and success probability needed to obtain\n\n$$\\Pr(J_S\\le j^*)\\ge 1-\\varepsilon.$$\n\nCompare these achievable tradeoffs as a function of $k,m,j^*,\\varepsilon$.",
     "why": "This preserves the proposed picture of a process starting from symmetry while identifying the operations that can actually change it. Relative structure between independently prepared blocks can become useful even when each block is internally symmetric.",
-    "firstStep": "Study $\\frac{P_{\\mathrm{sym},3}}4\\otimes\\frac I2$ and measure across the block boundary. Compare its branches with the four-qubit mixed-input experiment; distinguish changing subsystem spin from changing the total spin of a closed register.",
+    "firstStep": "Study $\\frac{P_{\\mathrm{sym},3}}4\\otimes\\frac I2$ and measure across the block boundary. Compare its branches with the four-qubit mixed-input figure; distinguish changing subsystem spin from changing the total spin of a closed register.",
     "tags": [
       "symmetric blocks",
       "state growth",
@@ -956,7 +956,7 @@
     "kind": "direction",
     "summary": "Schedule a finite library of STP state conversions, reuse states from unsuccessful attempts, and bound the resulting compilation cost.",
     "preciseStatement": "Fix a finite library of invariant encoded resource states and STP conversion protocols, each with specified measurement outcomes, conditional state changes, trace-distance error, storage requirements, and probabilities. Given a target classical-output circuit and accuracy $\\varepsilon$, construct a uniform adaptive scheduler that prepares and consumes these resources while retaining useful failure branches. Bound the total expected and high-probability costs, including fresh mixed qubits, measurements, feed-forward, and retries, and compare with a specified gate-by-gate STP compiler.",
-    "why": "The mixed-state experiment shows that entropy, entanglement, symmetry, and branch probability evolve differently. A compiler needs the operational usefulness of the intermediate state and the cost of recovering from each outcome.",
+    "why": "The mixed-state figure shows that entropy, entanglement, symmetry, and branch probability evolve differently. A compiler needs the operational usefulness of the intermediate state and the cost of recovering from each outcome.",
     "firstStep": "Build a small conversion library for singlets, symmetric blocks, and encoded multiplicity states. Check its branches exactly, then compare independent preparation with recycling on a repeated primitive. Use known coupling-tree preparation procedures as a baseline.",
     "tags": [
       "compilation",
