@@ -1,0 +1,42 @@
+---
+import { citationBibtex } from '../data/citation.mjs';
+---
+<section class="work-citation" aria-labelledby="cite-this-work">
+  <h3 id="cite-this-work">Cite this work</h3>
+  <p>Kunal Marwaha and James Sud (2026). <em>Singlet: Subsystem spin as a primitive for quantum computation.</em> <a href="https://marwahaha.github.io/singlet/">https://marwahaha.github.io/singlet/</a></p>
+  <pre aria-label="BibTeX citation"><code data-citation-bibtex>{citationBibtex.trim()}</code></pre>
+  <div class="citation-actions">
+    <button type="button" data-copy-citation hidden>Copy BibTeX</button>
+    <a href={`${import.meta.env.BASE_URL}singlet.bib`} download="singlet.bib">Download citation (.bib)</a>
+    <span data-citation-status role="status" aria-live="polite"></span>
+  </div>
+</section>
+<script>
+  const copyButton = document.querySelector<HTMLButtonElement>('[data-copy-citation]');
+  const citation = document.querySelector<HTMLElement>('[data-citation-bibtex]');
+  const status = document.querySelector<HTMLElement>('[data-citation-status]');
+  if (copyButton && citation && status && navigator.clipboard) {
+    copyButton.hidden = false;
+    copyButton.addEventListener('click', async () => {
+      status.textContent = '';
+      try {
+        await navigator.clipboard.writeText(citation.textContent || '');
+        status.textContent = 'BibTeX copied.';
+      } catch {
+        status.textContent = 'Could not copy. Select the text above, or download the citation.';
+      }
+    });
+  }
+</script>
+<style>
+  .work-citation { margin-top: 36px; min-width: 0; }
+  .work-citation p a { overflow-wrap: anywhere; }
+  pre { margin: 22px 0 6px; padding: 22px 24px; background: var(--paper-deep); border: 1px solid var(--line); white-space: pre-wrap; overflow-wrap: anywhere; }
+  code { font: 13px/1.75 var(--mono); }
+  .citation-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 0 24px; font: 15px/1.6 var(--sans); }
+  .citation-actions button, .citation-actions a { padding: 10px 0; text-decoration: underline; text-underline-offset: 4px; }
+  .citation-actions button { border: 0; background: none; color: inherit; font: inherit; cursor: pointer; }
+  [data-citation-status] { color: var(--muted); }
+  @media (max-width: 600px) { pre { padding: 18px 16px; } }
+  @media print { .citation-actions { display: none; } }
+</style>
